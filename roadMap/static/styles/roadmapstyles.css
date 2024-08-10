@@ -1,0 +1,50 @@
+.tituloRoadmap{
+text-align: center;
+font-size: 60px;
+margin-bottom: 50px;
+}
+.caminoRoadmap{
+    background-color: black;
+    width: 70%;
+    margin: auto;
+    border-radius: 10px;
+}
+.listaPasosImpar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75%;
+    margin: auto;
+    list-style: none;
+}
+.listaPasosPar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 65%;
+    margin: auto;
+    list-style: none;
+}
+
+.contenedorPasoImpar{
+    text-decoration: none;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 20px;
+    color: black;
+    transition: 0.5s;
+    width: 150px;
+    text-align: center;
+    height: 150px;
+    align-items: justify;
+}
+
+.contenedorPasoImpar:hover{
+    background-color: #000000;
+    color: white;
+    rotate: 5deg;
+    transition: 0.5s;
+}
+
+
+
