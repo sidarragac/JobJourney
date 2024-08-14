@@ -1,15 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\static\styles\interestFormStyle.css">
+    <link rel="stylesheet" href="{% static 'styles/interestFormStyle.css'%}">
     <title>interestForm</title>
 </head>
 <body>
     <div class="container">
-        <img src="..\static\images\logo.png" alt="logo" style="height: 30px;">
-        <form action="/roadmapGenerator" method="post"></form>
+        <img src="{% static 'images/logo.png' %}" alt="logo" style="height: 30px;">
+        <form action="/roadmapGenerator" method="POST">
+            {% csrf_token %}
             <div class="interest">
                 <label for="interest" class="labelInterest">Select area of interest</label>
                 <select name="interest" id="interest" class="selectInterest">
@@ -43,6 +45,6 @@
             </div>
         </form>
     </div>
-    <script src="..\static\scripts\interestForm.js"></script>
+    <script src="{% static 'scripts/interestForm.js' %}"></script>
 </body>
 </html>
