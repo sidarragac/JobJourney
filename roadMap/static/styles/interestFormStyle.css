@@ -1,0 +1,91 @@
+html {
+  height: 100%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+
+.interest {
+  margin: 25px auto;
+  width: 50%;
+  align-items: center;
+}
+
+.selectInterest, .inputObjective, .inputSalary {
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.labelInterest, .labelObjective, .labelSalary {
+  display: block;
+  margin: 10px;
+  padding: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.objective {
+  margin: 25px auto;
+  width: 50%;
+  align-items: center;
+}
+
+.salary {
+  margin: 25px auto;
+  width: 50%;
+  align-items: center;
+}
+
+.container {
+  border : 0px solid black;
+  width: 35%;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  padding: 10px;
+  height: 450px;
+}
+
+.button-81 {
+background-color: #fff;
+border: 0 solid #e2e8f0;
+border-radius: 1.5rem;
+box-sizing: border-box;
+color: #0d172a;
+cursor: pointer;
+display: inline-block;
+font-size: 1.1rem;
+font-weight: 600;
+line-height: 1;
+padding: 1rem 1.6rem;
+text-align: center;
+text-decoration: none #0d172a solid;
+text-decoration-thickness: auto;
+transition: all .1s cubic-bezier(.4, 0, .2, 1);
+box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+margin-top: 10px;
+}
+
+.button-81:hover {
+background-color: #1e293b;
+color: #fff;
+}
+
+@media (min-width: 768px) {
+.button-81 {
+  font-size: 1.125rem;
+  padding: 1rem 2rem;
+}
+}
