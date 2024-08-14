@@ -1,58 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/style/roadmapstyles.css">
-</head>
-<body>
-    <div class="tituloRoadmap">
-        <h1>Roadmap</h1>
-    </div>
-    <div>
-        <ul class="listaPasosImpar">
-            <a href="" class="contenedorPasoImpar" target="_blank">
-                <li class="pasoImpar">
-                <h2>Paso 1</h2>
-                </li>
-            </a>
-            <a href="https://www.bing.com/search?pglt=41&q=flexbox+tricks&cvid=321074c6431e402180b2b8891b4054d4&gs_lcrp=EgZjaHJvbWUqBggBEAAYQDIGCAAQRRg5MgYIARAAGEAyBggCEAAYQDIGCAMQABhAMgYIBBAAGEAyBggFEAAYQDIGCAYQABhAMgYIBxAAGEAyBggIEAAYQDIICAkQ6QcY_FXSAQg3Njg1ajBqMagCALACAA&FORM=ANNAB1&PC=U531" class="contenedorPasoImpar" target="_blank">
-                <li class="pasoImpar">
-                    <h2>Paso 3</h2>
-                    <p>Descripcion del paso 3</p>
-                </li>
-            </a>
-            <a href="https://www.bing.com/search?pglt=41&q=flexbox+tricks&cvid=321074c6431e402180b2b8891b4054d4&gs_lcrp=EgZjaHJvbWUqBggBEAAYQDIGCAAQRRg5MgYIARAAGEAyBggCEAAYQDIGCAMQABhAMgYIBBAAGEAyBggFEAAYQDIGCAYQABhAMgYIBxAAGEAyBggIEAAYQDIICAkQ6QcY_FXSAQg3Njg1ajBqMagCALACAA&FORM=ANNAB1&PC=U531" class="contenedorPasoImpar" target="_blank">
-                <li class="pasoImpar">
-                    <h2>Paso 5</h2>
-                    <p>Descripcion del paso 5</p>
-                </li>
-            </a>
-        </ul>
-    </div>
-    <div class="caminoRoadmap">
-        <p>.</p>
-    </div>
-    <div>
-        <ul class="listaPasosPar">
-            <a href="https://www.bing.com/search?pglt=41&q=flexbox+tricks&cvid=321074c6431e402180b2b8891b4054d4&gs_lcrp=EgZjaHJvbWUqBggBEAAYQDIGCAAQRRg5MgYIARAAGEAyBggCEAAYQDIGCAMQABhAMgYIBBAAGEAyBggFEAAYQDIGCAYQABhAMgYIBxAAGEAyBggIEAAYQDIICAkQ6QcY_FXSAQg3Njg1ajBqMagCALACAA&FORM=ANNAB1&PC=U531" class="contenedorPasoImpar" target="_blank">
-                <li class="pasoPar">
-                    <h2>Paso 2</h2>
-                    <p>Descripcion del paso 2</p>
-                </li>
-            </a>
-            <a href="https://www.bing.com/search?pglt=41&q=flexbox+tricks&cvid=321074c6431e402180b2b8891b4054d4&gs_lcrp=EgZjaHJvbWUqBggBEAAYQDIGCAAQRRg5MgYIARAAGEAyBggCEAAYQDIGCAMQABhAMgYIBBAAGEAyBggFEAAYQDIGCAYQABhAMgYIBxAAGEAyBggIEAAYQDIICAkQ6QcY_FXSAQg3Njg1ajBqMagCALACAA&FORM=ANNAB1&PC=U531" class="contenedorPasoImpar" target="_blank">
-                <li class="pasoPar">
-                    <h2>Paso 4</h2>
-                    <p>Descripcion del paso 4</p>
-                </li>
-        </ul>
-    </div>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,13 +13,15 @@
     <div>
         <ul class="listaPasosImpar">
             {% for step in steps %}
-            {% if step.step_number % 2 != 0 %}
-            <a href="{{ step.step_link }}" class="contenedorPasoImpar" target="_blank">
-                <li class="pasoImpar">
-                    <h2>Paso {{ step.step_number }}</h2>
-                    <p>{{ step.jobSuggestion }}</p>
-                </li>
-            </a>
+                {% if {{ step.step_number % 2 }} != 0 %}
+                    <a href="{{ step.step_link }}" class="contenedorPasoImpar" target="_blank">
+                        <li class="pasoImpar">
+                            <h2>Paso {{ step.step_number }}</h2>
+                            <p>{{ step.jobSuggestion }}</p>
+                        </li>
+                    </a>
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
     <div class="caminoRoadmap">
@@ -82,12 +29,16 @@
     </div>
     <div>
         <ul class="listaPasosPar">
-            {% else %}
-            <a href="{{ step.step_link }}" class="contenedorPasoImpar" target="_blank">
-                <li class="pasoPar">
-                    <h2>Paso {{ step.step_number }}</h2>
-                    <p>{{ step.jobSuggestion }}</p>
-                </li>
+            {% for step in steps %}
+                {% if {{ step.step_number % 2 }} == 0 %}
+                    <a href="{{ step.step_link }}" class="contenedorPasoImpar" target="_blank">
+                        <li class="pasoPar">
+                            <h2>Paso {{ step.step_number }}</h2>
+                            <p>{{ step.jobSuggestion }}</p>
+                        </li>
+                    </a>
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
 
