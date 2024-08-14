@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from admin.openAIManager import openAIManager
-from forms import *
+from .forms import *
 import json
 
 def interestForm(request):
