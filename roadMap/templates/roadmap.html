@@ -1,23 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/style/roadmapstyles.css">
+    <title>{{ roadmap.name }}</title>
+    <link rel="stylesheet" href="{% static 'styles/roadmapstyles.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
 </head>
 <body>
     <div class="tituloRoadmap">
-        <h1>Roadmap</h1>
+        <h1>{{ roadmap.name }}</h1>
     </div>
     <div>
         <ul class="listaPasosImpar">
-            {% for step in steps %}
-                {% if {{ step.step_number % 2 }} != 0 %}
-                    <a href="{{ step.step_link }}" class="contenedorPasoImpar" target="_blank">
+            {% for step in roadmap.steps %}
+                {% if not step.number|divisibleby:2 %}
+                    <a href="#Paso{{step.number}}" class="contenedorPasoImpar">
                         <li class="pasoImpar">
-                            <h2>Paso {{ step.step_number }}</h2>
-                            <p>{{ step.jobSuggestion }}</p>
+                            <h2>Step {{ step.number }}</h2>
+                            <h3>{{ step.name }}</h3>
                         </li>
                     </a>
                 {% endif %}
@@ -29,18 +31,40 @@
     </div>
     <div>
         <ul class="listaPasosPar">
-            {% for step in steps %}
-                {% if {{ step.step_number % 2 }} == 0 %}
-                    <a href="{{ step.step_link }}" class="contenedorPasoImpar" target="_blank">
+            {% for step in roadmap.steps %}
+                {% if step.number|divisibleby:2 %}
+                    <a href="#Paso{{step.number}}" class="contenedorPasoImpar">
                         <li class="pasoPar">
-                            <h2>Paso {{ step.step_number }}</h2>
-                            <p>{{ step.jobSuggestion }}</p>
+                            <h2>Step {{ step.number }}</h2>
+                            <h3>{{ step.name }}</h3>
                         </li>
                     </a>
                 {% endif %}
             {% endfor %}
         </ul>
     </div>
-
+    <div class="contenedorPasos" >
+        {% for step in roadmap.steps %}
+            <div class="pasos" id="Paso{{step.number}}">
+                <div class="infoPaso">
+                    <h2>Step {{ step.number }}</h2>
+                    <h3>{{ step.name }}</h3>
+                    <p>Checkpoints</p>
+                    <ul>
+                        {% for remarkablePoint in step.remarkablePoints %}
+                            <li>{{ remarkablePoint }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="infoJob">
+                    <div>
+                        <h3>Job you should aspire to</h3>
+                        <h4>{{step.jobSuggestion.title}}</h4>
+                        <p>{{step.jobSuggestion.description}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

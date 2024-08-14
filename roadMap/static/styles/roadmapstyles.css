@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Montserrat", sans-serif;
+}
+
 .tituloRoadmap{
-text-align: center;
-font-size: 60px;
-margin-bottom: 50px;
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 50px;
 }
 .caminoRoadmap{
     background-color: black;
@@ -29,22 +37,76 @@ margin-bottom: 50px;
 .contenedorPasoImpar{
     text-decoration: none;
     background-color: #f1f1f1;
-    border-radius: 10px;
+    border-radius: 20%;
     padding: 20px;
     color: black;
     transition: 0.5s;
-    width: 150px;
+    width: 200px;
+    align-content: center;
     text-align: center;
-    height: 150px;
+    height: 200px;
     align-items: justify;
 }
 
 .contenedorPasoImpar:hover{
+    background-color: #afafaf;
+    color: white;
+    rotate: 5deg;
+    transition: 0.5s;
+}
+
+.contenedorPasos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    margin: 150px auto;
+}
+
+.pasos{
+    width: 40%;
+    height: 500px;
+    font-size: 20px;
+    list-style: none;
+    text-align: left;
+    border-radius: 5%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    transition: 0.4s;
+    margin: 30px;    
+    display: flex;
+    flex-direction: row;
+}
+
+.pasos:hover{
+    background-color: #f7f7f7;
+    scale: 1.05;
+    transition: 0.4s;
+}
+
+.contenedorPasoImpar:active{
     background-color: #000000;
     color: white;
     rotate: 5deg;
     transition: 0.5s;
 }
 
+.listaPasosGrandes h2{
+    margin-bottom: 25px;
+}
 
+.infoPaso{
+    width: 60%;
+    text-align: left;
+    border-radius: 5% 0% 0% 5%;
+    padding: 50px 20px 50px 50px;
+}
+
+.infoJob{
+    width: 40%;
+    text-align: left;
+    background-color: #dfdfdf;
+    border-radius: 0% 5% 5% 0%;
+    padding: 50px 50px 50px 20px;
+}
 
