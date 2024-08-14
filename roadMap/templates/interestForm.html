@@ -7,34 +7,42 @@
     <title>interestForm</title>
 </head>
 <body>
-    <div>
-        <label for="interest">Select area of interest:</label>
-        <select name="interest" id="interest">
-            <option value=""></option>
-            <option value="natural_sciences">Natural Sciences</option>
-            <option value="mathematics_statistics">Mathematics and Statistics</option>
-            <option value="engineering_technology">Engineering and Technology</option>
-            <option value="medical_health_sciences">Medical and Health Sciences</option>
-            <option value="social_sciences">Social Sciences</option>
-            <option value="humanities">Humanities</option>
-            <option value="arts_design">Arts and Design</option>
-            <option value="business_management">Business and Management</option>
-            <option value="law_legal_studies">Law and Legal Studies</option>
-            <option value="education">Education</option>
-            <option value="computer_science_information_systems">Computer Science and Information Systems</option>
-            <option value="environmental_agricultural_sciences">Environmental and Agricultural Sciences</option>
-            <option value="communication_media">Communication and Media</option>
-            <option value="interdisciplinary_studies">Interdisciplinary Studies</option>
-        </select>
+    <div class="container">
+        <img src="..\static\images\logo.png" alt="logo" style="height: 30px;">
+        <form action="/roadmapGenerator" method="post"></form>
+            <div class="interest">
+                <label for="interest" class="labelInterest">Select area of interest</label>
+                <select name="interest" id="interest" class="selectInterest">
+                    <option value=""></option>
+                    <option value="natural_sciences">Natural Sciences</option>
+                    <option value="mathematics_statistics">Mathematics and Statistics</option>
+                    <option value="engineering_technology">Engineering and Technology</option>
+                    <option value="medical_health_sciences">Medical and Health Sciences</option>
+                    <option value="social_sciences">Social Sciences</option>
+                    <option value="humanities">Humanities</option>
+                    <option value="arts_design">Arts and Design</option>
+                    <option value="business_management">Business and Management</option>
+                    <option value="law_legal_studies">Law and Legal Studies</option>
+                    <option value="education">Education</option>
+                    <option value="computer_science_information_systems">Computer Science and Information Systems</option>
+                    <option value="environmental_agricultural_sciences">Environmental and Agricultural Sciences</option>
+                    <option value="communication_media">Communication and Media</option>
+                    <option value="interdisciplinary_studies">Interdisciplinary Studies</option>
+                </select>
+            </div>
+            <div class="objective">
+                <label for="" class="labelObjective">Enter your objective</label>
+                <input type="text" class="inputObjective" name="objective" id="objective" size="35" placeholder="Ex: Software engineer at Google">
+            </div>
+            <div class="salary">
+                <label for="" class="labelSalary">Enter expected salary per year</label>
+                <input type="number" class="inputSalary" name="salary" id="salary" min="0" oninput="this.value = Math.abs(this.value)" placeholder="Ex: 100000">
+            </div>
+            <div class="submit">
+                <button class="button-81" role="button">Generate</button>
+            </div>
+        </form>
     </div>
-
-    <div>
-        <label for="">Enter your objective:</label>
-        <input type="text" name="objective" id="objective" size="35" placeholder="Ex: Software engineer at Google">
-
-        
-    </div>
-
     <script src="..\static\scripts\interestForm.js"></script>
 </body>
 </html>
