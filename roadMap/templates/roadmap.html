@@ -49,10 +49,16 @@
                 <div class="infoPaso">
                     <h2>Step {{ step.number }}</h2>
                     <h3>{{ step.name }}</h3>
-                    <p>Checkpoints</p>
+                    <b>Checkpoints</b>
                     <ul>
                         {% for remarkablePoint in step.remarkablePoints %}
                             <li>{{ remarkablePoint }}</li>
+                        {% endfor %}
+                    </ul>
+                    <b>Recommended Materials</b>
+                    <ul>
+                        {% for material in step.recommendedMaterials %}
+                            <li>{{material.title}}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -65,6 +71,19 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+    <div class="footer">
+        <h2>Conclutions</h2>
+        <div class="contenedorConclutions">
+            <div class="conclutions">
+                <h3>Benefit</h3>
+                <p> {{roadmap.benefit}} </p>
+            </div>
+            <div class="conclutions">
+                <h3>Salary</h3>
+                <p> {{roadmap.salary}} </p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
