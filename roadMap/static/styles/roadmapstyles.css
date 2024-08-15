@@ -66,7 +66,7 @@ body{
 
 .pasos{
     width: 40%;
-    height: 500px;
+    height: auto;
     font-size: 20px;
     list-style: none;
     text-align: left;
@@ -97,6 +97,7 @@ body{
 
 .infoPaso{
     width: 60%;
+    height: auto;
     text-align: left;
     border-radius: 5% 0% 0% 5%;
     padding: 50px 20px 50px 50px;
@@ -105,8 +106,33 @@ body{
 .infoJob{
     width: 40%;
     text-align: left;
+    align-content: center;
+    height: auto;
     background-color: #dfdfdf;
     border-radius: 0% 5% 5% 0%;
     padding: 50px 50px 50px 20px;
+}
+
+.footer{
+    background-color: #000000;
+    color: #f1f1f1;
+    text-align: center;
+    height: auto;
+}
+.footer h2{
+    padding: 90px 0px 60px 0px;
+    font-size: 50px;
+}
+
+.contenedorConclutions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.conclutions{
+    font-size: x-large;
+    width: 25%;
+    height: auto;
 }
 
