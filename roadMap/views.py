@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from admin.openAIManager import openAIManager
 from .forms import *
-import json
 
 def interestForm(request):
     return render(request, 'interestForm.html')
@@ -16,9 +15,6 @@ def roadmapGenerator(request):
             bot = openAIManager()
             roadmap = bot.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
             return render(request, 'roadmap.html', {'roadmap': roadmap})
-            # f = open("./roadMap/roadmap.json")
-            # roadmap = json.loads(f.read())
-            # return render(request, 'roadmap.html', {'roadmap': roadmap})
         else:
             return render(request, 'interestForm.html', {"message": "Some provided data are not valid."})
     else:
