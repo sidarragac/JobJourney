@@ -1,8 +1,7 @@
-<center>
-<img src="https://github.com/user-attachments/assets/c74bdfd7-bf04-4935-a0ea-38eade4f9475" alt="logo" height="50px"/>
-
-<h1>JobJourney</h1>
-</center>
+<h1 align="center">
+    <img src="https://github.com/user-attachments/assets/c74bdfd7-bf04-4935-a0ea-38eade4f9475" alt="logo" height="50px" align="center"/><br>
+    JobJourney
+</h1>
 
 **Welcome to JobJourney. Let's walk through this guide for a fast introduction to our project.**
 # Table of contents
