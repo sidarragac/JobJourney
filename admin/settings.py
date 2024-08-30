@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'roadMap',
+    'accounts',
 ]
+
+AUTH_USER_MODEL = "accounts.User" #This line is added to the settings.py file to specify the custom user model.
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
