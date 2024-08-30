@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'roadMap',
     'accounts',
+    'analytics',
 ]
 
 AUTH_USER_MODEL = "accounts.User" #This line is added to the settings.py file to specify the custom user model.
