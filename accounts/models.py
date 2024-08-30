@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     city = models.CharField(max_length=100)
-    typeOfUser = models.enums('person', 'company')
+    isCompany = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
