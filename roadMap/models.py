@@ -10,5 +10,10 @@ class RoadMap(models.Model):
     mainGoal = models.CharField(max_length=100)
     content = models.JSONField()
     completionPercentage = models.IntegerField()
-    idUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
     idInterest = models.ForeignKey(Interest, on_delete=models.CASCADE)
+
+class Checkpoint(models.Model):
+    step = models.CharField(max_length=100)
+    checked = models.BooleanField()
+    idRoadMap = models.BooleanField()

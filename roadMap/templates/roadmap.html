@@ -43,16 +43,16 @@
             {% endfor %}
         </ul>
     </div>
-    <div class="contenedorPasos" >
+    <div class="contenedorPasos">
         {% for step in roadmap.steps %}
             <div class="pasos" id="Paso{{step.number}}">
                 <div class="infoPaso">
                     <h2>Step {{ step.number }}</h2>
                     <h3>{{ step.name }}</h3>
                     <b>Checkpoints</b>
-                    <ul>
+                    <ul class="listaa">
                         {% for remarkablePoint in step.remarkablePoints %}
-                            <li>{{ remarkablePoint }}</li>
+                            <li><input type="checkbox">{{ remarkablePoint }}</li>
                         {% endfor %}
                     </ul>
                     <b>Recommended Materials</b>
@@ -85,5 +85,6 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'scripts/roadmap.js' %}"></script>
 </body>
 </html>
