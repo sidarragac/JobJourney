@@ -50,11 +50,14 @@
                     <h2>Step {{ step.number }}</h2>
                     <h3>{{ step.name }}</h3>
                     <b>Checkpoints</b>
-                    <ul class="listaa">
+                    <form action="{% url 'checkpointUpdate' %}" method="POST">
+                        {% csrf_token %}
+                        {% set idx = 1 %}
                         {% for remarkablePoint in step.remarkablePoints %}
-                            <li><input type="checkbox">{{ remarkablePoint }}</li>
+                            <input type="checkbox" value="{% idx*step.number %}" onchange="this.form.submit()">{{ remarkablePoint }}<br>
+                            {% set idx = idx + 1 %}
                         {% endfor %}
-                    </ul>
+                    </form>
                     <b>Recommended Materials</b>
                     <ul>
                         {% for material in step.recommendedMaterials %}
