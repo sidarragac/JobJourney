@@ -1,19 +1,28 @@
 from django.db import models
-from accounts.models import User
+from accounts.models import Person
 
-# Create your models here.
 class Interest(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
 
-class RoadMap(models.Model):
-    mainGoal = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+class Roadmap(models.Model):
+    mainGoal = models.TextField()
     content = models.JSONField()
-    completionPercentage = models.IntegerField()
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    completionPercentage = models.IntegerField(default=0)
+    numberOfLikes = models.IntegerField(default=0)
+    username = models.ForeignKey(Person, on_delete=models.CASCADE)
     idInterest = models.ForeignKey(Interest, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.mainGoal
+
 class Checkpoint(models.Model):
-    step = models.CharField(max_length=100)
-    checked = models.BooleanField()
-    idRoadMap = models.BooleanField()
+    numberOfCheckpoint = models.IntegerField(default=0)
+    idRoadmap = models.ForeignKey(Roadmap, on_delete=models.CASCADE, default=0)
+    completed = models.BooleanField()
+
+    def __str__(self):
+        return f'# Checkpoint: {self.numberOfCheckpoint} - Roadmap ID {self.idRoadmap}'
