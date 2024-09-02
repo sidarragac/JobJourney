@@ -24,11 +24,7 @@ class Company(models.Model):
 
     def __str__(self):
         return self.companyName
-<<<<<<< HEAD
     
-=======
-
->>>>>>> main
 class SocialMedia(models.Model):
     name = models.CharField(max_length=50)
 
