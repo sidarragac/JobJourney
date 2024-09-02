@@ -19,15 +19,6 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50)),
             ],
         ),
-        migrations.RemoveField(
-            model_name='user',
-            name='id',
-        ),
-        migrations.AlterField(
-            model_name='user',
-            name='username',
-            field=models.CharField(max_length=100, primary_key=True, serialize=False, unique=True),
-        ),
         migrations.CreateModel(
             name='UserSocialMedia',
             fields=[

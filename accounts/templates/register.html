@@ -15,42 +15,43 @@
                 <header>Register</header>
                 <div class="col-md-6 left">
                     <div class="input-box">
-                        <form action="" method="POST">
+                        <form action="{% url 'register' %}" method="POST">
+                            {% csrf_token %}
                             <div class="input-field">
-                                <input type="text" class="input" id="username" required autocomplete="off">
+                                <input type="text" class="input" id="username" name="username" required autocomplete="off">
                                 <label for="username">Username</label>
                             </div>
                             <div class="input-field">
-                                <input type="text" class="input" id="email" required autocomplete="off">
+                                <input type="email" class="input" id="email" name="email" required autocomplete="off">
                                 <label for="email">Email</label>
                             </div>
                             <div class="input-field">
-                                <input type="password" class="input" id="password" required>
-                                <label for="password">Password</label>
+                                <input type="password" class="input" id="password1" name="password1" required>
+                                <label for="password1">Password</label>
                             </div>
                             <div class="input-field">
-                                <input type="password" class="input" id="confirmPassword" required>
-                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="input" id="password2" name="password2" required>
+                                <label for="password2">Confirm Password</label>
                             </div>
                     </div>
                 </div>
                 <div class="col-md-6 right">
                     <div class="input-box">
                         <div class="input-field">
-                            <input type="text" class="input" id="name" required autocomplete="off">
-                            <label for="name">Name</label>
+                            <input type="text" class="input" id="first_name" name="first_name" required autocomplete="off">
+                            <label for="first_name">First Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" class="input" id="lastName" required autocomplete="off">
-                            <label for="lastName">last Name</label>
+                            <input type="text" class="input" id="last_name" name="last_name" required autocomplete="off">
+                            <label for="last_name">Last Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" class="input" id="city" required autocomplete="off">
+                            <input type="text" class="input" id="city" name="city" required autocomplete="off">
                             <label for="city">City</label>
                         </div>
                         <div class="input-bd">
-                            <label for="birthDate">Birth Date</label>
-                            <input type="date" class="input" id="birthDate" autocomplete="off">
+                            <label for="isCompany">Company Account</label>
+                            <input type="checkbox" id="isCompany" name="isCompany">
                         </div>
                     </div>
                 </div>
@@ -58,7 +59,7 @@
                     <div class="input-field">
                         <input type="submit" class="submit" value="Register">
                         <div class="login">
-                            <span>Already have an account? <a href="login">Login here</a></span>
+                            <span>Already have an account? <a href="{% url 'login' %}">Login here</a></span>
                         </div>
                     </div>
                 </div>
