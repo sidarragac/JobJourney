@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from admin.openAIManager import openAIManager
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
-import asyncio
 import json
 
 def interestForm(request):
@@ -21,19 +20,30 @@ def roadmapGenerator(request):
 
             # instanciar un obj del modelo roadmap
 
-            f = open("./roadMap/roadmap.json")
-            roadmap = json.loads(f.read())
-
-            return render(request, 'roadmap.html', {'roadmap': roadmap, 'roadmapID': 1})
+            return redirect(f'displayRoadmap/{1}')
         else:
             return render(request, 'interestForm.html', {"message": "Some provided data are not valid."})
     else:
         return render(request, 'interestForm.html')
     
-async def __updateCheckpointStatus(checkpoint, roadmap, status):
-    Checkpoint.objects.filter(numberOfCheckpoint=checkpoint, idRoadmap=roadmap).update(completed=status)
+def displayRoadmap(request, roadmapId):
+    roadmapObj = Roadmap.objects.get(id=roadmapId)
+    roadmap = roadmapObj.content
+
+    return render(request, 'roadmap.html', {'roadmap': roadmap, 'roadmapId': roadmapId})
+
+def __updateCheckpointStatus(checkpoint, roadmap):
+    print("Checkpoint: ", checkpoint)
+    print("Roadmap: ", roadmap)
+    chkpt = Checkpoint.objects.get(numberOfCheckpoint=checkpoint, idRoadmap=roadmap)
+    print(chkpt)
+    chkpt.completed = not chkpt.completed #Negate the value. If completed and unmarked => completed = False and vice versa.
+    chkpt.save()
 
 @login_required
 def checkpointUpdate(request):
-
-    return render(request, 'completedCheckpoint.html')
+    if request.method == 'POST':
+        roadmapId = request.POST.get('roadmapId')
+        checkpoint = request.POST.get('checkpoint')
+        __updateCheckpointStatus(checkpoint, roadmapId)
+        return redirect(f'displayRoadmap/{roadmapId}')
