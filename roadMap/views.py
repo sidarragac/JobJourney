@@ -26,24 +26,27 @@ def roadmapGenerator(request):
     else:
         return render(request, 'interestForm.html')
     
-def displayRoadmap(request, roadmapId):
-    roadmapObj = Roadmap.objects.get(id=roadmapId)
-    roadmap = roadmapObj.content
-
-    return render(request, 'roadmap.html', {'roadmap': roadmap, 'roadmapId': roadmapId})
+def displayRoadmap(request, roadmapId, stepNumber=0):
+    roadmap = Roadmap.objects.get(id=roadmapId).values('content')
+    checkpoints = Checkpoint.objects.filter(idRoadmap=roadmapId).values('numberOfCheckpoint', 'completed')
+    context = {
+        'roadmap': roadmap, 
+        'roadmapId': roadmapId, 
+        stepNumber: stepNumber,
+        'checkpoints': checkpoints
+    }
+    return render(request, 'roadmap.html', context)
 
 def __updateCheckpointStatus(checkpoint, roadmap):
-    print("Checkpoint: ", checkpoint)
-    print("Roadmap: ", roadmap)
     chkpt = Checkpoint.objects.get(numberOfCheckpoint=checkpoint, idRoadmap=roadmap)
-    print(chkpt)
     chkpt.completed = not chkpt.completed #Negate the value. If completed and unmarked => completed = False and vice versa.
     chkpt.save()
 
 @login_required
 def checkpointUpdate(request):
     if request.method == 'POST':
-        roadmapId = request.POST.get('roadmapId')
-        checkpoint = request.POST.get('checkpoint')
+        roadmapId = int(request.POST.get('roadmapId'))
+        checkpoint = int(request.POST.get('checkpoint'))
+        stepNumber = int(request.POST.get('stepNumber'))
         __updateCheckpointStatus(checkpoint, roadmapId)
-        return redirect(f'displayRoadmap/{roadmapId}')
+        return redirect(f'displayRoadmap/{roadmapId}/{stepNumber}')
