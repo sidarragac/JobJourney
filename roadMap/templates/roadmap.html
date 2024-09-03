@@ -44,6 +44,9 @@
         </ul>
     </div>
     <div class="contenedorPasos">
+        <script type="application/json" id="checkpoints-data">
+            {{ checkpoints|safe }}
+        </script>
         {% for step in roadmap.steps %}
             <div class="pasos" id="Paso{{step.number}}">
                 <div class="infoPaso">
@@ -53,7 +56,7 @@
                     <form action="{% url 'checkpointUpdate' %}" method="POST">
                         {% csrf_token %}
                         {% for remarkablePoint in step.remarkablePoints %}
-                            <input type="checkbox" id="checkpoint" name="checkpoint" value=0 onchange="this.form.submit()">{{ remarkablePoint }}<br>
+                            <input type="checkbox" id="checkpoint" name="checkpoint" value="0" onchange="this.form.submit()">{{ remarkablePoint }}<br>
                         {% endfor %}
                         <input type="hidden" id="roadmapId" name="roadmapId" value="{{ roadmapId }}">
                         <input type="hidden" id="stepNumber" name="stepNumber" value="{{ step.number }}">

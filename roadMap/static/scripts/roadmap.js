@@ -9,12 +9,22 @@ window.onload = function(){
 
 document.addEventListener('DOMContentLoaded', function() {
     let numChkpts = 1; // Initialize counter
+    const checkpoints = JSON.parse(document.getElementById('checkpoints-data').textContent);
+    console.log(checkpoints);
     
     // Function to assign values to checkboxes and increment the counter
     function initializeCheckboxes() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkpoint"]');
         checkboxes.forEach(checkbox => {
             checkbox.value = numChkpts;
+            console.log(checkbox.value);
+            console.log(numChkpts);
+            console.log(checkpoints[numChkpts]);
+            if(checkpoints[numChkpts]){
+                checkbox.checked = true;    
+            }else{
+                checkbox.checked = false;
+            }
             numChkpts++;
         });
     }
