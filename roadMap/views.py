@@ -27,7 +27,7 @@ def roadmapGenerator(request):
         return render(request, 'interestForm.html')
     
 def displayRoadmap(request, roadmapId, stepNumber=0):
-    roadmap = Roadmap.objects.get(id=roadmapId).values('content')
+    roadmap = Roadmap.objects.get(id=roadmapId).content
     checkpoints = Checkpoint.objects.filter(idRoadmap=roadmapId).values('numberOfCheckpoint', 'completed')
     context = {
         'roadmap': roadmap, 
