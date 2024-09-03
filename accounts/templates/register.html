@@ -48,6 +48,16 @@
                         </div>
                         <div class="col-md-6 right" id="content"></div>
                     </div>
+                    <!-- Show form errors -->
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <strong>{{ field.label }}:</strong> {{ error }}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <div class="button">
                         <div class="input-field">
                             <input type="submit" class="submit" value="Register">
