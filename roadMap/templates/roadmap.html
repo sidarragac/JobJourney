@@ -56,10 +56,11 @@
                     <form action="{% url 'checkpointUpdate' %}" method="POST">
                         {% csrf_token %}
                         {% for remarkablePoint in step.remarkablePoints %}
-                            <input type="checkbox" id="checkpoint" name="checkpoint" value="0" onchange="this.form.submit()">{{ remarkablePoint }}<br>
+                            <input type="checkbox" id="remarkablePoint" name="remarkablePoint" value="0" onchange="submitForm(this, '{{ step.number }}')">{{ remarkablePoint }}<br>
                         {% endfor %}
                         <input type="hidden" id="roadmapId" name="roadmapId" value="{{ roadmapId }}">
                         <input type="hidden" id="stepNumber" name="stepNumber" value="{{ step.number }}">
+                        <input type="hidden" id="checkpoint{{ step.number }}" name="checkpoint{{ step.number }}" value="0">
                     </form>
                     <b>Recommended Materials</b>
                     <ul>

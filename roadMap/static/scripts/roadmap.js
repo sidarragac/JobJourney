@@ -7,19 +7,18 @@ window.onload = function(){
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', (event) => {
     let numChkpts = 1; // Initialize counter
     const checkpoints = JSON.parse(document.getElementById('checkpoints-data').textContent);
-    console.log(checkpoints);
     
     // Function to assign values to checkboxes and increment the counter
     function initializeCheckboxes() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkpoint"]');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="remarkablePoint"]');
+        console.log(checkboxes);
         checkboxes.forEach(checkbox => {
             checkbox.value = numChkpts;
-            console.log(checkbox.value);
             console.log(numChkpts);
-            console.log(checkpoints[numChkpts]);
+            console.log(checkbox.value);
             if(checkpoints[numChkpts]){
                 checkbox.checked = true;    
             }else{
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize checkboxes on page load
     initializeCheckboxes();
 });
 
@@ -39,4 +37,14 @@ function scrollToStep(step){
     if(stepElement){
         stepElement.scrollIntoView({behavior: "smooth", block: "start"});
     }
+}
+
+function submitForm(checkbox, step){
+    let checkpoint = document.getElementById('checkpoint'+step);
+    checkpoint.value = checkbox.value;
+    //Rename the id and name to have a single POST value.
+    checkpoint.id = 'checkpoint'; 
+    checkpoint.name = 'checkpoint';
+
+    checkbox.form.submit();
 }

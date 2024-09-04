@@ -42,8 +42,6 @@ def roadmapGenerator(request):
 def displayRoadmap(request, roadmapId, stepNumber=0):
     roadmap = Roadmap.objects.get(id=roadmapId).content
     checkpoints = __getCheckpointsStatus(roadmapId)
-    print(roadmap)
-    print(checkpoints)
     context = {
         'roadmap': roadmap, 
         'roadmapId': roadmapId, 
