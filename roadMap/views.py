@@ -60,3 +60,29 @@ def checkpointUpdate(request):
         stepNumber = int(request.POST.get('stepNumber'))
         __updateCheckpointStatus(checkpoint, roadmapId)
         return redirect(f'displayRoadmap/{roadmapId}/{stepNumber}')
+    
+def createDbRoadmap(roadmapJSON, interest, person, objective):
+    mainGoal = objective
+    content = roadmapJSON
+    completionPercentage = 0
+    interestt = Interest.objects.get(name=interest)
+    numberOfLikes = 0
+    idUser = 1
+    roadmap = Roadmap(mainGoal=mainGoal, content=content, completionPercentage=completionPercentage, idInterest=interestt , numberOfLikes=numberOfLikes, username=person)
+    roadmap.save()
+    return roadmap
+
+def createDbCheckpoints(roadmapJSON, idRoadmap):
+    steps = roadmapJSON['steps']
+    counter = 1
+    for step in steps:
+        checkpoints = step['remarkablePoints']
+        for checkpoint in checkpoints:
+            completed = False
+            numberOfcheckpoint = counter
+            idRoadmap = idRoadmap
+            checkpointt = Checkpoint(numberOfCheckpoint=numberOfcheckpoint, idRoadmap=idRoadmap, completed=completed)
+            checkpointt.save()
+
+def home(request):
+    return render(request, 'base.html')
