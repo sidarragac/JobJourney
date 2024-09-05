@@ -15,15 +15,22 @@
                 <div class="col-md-6 left">
                     <div class="input-box">
                         <header>Login</header>
-                        <form action="" method="POST">
+                        <form action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
                             <div class="input-field">
-                                <input type="text" class="input" id="email" required autocomplete="off">
-                                <label for="email">Email</label>
+                                <input type="text" class="input" id="username" name="username" required autocomplete="off">
+                                <label for="username">Username</label>
                             </div>
                             <div class="input-field">
-                                <input type="password" class="input" id="password" required>
-                                <label for="password">password</label>
+                                <input type="password" class="input" id="password" name="password" required>
+                                <label for="password">Password</label>
                             </div>
+                            <!-- Show errors -->
+                            {% if error %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>
+                            {% endif %}
                             <div class="input-field">
                                 <input type="submit" class="submit" value="login">
                             </div>
