@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.interestForm, name='interestForm'),
     path('roadmapGenerator', views.roadmapGenerator, name='roadmapGenerator'),
+    path('home', views.home, name='home'),
     path('checkpointUpdate', views.checkpointUpdate, name='checkpointUpdate'),
     path('displayRoadmap/<int:roadmapId>', views.displayRoadmap, name='displayRoadmap'),
     path('displayRoadmap/<int:roadmapId>/<int:stepNumber>', views.displayRoadmap, name='displayRoadmap'),
