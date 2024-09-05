@@ -14,7 +14,7 @@
     align-items: center;
     min-height: 100vh;
 }
-.row{
+.total{
   width:  900px;
   height: auto;
   border-radius: 35px;
@@ -38,24 +38,34 @@ i{
 }
 header {
     font-weight: 700;
+    font-size: 20px;
     text-align: center;
     margin-bottom: 45px;
     margin: 0%;
     height: auto;
     padding: 40px 0px;
 }
-.left{
+.left , .right{
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.right{
+
+.container-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.selector {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-  }
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 .input-box{
   width: 330px;
@@ -132,6 +142,7 @@ header {
     text-align: center;
     font-size: small;
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 span a{
     text-decoration: none;

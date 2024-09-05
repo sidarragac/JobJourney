@@ -4,6 +4,12 @@
     font-family: "Montserrat", sans-serif;
 }
 
+header {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
 .wrapper{
     background: #ececec;
     padding: 0 20px 0 20px;
