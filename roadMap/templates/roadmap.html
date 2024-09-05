@@ -44,17 +44,24 @@
         </ul>
     </div>
     <div class="contenedorPasos">
+        <script type="application/json" id="checkpoints-data">
+            {{ checkpoints|safe }}
+        </script>
         {% for step in roadmap.steps %}
             <div class="pasos" id="Paso{{step.number}}">
                 <div class="infoPaso">
                     <h2>Step {{ step.number }}</h2>
                     <h3>{{ step.name }}</h3>
                     <b>Checkpoints</b>
-                    <ul class="listaa">
+                    <form action="{% url 'checkpointUpdate' %}" method="POST">
+                        {% csrf_token %}
                         {% for remarkablePoint in step.remarkablePoints %}
-                            <li><input type="checkbox">{{ remarkablePoint }}</li>
+                            <input type="checkbox" id="remarkablePoint" name="remarkablePoint" value="0" onchange="submitForm(this, '{{ step.number }}')">{{ remarkablePoint }}<br>
                         {% endfor %}
-                    </ul>
+                        <input type="hidden" id="roadmapId" name="roadmapId" value="{{ roadmapId }}">
+                        <input type="hidden" id="stepNumber" name="stepNumber" value="{{ step.number }}">
+                        <input type="hidden" id="checkpoint{{ step.number }}" name="checkpoint{{ step.number }}" value="0">
+                    </form>
                     <b>Recommended Materials</b>
                     <ul>
                         {% for material in step.recommendedMaterials %}
