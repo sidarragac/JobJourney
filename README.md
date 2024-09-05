@@ -22,10 +22,49 @@ JobJourney is for those who dont have an idea of how to start their professional
 To keep a copy of our project, you can follow the next steps:
 1. (Optional) Fork the repository.
 2. Clone the repository.
-3. Create a Python virtual environment and activate it.
-4. Install the required libraries, using the ``` requirements.txt ``` file.
-5. Get your OpenAI API KEY, and save it on a ``` .env ``` file, with the following structure: ``` OPENAI_API_KEY = <YOUR OPENAI API KEY> ```
-6. Run ``` python manage.py runserver ``` command to activate the development server.
+  ```bash
+    git clone https://github.com/sidarragac/JobJourney.git
+  ```
+  * Make sure you are in the folder:
+  ```bash
+    cd ./JobJourney
+  ```
+3. Create a Python virtual environment.
+  ```bash
+    python -m venv venv
+  ```
+4. Activate the virtual environment.
+  ```bash
+    ./venv/scripts/activate
+  ``` 
+5. Install the required libraries, using the ``` requirements.txt ``` file.
+  ```bash
+    pip install -r requirements.txt
+  ```
+6. Get your OpenAI API KEY, and save it on a ``` .env ``` file located on the project root folder, with the following structure: ``` OPENAI_API_KEY = <YOUR OPENAI API KEY> ```.
+  * Up to this point, your folder should look like this:
+  ```bash
+    JobJourney
+    ├───accounts                    
+    ├───admin
+    ├───analytics
+    ├───roadMap
+    ├───venv
+    ├───.env
+    ├───.gitignore
+    ├───manage.py
+    ├───README.md
+    └───requirements.txt
+  ```
+7. Make the database migrations.
+  ```bash
+    python manage.py migrate
+  ```
+  * This step will create ```db.sqlite3``` file. This is the database with all the required tables and relationships.
+8. Run the development server.
+  ```bash
+    python manage.py runserver
+  ```
 
 # License
 Copyright 2024, Santiago Idárraga, Juan José Botero, Mateo García. All rights reserved JobJourney.
