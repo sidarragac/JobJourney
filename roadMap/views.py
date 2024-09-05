@@ -30,6 +30,9 @@ def roadmapGenerator(request):
             # salary = form.cleaned_data['salary']
             # bot = openAIManager()
             # roadmap = bot.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
+            # person = Person.objects.get(user='2')
+            # roadmapId = createDbRoadmap(roadmap, interest, person, objective)
+            # createDbCheckpoints(roadmap, roadmapId)
 
             # instanciar un obj del modelo roadmap
 
