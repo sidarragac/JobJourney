@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import Person
+from accounts.models import Person, User
 
 class Interest(models.Model):
     name = models.CharField(max_length=100)
@@ -7,13 +7,20 @@ class Interest(models.Model):
 
     def __str__(self):
         return self.name
+    
+class UserInterest(models.Model):
+    idUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    idInterest = models.ForeignKey(Interest, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.username
 
 class Roadmap(models.Model):
     mainGoal = models.TextField()
     content = models.JSONField()
     completionPercentage = models.IntegerField(default=0)
     numberOfLikes = models.IntegerField(default=0)
-    username = models.ForeignKey(Person, on_delete=models.CASCADE)
+    idUser = models.ForeignKey(Person, on_delete=models.CASCADE)
     idInterest = models.ForeignKey(Interest, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -26,3 +33,10 @@ class Checkpoint(models.Model):
 
     def __str__(self):
         return f'# Checkpoint: {self.numberOfCheckpoint} - Roadmap ID {self.idRoadmap}'
+    
+class LikeRoadmap(models.Model):
+    idRoadmap = models.ForeignKey(Roadmap, on_delete=models.CASCADE)
+    idUser = models.ForeignKey(Person, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.idUser} liked {self.idRoadmap}'

@@ -14,7 +14,7 @@
 <body>
     {% block content %}
     <img src="{% static 'images/logo.png' %}" alt="logo" class="logo">
-    <form action="/roadmapGenerator" method="POST">
+    <form action="{% url 'roadmapGenerator' %}" method="POST">
         {% csrf_token %}
         <div class="interest">
             <label for="interest" class="labelInterest">Select area of interest</label>
