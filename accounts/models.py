@@ -10,13 +10,14 @@ class User(AbstractUser):
 
 class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    #First name and last name is associated with the USER class.
     dateOfBirth = models.DateField()
 
     def __str__(self):
         return self.user.username
 
 class Company(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)  
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     companyName = models.CharField(max_length=100)
 
     def __str__(self):
@@ -29,9 +30,9 @@ class SocialMedia(models.Model):
         return self.name
 
 class UserSocialMedia(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
-    socialMedia = models.ForeignKey(SocialMedia, on_delete=models.CASCADE)
+    idUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    idSocialMedia = models.ForeignKey(SocialMedia, on_delete=models.CASCADE)
     link = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.username
+        return self.idUser
