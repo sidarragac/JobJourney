@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from datetime import date
 from ..accounts.models import User, UserInterest, Person
 from ..roadMap.models import Roadmap, Interest
-from datetime import date
+from ..admin.charts import usersPerInterest, ageRangesPerInterest #Charts
 
 
 def __companyAnalytics(companyId, companyCity=None):
@@ -29,8 +30,8 @@ def __companyAnalytics(companyId, companyCity=None):
             return 'O50'
 
     def collectData(companyInterests, relatedUsers):
-        numOfUsersWithInterests = {} #Dict with the number of users that have the same interest as the company.
-        numOfUsersPerAgePerInterest = {} #Dict with the number of users per age range that have the same interest as the company.
+        chartOneData = {} #Dict with the number of users that have the same interest as the company.
+        chartTwoData = {} #Dict with the number of users per age range that have the same interest as the company.
         ranges = {
             'U18': 0,
             '18-30': 0,
@@ -43,19 +44,19 @@ def __companyAnalytics(companyId, companyCity=None):
             age = calculateAge(user.id)
             for interest in commonInterests:
                 #Chart 1:
-                if interest in numOfUsersWithInterests:
-                    numOfUsersWithInterests[interest] += 1
+                if interest in chartOneData:
+                    chartOneData[interest] += 1
                 else:
-                    numOfUsersWithInterests[interest] = 1
+                    chartOneData[interest] = 1
 
                 #Chart 2:
-                if interest in numOfUsersPerAgePerInterest:
-                    numOfUsersPerAgePerInterest[interest][age] += 1
+                if interest in chartTwoData:
+                    chartTwoData[interest][age] += 1
                 else:
-                    numOfUsersPerAgePerInterest[interest] = ranges
-                    numOfUsersPerAgePerInterest[interest][age] += 1
+                    chartTwoData[interest] = ranges
+                    chartTwoData[interest][age] += 1
 
-        return numOfUsersWithInterests, numOfUsersPerAgePerInterest
+        return chartOneData, chartTwoData
     
 
     if not companyCity:
@@ -64,14 +65,13 @@ def __companyAnalytics(companyId, companyCity=None):
     companyInterests = set(UserInterest.objects.filter(idUser=companyId))
     relatedUsers = User.objects.filter(city=companyCity)
 
-    numOfUsersWithInterests, numOfUsersPerAgePerInterest = collectData(companyInterests, relatedUsers)
+    chartOneData, chartTwoData = collectData(companyInterests, relatedUsers)
 
-    #Hacer llamado a la funcion que crea los graficos.
-
+    return usersPerInterest(chartOneData, companyCity), ageRangesPerInterest(chartTwoData, companyCity)
     
         
 
-def __personAnalytics(userId):
+def __suggestedRoadmaps(userId):
     #Suggested roadmaps based on person's interests.
     userInterests = UserInterest.objects.get(idUser=userId)
     suggestedRoadmaps = {}
@@ -87,10 +87,12 @@ def __personAnalytics(userId):
 
 @login_required
 def analytics(request):
-    #TBF!!
-    user = User.objects.get(username=request.user)
+    user = User.objects.get(username=request.user) #Username is unique as well.
     if user.isCompany:
-        return __companyAnalytics(user.id)
+        chartOne, chartTwo = __companyAnalytics(user.id)
+        suggestedRoadmaps = __suggestedRoadmaps(user.id)
+        context = {'chartOne': chartOne, 'chartTwo': chartTwo, 'suggestedRoadmaps': suggestedRoadmaps}
+        return render(request, 'companyAnalytics.html', context=context)
     else:
-        suggestedRoadmaps = __personAnalytics(user.id)
+        suggestedRoadmaps = __suggestedRoadmaps(user.id)
         return render(request, 'personAnalytics.html', {'suggestedRoadmaps': suggestedRoadmaps})
