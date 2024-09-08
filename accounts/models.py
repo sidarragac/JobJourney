@@ -30,9 +30,9 @@ class SocialMedia(models.Model):
         return self.name
 
 class UserSocialMedia(models.Model):
-    idUser = models.ForeignKey(User, on_delete=models.CASCADE)
-    idSocialMedia = models.ForeignKey(SocialMedia, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    socialMedia = models.ForeignKey(SocialMedia, on_delete=models.CASCADE)
     link = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.idUser
+        return str(self.idUser)
