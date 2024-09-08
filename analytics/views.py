@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import date
-from ..accounts.models import User, UserInterest, Person
-from ..roadMap.models import Roadmap, Interest
-from ..admin.charts import usersPerInterest, ageRangesPerInterest #Charts
+from accounts.models import User, Person
+from roadMap.models import Roadmap, Interest, UserInterest
+from admin.charts import usersPerInterest, ageRangesPerInterest #Charts
 
 
 def __companyAnalytics(companyId, companyCity=None):
