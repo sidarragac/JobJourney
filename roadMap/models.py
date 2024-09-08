@@ -9,34 +9,34 @@ class Interest(models.Model):
         return self.name
     
 class UserInterest(models.Model):
-    idUser = models.ForeignKey(User, on_delete=models.CASCADE)
-    idInterest = models.ForeignKey(Interest, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.username
+        return f'{self.user} is interested in {self.interest}'
 
 class Roadmap(models.Model):
     mainGoal = models.TextField()
     content = models.JSONField()
     completionPercentage = models.IntegerField(default=0)
     numberOfLikes = models.IntegerField(default=0)
-    idUser = models.ForeignKey(Person, on_delete=models.CASCADE)
-    idInterest = models.ForeignKey(Interest, on_delete=models.CASCADE)
+    user = models.ForeignKey(Person, on_delete=models.CASCADE)
+    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.mainGoal
 
 class Checkpoint(models.Model):
     numberOfCheckpoint = models.IntegerField(default=0)
-    idRoadmap = models.ForeignKey(Roadmap, on_delete=models.CASCADE, default=0)
+    roadmap = models.ForeignKey(Roadmap, on_delete=models.CASCADE, default=0)
     completed = models.BooleanField()
 
     def __str__(self):
-        return f'# Checkpoint: {self.numberOfCheckpoint} - Roadmap ID {self.idRoadmap}'
+        return f'# Checkpoint: {self.numberOfCheckpoint} - Roadmap ID {self.roadmap}'
     
 class LikeRoadmap(models.Model):
-    idRoadmap = models.ForeignKey(Roadmap, on_delete=models.CASCADE)
-    idUser = models.ForeignKey(Person, on_delete=models.CASCADE)
+    roadmap = models.ForeignKey(Roadmap, on_delete=models.CASCADE)
+    user = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.idUser} liked {self.idRoadmap}'
+        return f'{self.user} liked {self.roadmap}'

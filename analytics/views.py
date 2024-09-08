@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import date
-from accounts.models import User, Person
+from accounts.models import User, Person, Company
 from roadMap.models import Roadmap, Interest, UserInterest
 from admin.charts import usersPerInterest, ageRangesPerInterest #Charts
 
@@ -17,7 +17,7 @@ def __companyAnalytics(companyId, companyCity=None):
     """
     def calculateAge(userId):
         today = date.today() #Today's date.
-        person = Person.objects.get(idUser=userId)
+        person = Person.objects.get(user=userId)
         dob = person.dateOfBirth
         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
         if age < 18:
@@ -39,7 +39,7 @@ def __companyAnalytics(companyId, companyCity=None):
             'O50': 0
         }
         for user in relatedUsers:
-            userInterests = set(UserInterest.objects.filter(idUser=user.id))
+            userInterests = set(UserInterest.objects.filter(user=user.id))
             commonInterests = companyInterests.intersection(userInterests)
             age = calculateAge(user.id)
             for interest in commonInterests:
@@ -73,11 +73,11 @@ def __companyAnalytics(companyId, companyCity=None):
 
 def __suggestedRoadmaps(userId):
     #Suggested roadmaps based on person's interests.
-    userInterests = UserInterest.objects.get(idUser=userId)
+    userInterests = UserInterest.objects.filter(user=userId)
     suggestedRoadmaps = {}
     for userInterest in userInterests:
-        roadmaps = list(Roadmap.objects.filter(idInterest=userInterest.idInterest))
-        interest = Interest.objects.get(id=userInterest.idInterest).name
+        roadmaps = list(Roadmap.objects.select_related('user').filter(interest=userInterest.interest_id).exclude(user=userId))
+        interest = Interest.objects.get(id=userInterest.interest_id).name
         if roadmaps:
             suggestedRoadmaps[interest] = roadmaps
         else:
@@ -89,10 +89,20 @@ def __suggestedRoadmaps(userId):
 def analytics(request):
     user = User.objects.get(username=request.user) #Username is unique as well.
     if user.isCompany:
+        company = Company.objects.get(user=user.id)
         chartOne, chartTwo = __companyAnalytics(user.id)
         suggestedRoadmaps = __suggestedRoadmaps(user.id)
-        context = {'chartOne': chartOne, 'chartTwo': chartTwo, 'suggestedRoadmaps': suggestedRoadmaps}
+        context = {
+            'chartOne': chartOne,
+            'chartTwo': chartTwo,
+            'suggestedRoadmaps': suggestedRoadmaps,
+            'name': company.companyName
+        }
         return render(request, 'companyAnalytics.html', context=context)
     else:
         suggestedRoadmaps = __suggestedRoadmaps(user.id)
-        return render(request, 'personAnalytics.html', {'suggestedRoadmaps': suggestedRoadmaps})
+        context = {
+            'suggestedRoadmaps': suggestedRoadmaps,
+            'name': user.first_name + ' ' + user.last_name,
+        }
+        return render(request, 'personAnalytics.html', context=context)
