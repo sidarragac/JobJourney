@@ -20,7 +20,6 @@ from roadMap.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
     path('roadmap/', include('roadMap.urls')),
     path('accounts/', include('accounts.urls')),
     path('analytics/', include('analytics.urls')),
