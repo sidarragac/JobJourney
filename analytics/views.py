@@ -21,7 +21,6 @@ def __companyAnalytics(companyId, companyCity=None):
         person = Person.objects.get(user=userId)
         dob = person.dateOfBirth
         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
-        print(age)
         if age < 18:
             return '-18'
         elif age < 30:
@@ -45,7 +44,6 @@ def __companyAnalytics(companyId, companyCity=None):
             commonInterests = companyInterests.intersection(userInterests)
             age = calculateAge(user.id)
             for interest in commonInterests:
-                print(interest)
                 #Chart 1:
                 if interest in chartOneData:
                     chartOneData[interest] += 1
@@ -58,7 +56,6 @@ def __companyAnalytics(companyId, companyCity=None):
                 else:
                     chartTwoData[interest] = deepcopy(ranges)
                     chartTwoData[interest][age] += 1
-                print(chartTwoData)
 
 
         return chartOneData, chartTwoData
