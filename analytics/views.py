@@ -4,6 +4,7 @@ from datetime import date
 from accounts.models import User, Person, Company
 from roadMap.models import Roadmap, Interest, UserInterest
 from admin.charts import usersPerInterest, ageRangesPerInterest #Charts
+from copy import deepcopy
 
 
 def __companyAnalytics(companyId, companyCity=None):
@@ -20,29 +21,31 @@ def __companyAnalytics(companyId, companyCity=None):
         person = Person.objects.get(user=userId)
         dob = person.dateOfBirth
         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+        print(age)
         if age < 18:
-            return 'U18'
+            return '-18'
         elif age < 30:
             return '18-30'
         elif age < 50:
             return '30-50'
         else:
-            return 'O50'
+            return '+50'
 
     def collectData(companyInterests, relatedUsers):
         chartOneData = {} #Dict with the number of users that have the same interest as the company.
         chartTwoData = {} #Dict with the number of users per age range that have the same interest as the company.
         ranges = {
-            'U18': 0,
+            '-18': 0,
             '18-30': 0,
             '30-50': 0,
-            'O50': 0
+            '+50': 0
         }
         for user in relatedUsers:
-            userInterests = set(UserInterest.objects.filter(user=user.id))
+            userInterests = set(UserInterest.objects.select_related('interest').filter(user=user.id).values_list('interest__name', flat=True))
             commonInterests = companyInterests.intersection(userInterests)
             age = calculateAge(user.id)
             for interest in commonInterests:
+                print(interest)
                 #Chart 1:
                 if interest in chartOneData:
                     chartOneData[interest] += 1
@@ -53,8 +56,10 @@ def __companyAnalytics(companyId, companyCity=None):
                 if interest in chartTwoData:
                     chartTwoData[interest][age] += 1
                 else:
-                    chartTwoData[interest] = ranges
+                    chartTwoData[interest] = deepcopy(ranges)
                     chartTwoData[interest][age] += 1
+                print(chartTwoData)
+
 
         return chartOneData, chartTwoData
     
@@ -62,8 +67,8 @@ def __companyAnalytics(companyId, companyCity=None):
     if not companyCity:
         companyCity = User.objects.get(id=companyId).city
 
-    companyInterests = set(UserInterest.objects.filter(idUser=companyId))
-    relatedUsers = User.objects.filter(city=companyCity)
+    companyInterests = set(UserInterest.objects.select_related('interest').filter(user=companyId).values_list('interest__name', flat=True))
+    relatedUsers = User.objects.filter(city=companyCity).exclude(isCompany=True)
 
     chartOneData, chartTwoData = collectData(companyInterests, relatedUsers)
 

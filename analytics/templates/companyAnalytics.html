@@ -13,6 +13,8 @@
 </head>
 <body>
     {% block content %}
+    <img src="data:image/png;base64,{{ chartOne }}" alt="" srcset="">
+    <img src="data:image/png;base64,{{ chartTwo }}" alt="" srcset="">
     <h1>Roadmaps suggestions for {{ name }}</h1>
     <div class="row">
         {% for interest, roadmaps in suggestedRoadmaps.items %}
