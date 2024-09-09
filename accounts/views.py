@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
 from .models import *
+from roadMap.models import Interest, UserInterest
 
 # Create your views here.
 def loginView(request):
@@ -28,7 +29,21 @@ def registerView(request):
             else:
                 dateOfBirth = request.POST.get('dateOfBirth')
                 Person.objects.create(user=user, dateOfBirth=dateOfBirth)
-            return redirect('login')
+            return redirect('interestSelection')
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
+
+def interestSelectionView(request):
+    if request.method == 'POST':
+        interests = []
+        for i in range(3):
+            interest = request.POST.get(f'interest{i+1}')
+            if interest:
+                interests.append(interest)
+        user = request.user
+        for interest in interests:
+            if not UserInterest.objects.filter(user=user, interest=Interest.objects.get(id=interest)).exists():
+                UserInterest.objects.create(user=user, interest=Interest.objects.get(id=interest))
+        return redirect('home')
+    return render(request, 'interestSelection.html', {'interests': Interest.objects.all()})
