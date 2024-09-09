@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: "Montserrat", sans-serif !important; 
+  height: 100%;
+}
+
 .userIcon{
     border-radius: 50%;
     background-color: #102C57;
@@ -5,8 +12,4 @@
     text-align: center;
     color: white;
     align-items: center;
-}
-
-body{
-    height: 100%;
 }

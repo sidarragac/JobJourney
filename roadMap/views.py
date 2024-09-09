@@ -45,16 +45,16 @@ def roadmapGenerator(request):
     if request.method == 'POST':
         form = RoadmapCharacteristics(request.POST)
         if form.is_valid():
-            interest = form.cleaned_data['interest']
-            objective = form.cleaned_data['objective']
-            salary = form.cleaned_data['salary']
-            bot = openAIManager()
-            roadmap = bot.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
-            user = User.objects.get(username=request.user)
-            person = Person.objects.get(user=user.id)
-            roadmapInstance = createDBRoadmap(roadmap, interest, person, objective)
-            createDBCheckpoints(roadmap, roadmapInstance)
+            # interest = form.cleaned_data['interest']
+            # objective = form.cleaned_data['objective']
+            # salary = form.cleaned_data['salary']
+            # bot = openAIManager()
+            # roadmap = bot.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
+            # person = Person.objects.get(user='2')
+            # roadmapId = createDbRoadmap(roadmap, interest, person, objective)
+            # createDbCheckpoints(roadmap, roadmapId)
 
+            # instanciar un obj del modelo roadmap
 
             return redirect(f'displayRoadmap/{roadmapInstance.id}')
         else:

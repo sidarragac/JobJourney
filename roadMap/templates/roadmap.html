@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,10 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ roadmap.name }}</title>
+    {% block styles %}
     <link rel="stylesheet" href="{% static 'styles/roadmapstyles.css' %}">
     <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+    {% endblock styles %}
 </head>
 <body>
+    {% block content %}
     <div class="tituloRoadmap">
         <h1>{{ roadmap.name }}</h1>
     </div>
@@ -17,7 +21,7 @@
             {% for step in roadmap.steps %}
                 {% if not step.number|divisibleby:2 %}
                     <a href="#Paso{{step.number}}" class="contenedorPasoImpar">
-                        <li class="pasoImpar">
+                        <li class="liItem">
                             <h2>Step {{ step.number }}</h2>
                             <h3>{{ step.name }}</h3>
                         </li>
@@ -34,7 +38,7 @@
             {% for step in roadmap.steps %}
                 {% if step.number|divisibleby:2 %}
                     <a href="#Paso{{step.number}}" class="contenedorPasoImpar">
-                        <li class="pasoPar">
+                        <li class="liItem">
                             <h2>Step {{ step.number }}</h2>
                             <h3>{{ step.name }}</h3>
                         </li>
@@ -56,7 +60,10 @@
                     <form action="{% url 'checkpointUpdate' %}" method="POST">
                         {% csrf_token %}
                         {% for remarkablePoint in step.remarkablePoints %}
-                            <input type="checkbox" id="remarkablePoint" name="remarkablePoint" value="0" onchange="submitForm(this, '{{ step.number }}')">{{ remarkablePoint }}<br>
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" id="remarkablePoint" name="remarkablePoint" value="0" onchange="submitForm(this, '{{ step.number }}')"><br>
+                                <p>{{ remarkablePoint }}</p>
+                            </div>
                         {% endfor %}
                         <input type="hidden" id="roadmapId" name="roadmapId" value="{{ roadmapId }}">
                         <input type="hidden" id="stepNumber" name="stepNumber" value="{{ step.number }}">
@@ -92,6 +99,9 @@
             </div>
         </div>
     </div>
+    {% endblock content %}
+    {% block scripts %}
     <script src="{% static 'scripts/roadmap.js' %}"></script>
+    {% endblock scripts %}
 </body>
 </html>
