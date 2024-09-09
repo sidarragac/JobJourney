@@ -11,7 +11,7 @@ def __updateCheckpointStatus(checkpoint, roadmap):
     chkpt.save()
 
 def __getCheckpointsStatus(roadmapId):
-    query = Checkpoint.objects.filter(idRoadmap=roadmapId).values('numberOfCheckpoint', 'completed')
+    query = Checkpoint.objects.filter(roadmap_id=roadmapId).values('numberOfCheckpoint', 'completed')
     checkpoints = {}
     for checkpoint in query:
         checkpoints[checkpoint['numberOfCheckpoint']] = checkpoint['completed']
@@ -25,14 +25,14 @@ def roadmapGenerator(request):
     if request.method == 'POST':
         form = RoadmapCharacteristics(request.POST)
         if form.is_valid():
-            # interest = form.cleaned_data['interest']
-            # objective = form.cleaned_data['objective']
-            # salary = form.cleaned_data['salary']
-            # bot = openAIManager()
-            # roadmap = bot.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
-            # person = Person.objects.get(user='2')
-            # roadmapId = createDbRoadmap(roadmap, interest, person, objective)
-            # createDbCheckpoints(roadmap, roadmapId)
+            interest = form.cleaned_data['interest']
+            objective = form.cleaned_data['objective']
+            salary = form.cleaned_data['salary']
+            bot = openAIManager()
+            roadmap = bot.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
+            person = Person.objects.get(user='2')
+            roadmapId = createDbRoadmap(roadmap, interest, person, objective)
+            createDbCheckpoints(roadmap, roadmapId)
 
             # instanciar un obj del modelo roadmap
 
