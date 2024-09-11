@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'analytics',
 ]
 
-AUTH_USER_MODEL = "accounts.User" #This line is added to the settings.py file to specify the custom user model.
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -104,6 +103,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = "accounts.User" #This line is added to the settings.py file to specify the custom user model.
+
+LOGIN_URL = '../accounts/login'
 
 
 # Internationalization

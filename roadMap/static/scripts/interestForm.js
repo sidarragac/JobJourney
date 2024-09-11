@@ -15,6 +15,12 @@ const placeholders = {
     interdisciplinary_studies: "Ex: Urban Planner with a focus on sustainability",
 };
 
+window.onload = function(){
+    var slider = document.getElementById("salary");
+    var value = document.getElementById("value");
+    value.innerHTML = slider.value;
+}
+
 document.getElementById('interest').addEventListener('change', function() {
     const selectedArea = this.value;
     const objectiveInput = document.getElementById('objective');
@@ -25,3 +31,8 @@ document.getElementById('interest').addEventListener('change', function() {
         objectiveInput.placeholder = "Ex: Software engineer at Google";
     }
 });
+
+function changeValue(slidervalue) {
+    var value = document.getElementById('value');
+    value.innerHTML = slidervalue.value;
+}

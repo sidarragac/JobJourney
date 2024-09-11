@@ -11,7 +11,6 @@ header {
 }
 
 .wrapper{
-    background: #ececec;
     padding: 0 20px 0 20px;
 }
 .main{
@@ -34,7 +33,7 @@ header {
   border-radius: 35px;
   background: #fff;
   padding: 0px;
-  box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
 }
 .text{
     position: absolute;
@@ -60,7 +59,7 @@ i{
   width: 330px;
   box-sizing: border-box;
 }
-img{
+.image-logo{
     width: 35px;
     position: absolute;
     top: 30px;
@@ -106,7 +105,7 @@ img{
    color: #5d5076;
  }
  .input-field .input:focus, .input-field .input:valid{
-    border-bottom: 1px solid #743ae1;
+    border-bottom: 1px solid #5d5076;
  }
  .submit{
     border: none;
@@ -137,18 +136,19 @@ span a:hover{
 }
 @media only screen and (max-width: 768px){
     .side-image{
-        border-radius: 10px 10px 0 0;
+        border-radius: 0 0 10px 10px;
     }
-    img{
+    .image-logo{
         width: 35px;
         position: absolute;
         top: 20px;
-        left: 47%;
+        left: 45%;
     }
     .text{
         position: absolute;
         top: 70%;
         text-align: center;
+        padding-top: 20px;
     }
     .text p, i{
         font-size: 16px;
