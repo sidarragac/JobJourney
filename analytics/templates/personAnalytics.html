@@ -18,12 +18,12 @@
             <h2>Welcome to the analytics section...</h2>
             <h4>Here are some roadmaps you might find interesting:</h4>
         </div>
-        <div class="w-100 d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center justify-content-center">
             {% for interest, roadmaps in suggestedRoadmaps.items %}
-                <div class="{{ interest }}">
+                <div class="{{ interest }} row w-100">
                     {% if roadmaps %}
                         <h2 class="text-center  pt-4">Roadmaps for {{ interest }}</h2>
-                        <div class="row row-cols-1 row-cols-md-3 justify-content-md-center">
+                        <div class="row row-cols-1 row-cols-md-3 d-flex justify-content-sm-center justify-content-md-center">
                             {% for roadmap in roadmaps %}
                                 <div class="card m-2 p-0">
                                     <h5 class="card-title text-center my-1">{{ roadmap }}</h5>
