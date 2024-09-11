@@ -13,3 +13,27 @@ body {
     color: white;
     align-items: center;
 }
+
+.extraInfo{
+    display: none;
+}
+
+@media (max-width: 992px) {  /* Ajustar el tamaño del punto de quiebre si es necesario */
+  .extraInfo {
+      display: block;
+  }
+  .extraInfo2 {
+      display: none;
+  }
+}
+
+/* Mostrar el ícono de usuario cuando el menú está desplegado */
+@media (min-width: 992px) {
+  .extraInfo {
+      display: none;
+  }
+  .extraInfo2 {
+      display: block;
+  }
+}
+
