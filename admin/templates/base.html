@@ -12,15 +12,23 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg bg-body-secondary"  >
-        <div class="container-fluid">
+        <div class="container-fluid d-flex justify-content-between">
             <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'images/logo.png' %}" alt="" height="30px" class="d-inline-block align-text-top" style="margin-right: 10px;">
                 JobJourney  
             </a>
-            <div class="d-flex justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="d-flex flex-row">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="extraInfo" id="extraInfo" style="margin-left: 10px;">
+                    <a class="userIcon d-flex align-items-center justify-content-center navbar-brand navbar-toggler h-100 extraInfo" href="#" id="extraInfo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -35,14 +43,23 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'analytics'%}">Analytics</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register'%}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login'%}">Login</a>
+                        </li>
+                        <li class="nav-item" style="margin-left: 10px;">
+                            <div class="extraInfo2 h-100">   
+                                <a class="userIcon d-flex align-items-center justify-content-center h-100" href="#" id="extraInfo2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
-                <a class="userIcon d-flex align-items-center justify-content-center" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                    </svg>
-                </a>
-            </div>
         </div>
     </nav>
     <div>
@@ -60,8 +77,7 @@
             </section>
           </div>
           <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); color: black;">
-            © 2024 Copyright:
-            <a class="text-black" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            © 2024 Copyright
           </div>
         </footer>
     </section>
@@ -69,5 +85,6 @@
     {% block scripts %}
     {% endblock scripts %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{% static 'scripts/base.js' %}"></script>
 </body>
 </html>
