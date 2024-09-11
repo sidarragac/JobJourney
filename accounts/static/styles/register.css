@@ -5,7 +5,6 @@
 }
 
 .wrapper{
-    background: #ececec;
     padding: 0 20px 0 20px;
 }
 .main{
@@ -20,7 +19,7 @@
   border-radius: 35px;
   background: #fff;
   padding: 0px;
-  box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
 }
 .text{
     position: absolute;
@@ -107,7 +106,7 @@ header {
    color: #5d5076;
  }
  .input-field .input:focus, .input-field .input:valid{
-    border-bottom: 1px solid #743ae1;
+    border-bottom: 1px solid #5d5076;
  }
 
  .button {
@@ -145,15 +144,6 @@ span a:hover{
     color: #000;
 }
 @media only screen and (max-width: 768px){
-    .side-image{
-        border-radius: 10px 10px 0 0;
-    }
-    img{
-        width: 35px;
-        position: absolute;
-        top: 20px;
-        left: 47%;
-    }
     .text{
         position: absolute;
         top: 70%;

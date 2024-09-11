@@ -29,6 +29,7 @@ def registerView(request):
             else:
                 dateOfBirth = request.POST.get('dateOfBirth')
                 Person.objects.create(user=user, dateOfBirth=dateOfBirth)
+            login(request, user)
             return redirect('interestSelection')
     else:
         form = RegisterForm()

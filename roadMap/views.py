@@ -38,6 +38,7 @@ def __getInterest(interest):
     }
     return relations[interest]
 
+@login_required
 def interestForm(request):
     return render(request, 'interestForm.html')
 
