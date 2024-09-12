@@ -98,7 +98,8 @@ def analytics(request):
             'chartOne': chartOne,
             'chartTwo': chartTwo,
             'suggestedRoadmaps': suggestedRoadmaps,
-            'name': company.companyName
+            'name': company.companyName,
+            'city': user.city
         }
         return render(request, 'companyAnalytics.html', context=context)
     else:
