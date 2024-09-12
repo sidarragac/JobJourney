@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    {% endblock styles %}
 </head>
 <body>
     {% block content %}
-    
+    <div class="container">
+        <h1 class="first-title">Welcome To JobJourney</h1>
+    </div>
     {% endblock content %}
+
+    {% block scripts %}
+    {% endblock scripts %}
 </body>
 </html>
