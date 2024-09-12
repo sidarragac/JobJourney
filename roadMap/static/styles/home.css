@@ -1,0 +1,13 @@
+.first-title{
+    font-size: 5em;
+    font-weight: bold;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    height: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #102C57;
+}
