@@ -18,6 +18,11 @@ body {
     display: none;
 }
 
+.extraInfo{
+  display: block;
+}
+
+
 @media (max-width: 992px) {  /* Ajustar el tamaño del punto de quiebre si es necesario */
   .extraInfo {
       display: block;
@@ -37,3 +42,77 @@ body {
   }
 }
 
+.sub-menu-wrap{
+  position: absolute;
+  margin-top: 10px;
+  top: 100%;
+  right: 2%;
+  width: 320px; 
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s; 
+}
+.sub-menu-wrap.open-menu{
+  max-height: 400px;
+}
+
+.sub-menu{
+  background: #e9ecef;
+  padding: 20px;
+  margin: 10px;
+}
+.user-info{
+  display: flex;
+  align-items: center;
+}
+.user-info h3{
+  font-weight: 500;
+  margin: 0px;
+}
+.sub-menu hr{
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #000000;
+  margin: 15px 0px 10px 0px;
+}
+.user-info img{
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.sub-menu-link{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin: 12px 0;
+  color: #000000;
+}
+
+.sub-menu-link p{
+  width: 100%;
+  margin: 0;
+  margin-left: 10px;
+}
+
+.sub-menu-link:hover p{
+  font-weight: 500;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-buttom{
+  border: 1px solid gray;
+  border-radius: 10%;
+  transition: .4s;
+  background-color: #102C57;
+  
+}
+
+.register-buttom:hover a{
+  font-weight: 500;
+}
