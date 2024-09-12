@@ -41,7 +41,7 @@ To keep a copy of our project, you can follow the next steps:
   ```bash
     pip install -r requirements.txt
   ```
-6. Get your OpenAI API KEY, and save it on a ``` .env ``` file located on the project root folder, with the following structure: ``` OPENAI_API_KEY = <YOUR OPENAI API KEY> ```.
+6. Get your OpenAI API KEY[^1], and save it on a ``` .env ``` file located on the project root folder, with the following structure: ``` OPENAI_API_KEY = <YOUR OPENAI API KEY> ```.
   * Up to this point, your folder should look like this:
   ```bash
     JobJourney
@@ -68,3 +68,5 @@ To keep a copy of our project, you can follow the next steps:
 
 # License
 Copyright 2024, Santiago Idárraga, Juan José Botero, Mateo García. All rights reserved JobJourney.
+
+[^1]: To know more about the OpenAI API, please visit the [OpenAI website](https://openai.com/api/). Please be aware that a $5 fee is required to get access to one key.
