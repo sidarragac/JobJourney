@@ -63,15 +63,21 @@ def roadmapGenerator(request):
             return render(request, 'interestForm.html', {"message": "Some provided data are not valid."})
     else:
         return render(request, 'interestForm.html')
-    
+
+@login_required   
 def displayRoadmap(request, roadmapId, stepNumber=0):
-    roadmap = Roadmap.objects.get(id=roadmapId).content
+    roadmap = Roadmap.objects.get(id=roadmapId)
+    user = User.objects.get(username=request.user)
+    editable = True
+    if user.id != roadmap.user.user_id:
+        editable = False
     checkpoints = __getCheckpointsStatus(roadmapId)
     context = {
-        'roadmap': roadmap, 
+        'roadmap': roadmap.content, 
         'roadmapId': roadmapId, 
         stepNumber: stepNumber,
-        'checkpoints': json.dumps(checkpoints)
+        'checkpoints': json.dumps(checkpoints),
+        'editable': editable
     }
     return render(request, 'roadmap.html', context)
 
@@ -108,4 +114,4 @@ def createDBCheckpoints(roadmapJSON, roadmap):
             counter += 1
 
 def home(request):
-    return render(request, 'base.html')
+    return render(request, 'home.html')
