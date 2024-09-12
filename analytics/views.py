@@ -19,6 +19,8 @@ def __companyAnalytics(companyId, companyCity=None):
     def calculateAge(userId):
         today = date.today() #Today's date.
         person = Person.objects.get(user=userId)
+        if not person.dateOfBirth:
+            return None
         dob = person.dateOfBirth
         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
         if age < 18:
@@ -43,6 +45,8 @@ def __companyAnalytics(companyId, companyCity=None):
             userInterests = set(UserInterest.objects.select_related('interest').filter(user=user.id).values_list('interest__name', flat=True))
             commonInterests = companyInterests.intersection(userInterests)
             age = calculateAge(user.id)
+            if not age:
+                continue
             for interest in commonInterests:
                 #Chart 1:
                 if interest in chartOneData:

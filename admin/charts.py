@@ -22,8 +22,8 @@ def usersPerInterest(data, city):
     ax.pie(list(data.values()), labels=list(data.keys()), colors=colors, autopct='%1.1f%%',
             wedgeprops={"edgecolor": 'white', "linewidth": 1})
 
-    plt.title(f"Users per Interest in {city} ")
-
+    plt.title(f"Users per Interest")
+    plt.tight_layout()
 
     return __genImage()
 
@@ -46,7 +46,7 @@ def ageRangesPerInterest(data, city):
     for idx, (interest, val) in enumerate(zip(interests, values)):
         ax.bar(x + idx * barWidth, val, width = barWidth, label=interest)
 
-    ax.set_title(f"User's Age Range per interest in {city}")
+    ax.set_title(f"User's Age Range per interest")
     ax.set_xlabel('Age Categories')
     ax.set_ylabel('Number of persons per interest')
     ax.set_xticks(x + barWidth * (numInterests - 1) / 2)
