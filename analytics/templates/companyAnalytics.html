@@ -33,7 +33,7 @@
                         <div class="row row-cols-1 row-cols-md-3 d-flex justify-content-sm-center justify-content-md-center">
                             {% for roadmap in roadmaps %}
                                 <div class="card m-2 p-0">
-                                    <h5 class="card-title text-center my-1">{{ roadmap }}</h5>
+                                    <a href="/roadmap/displayRoadmap/{{roadmap.id}}" style="text-decoration: none; color:black"><h5 class="card-title text-center my-1">{{ roadmap }}</h5></a>
                                     <br>
                                     <div class="card-body" style="background-color: #E0E1DD;">
                                         <div>
