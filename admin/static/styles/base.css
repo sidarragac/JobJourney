@@ -105,14 +105,16 @@ body {
   align-items: center;
 }
 
-.register-buttom{
+.registe-login{
+  font-weight: 800;
+}
+
+/* .register-buttom{
   border: 1px solid gray;
-  border-radius: 10%;
   transition: .4s;
   background-color: #102C57;
-  
 }
 
 .register-buttom:hover a{
   font-weight: 500;
-}
+} */
