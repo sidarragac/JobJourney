@@ -42,6 +42,7 @@ def __getInterest(interest):
 def interestForm(request):
     return render(request, 'interestForm.html')
 
+@login_required
 def roadmapGenerator(request):
     if request.method == 'POST':
         form = RoadmapCharacteristics(request.POST)
