@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from .models import *
@@ -17,6 +17,10 @@ def loginView(request):
         else:
             return render(request, 'login.html', {'error': 'Invalid username or password'})
     return render(request, 'login.html')
+
+def logoutAccount(request):
+    logout(request)
+    return redirect('home')
 
 def registerView(request):
     if request.method == 'POST':
