@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import *
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+from .forms import *
 from .models import *
-from roadMap.models import Interest, UserInterest
+from roadMap.models import Interest, UserInterest, Roadmap
 
 # Create your views here.
 def loginView(request):
@@ -52,3 +51,22 @@ def interestSelectionView(request):
                 UserInterest.objects.create(user=user, interest=Interest.objects.get(id=interest))
         return redirect('home')
     return render(request, 'interestSelection.html', {'interests': Interest.objects.all()})
+
+@login_required
+def profile(request):
+    user = User.objects.get(username=request.user)
+    if user.isCompany:
+        company = Company.objects.get(user=user)
+        context = {
+            'name': company.companyName,
+            'isCompany': True
+        }
+    else:
+        person = Person.objects.get(user=user)
+        roadmaps = list(Roadmap.objects.filter(user=person))
+        context = {
+            'name': user.first_name + ' ' + user.last_name,
+            'roadmaps': roadmaps,
+            'isCompany': False
+        }
+    return render(request, 'userProfile.html', context=context)

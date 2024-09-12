@@ -12,38 +12,38 @@
     {% endblock styles %}
 </head>
 <body>
-    {% block content %}
-    <div class="container-fluid px-0">
-        <div class="w-100 p-5" style="background-color: #0D1B2A; color:white">
-            <h2>Welcome to the analytics section...</h2>
-            <h4>Here are some roadmaps you might find interesting:</h4>
-        </div>
-        <div class="w-100 d-flex flex-column align-items-center">
-            {% for interest, roadmaps in suggestedRoadmaps.items %}
-                <div class="{{ interest }}">
-                    {% if roadmaps %}
-                        <h2 class="text-center  pt-4">Roadmaps for {{ interest }}</h2>
-                        <div class="row row-cols-1 row-cols-md-3 justify-content-md-center">
-                            {% for roadmap in roadmaps %}
-                                <div class="card m-2 p-0">
-                                    <h5 class="card-title text-center my-1">{{ roadmap }}</h5>
-                                    <br>
-                                    <div class="card-body" style="background-color: #E0E1DD;">
-                                        <div>
-                                            <p class="card-text">Number of likes: {{ roadmap.numberOfLikes }}</p>
-                                            <p class="card-text">Created by: {{ roadmap.user }}</p>
-                                        </div>
+{% block content %}
+<div class="container-fluid px-0">
+    <div class="w-100 p-5" style="background-color: #0D1B2A; color:white">
+        <h2>Welcome to the analytics section...</h2>
+        <h4>Here are some roadmaps you might find interesting:</h4>
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        {% for interest, roadmaps in suggestedRoadmaps.items %}
+            <div class="{{ interest }} row w-100">
+                {% if roadmaps %}
+                    <h2 class="text-center  pt-4">Roadmaps for {{ interest }}</h2>
+                    <div class="row row-cols-1 row-cols-md-3 d-flex justify-content-sm-center justify-content-md-center">
+                        {% for roadmap in roadmaps %}
+                            <div class="card m-2 p-0">
+                                <a href="/roadmap/displayRoadmap/{{roadmap.id}}" style="text-decoration: none; color:black"><h5 class="card-title text-center my-1">{{ roadmap }}</h5></a>
+                                <br>
+                                <div class="card-body" style="background-color: #E0E1DD;">
+                                    <div>
+                                        <p class="card-text">Number of likes: {{ roadmap.numberOfLikes }}</p>
+                                        <p class="card-text">Created by: {{ roadmap.user }}</p>
                                     </div>
                                 </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <h2 class="text-center pt-4">There are no roadmap suggestions for {{ interest }}</h2>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <h2 class="text-center pt-4">There are no roadmap suggestions for {{ interest }}</h2>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
-    {% endblock content %}
+</div>
+{% endblock content %}
 </body>
 </html>
