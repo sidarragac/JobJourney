@@ -69,11 +69,11 @@
                             <a class="nav-link" href="{% url 'analytics'%}">Analytics</a>
                         </li>
                         {% if not user.is_authenticated %}
-                            <li class="nav-item register-buttom">
-                                <a class="nav-link registe-login" href="{% url 'register'%}">Register</a>
+                            <li class="nav-item">
+                                <a class="nav-link register-login" href="{% url 'register'%}">Register</a>
                             </li>
-                            <li class="nav-item buttom login-buttom">
-                                <a class="nav-link registe-login" href="{% url 'login'%}">Login</a>
+                            <li class="nav-item">
+                                <a class="nav-link register-login" href="{% url 'login'%}">Login</a>
                             </li>
                         {% endif %}
                         {% if user.is_authenticated %}
