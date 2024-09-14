@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from admin.openAIManager import openAIManager
 from django.contrib.auth.decorators import login_required
 from .forms import *
@@ -40,7 +40,11 @@ def __getInterest(interest):
 
 @login_required
 def interestForm(request):
-    return render(request, 'interestForm.html')
+    user = User.objects.get(username=request.user)
+    if user.isCompany:
+        return render(request, 'accessDenied.html')
+    else:
+        return render(request, 'interestForm.html')
 
 @login_required
 def roadmapGenerator(request):
