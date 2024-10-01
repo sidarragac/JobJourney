@@ -3,10 +3,6 @@ from roadMap.models import Interest
 import os
 import json
 
-
-
-
-
 class Command(BaseCommand):
     help = 'Load movies from movies_descriptions.json into the Movie model'
 
@@ -24,4 +20,3 @@ class Command(BaseCommand):
                 Interest.objects.create(name=interest['name'], description=interest['description'])
         
         self.stdout.write(self.style.SUCCESS('Successfully loaded interests from interests.json'))
-        

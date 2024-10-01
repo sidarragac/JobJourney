@@ -103,11 +103,6 @@ header {
     border-bottom: 1px solid #5d5076;
  }
 
- .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
  .login{
     text-align: center;
     font-size: small;
