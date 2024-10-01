@@ -86,7 +86,7 @@ header {
     top: 10px;
     left: 10px;
     pointer-events: none;
-    transition: .5s;
+    transition: .2s;
 }
 .input-field input:focus ~ label
    {
