@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Natural Sciences",
+        "description": "Biology, Chemistry, Physics, Geology, Environmental Science, Zoology, Marine Biology, Astronomy, Ecology, Botany, Biochemistry, Earth Science"
+    },
+    {
+        "name": "Mathematics and Statistics",
+        "description": "Pure Mathematics, Applied Mathematics, Statistics, Actuarial Science, Mathematical Physics, Computational Mathematics, Data Science, Operations Research, Financial Mathematics, Probability Theory, Biostatistics, Quantitative Analysis"
+    },
+    {
+        "name": "Engineering and Technology",
+        "description": "Civil Engineering, Mechanical Engineering, Electrical Engineering, Computer Engineering, Chemical Engineering, Aerospace Engineering, Biomedical Engineering, Environmental Engineering, Industrial Engineering, Software Engineering, Materials Science and Engineering, Robotics Engineering"
+    },
+    {
+        "name": "Medical and Health Sciences",
+        "description": "Medicine (MD), Nursing, Pharmacy, Dentistry, Veterinary Medicine, Public Health, Physical Therapy, Occupational Therapy, Nutrition and Dietetics, Biomedical Sciences, Radiology, Optometry"
+    },
+    {
+        "name": "Social Sciences",
+        "description": "Psychology, Sociology, Anthropology, Political Science, Economics, International Relations, Criminology, Geography (Human Geography), Social Work, Cultural Studies, Urban Studies, Gender Studies"
+    },
+    {
+        "name": "Humanities",
+        "description": "History, Philosophy, Literature, Linguistics, Religious Studies, Classics, Art History, Cultural Studies, Ethics, Archaeology, Comparative Literature, Theology"
+    },
+    {
+        "name": "Arts and Design",
+        "description": "Fine Arts, Graphic Design, Interior Design, Fashion Design, Industrial Design, Animation, Film Studies, Photography, Music, Theater Arts, Visual Arts, Illustration"
+    },
+    {
+        "name": "Business and Management",
+        "description": "Business Administration (MBA), Accounting, Finance, Marketing, Human Resources, Entrepreneurship, Supply Chain Management, International Business, Management Information Systems (MIS), Real Estate Management, Hospitality Management, Public Administration"
+    },
+    {
+        "name": "Law and Legal Studies",
+        "description": "Law (LLB/JD), International Law, Criminal Law, Corporate Law, Environmental Law, Human Rights Law, Intellectual Property Law, Labor Law, Family Law, Health Law, Administrative Law, Tax Law"
+    },
+    {
+        "name": "Education",
+        "description": "Early Childhood Education, Elementary Education, Secondary Education, Special Education, Educational Leadership, Curriculum and Instruction, Adult Education, Educational Technology, Higher Education, Language Education, STEM Education, Physical Education"
+    },
+    {
+        "name": "Computer Science and Information Systems",
+        "description": "Computer Science, Information Technology, Software Development, Cybersecurity, Data Science, Artificial Intelligence, Cloud Computing, Network Engineering, Game Development, Information Systems Management, Web Development, Computer Engineering"
+    },
+    {
+        "name": "Environmental and Agricultural Sciences",
+        "description": "Environmental Science, Agricultural Science, Forestry, Wildlife Management, Agronomy, Horticulture, Soil Science, Environmental Engineering, Natural Resource Management, Sustainable Agriculture, Aquaculture, Plant Sciences"
+    },
+    {
+        "name": "Communication and Media",
+        "description": "Journalism, Media Studies, Public Relations, Broadcasting, Film and Television Production, Digital Media, Advertising, Communication Studies, Publishing, Corporate Communications, Social Media Management, Speech Communication"
+    },
+    {
+        "name": "Interdisciplinary Studies",
+        "description": "International Studies, Environmental Policy, Cognitive Science, Global Health, Urban Studies, Sustainability Studies, Science Technology and Society (STS), Women's and Gender Studies, Peace and Conflict Studies, Development Studies, Cultural and Media Studies, Liberal Studies"
+    }
+]
