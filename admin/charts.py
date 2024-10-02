@@ -3,6 +3,23 @@ import matplotlib
 import io, base64
 import numpy as np
 
+__Colors = {
+    "Natural Sciences": "green",
+    "Mathematics and Statistics": "red",
+    "Engineering and Technology": "darkblue",
+    "Medical and Health Sciences": "blue",
+    "Social Sciences": "brown",
+    "Humanities": "yellow",
+    "Arts and Design": "purple",
+    "Business and Management": "gray",
+    "Law and Legal Studies": "plum",
+    "Education": "aqua",
+    "Computer Science and Information Systems": "cyan",
+    "Environmental and Agricultural Sciences": "darkgreen",
+    "Communication and Media": "violet",
+    "Interdisciplinary Studies": "gold",
+}
+
 def __genImage():
     buffer = io.BytesIO()
     plt.savefig(buffer, format='svg', bbox_inches='tight')
@@ -19,7 +36,7 @@ def usersPerInterest(data, city):
     fix, ax = plt.subplots()
     colors = plt.get_cmap('Blues')(np.linspace(0.4, 1, len(list(data.values()))))
     
-    ax.pie(list(data.values()), labels=list(data.keys()), colors=colors, autopct='%1.1f%%',
+    ax.pie(list(data.values()), labels=list(data.keys()), colors=[__Colors[label] for label in list(data.keys())], autopct='%1.1f%%',
             wedgeprops={"edgecolor": 'white', "linewidth": 1})
 
     plt.title(f"Users per Interest")
@@ -44,7 +61,7 @@ def ageRangesPerInterest(data, city):
     
     fix, ax = plt.subplots()
     for idx, (interest, val) in enumerate(zip(interests, values)):
-        ax.bar(x + idx * barWidth, val, width = barWidth, label=interest)
+        ax.bar(x + idx * barWidth, val, width = barWidth, label=interest, color=__Colors[interest])
 
     ax.set_title(f"User's Age Range per interest")
     ax.set_xlabel('Age Categories')
