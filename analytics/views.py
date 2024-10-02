@@ -24,22 +24,28 @@ def __companyAnalytics(companyId, companyCity=None):
         dob = person.dateOfBirth
         age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
         if age < 18:
-            return '-18'
-        elif age < 30:
-            return '18-30'
-        elif age < 50:
-            return '30-50'
+            return '18-'
+        elif age < 25:
+            return '18-24'
+        elif age < 35:
+            return '25-34'
+        elif age < 45:
+            return '35-44'
+        elif age < 55:
+            return '45-54'
         else:
-            return '+50'
+            return '55+'
 
     def collectData(companyInterests, relatedUsers):
         chartOneData = {} #Dict with the number of users that have the same interest as the company.
         chartTwoData = {} #Dict with the number of users per age range that have the same interest as the company.
         ranges = {
-            '-18': 0,
-            '18-30': 0,
-            '30-50': 0,
-            '+50': 0
+            '18-': 0,
+            '18-24': 0,
+            '25-34': 0,
+            '35-44': 0,
+            '45-54': 0,
+            '55+': 0
         }
         for user in relatedUsers:
             userInterests = set(UserInterest.objects.select_related('interest').filter(user=user.id).values_list('interest__name', flat=True))
