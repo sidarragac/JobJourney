@@ -68,18 +68,27 @@ def roadmapGenerator(request):
     else:
         return render(request, 'interestForm.html')
 
+def percentageCompletion(roadmapId):
+    checkpoints = Checkpoint.objects.filter(roadmap=roadmapId, completed=True)
+    completedCheckpoints = len(checkpoints)
+    percentage = int((completedCheckpoints/15)*100)
+    Roadmap.objects.filter(id=roadmapId).update(completionPercentage=percentage)
+    return percentage
+
 @login_required   
 def displayRoadmap(request, roadmapId, stepNumber=0):
     roadmap = Roadmap.objects.get(id=roadmapId)
+    completionPercentage = percentageCompletion(roadmapId)
     user = User.objects.get(username=request.user)
     editable = True
     if user.id != roadmap.user.user_id:
         editable = False
     checkpoints = __getCheckpointsStatus(roadmapId)
     context = {
+        'completionPercentage': completionPercentage,
         'roadmap': roadmap.content, 
-        'roadmapId': roadmapId, 
-        stepNumber: stepNumber,
+        'roadmapId': roadmapId,
+        'stepNumber': stepNumber, 
         'checkpoints': json.dumps(checkpoints),
         'editable': editable
     }

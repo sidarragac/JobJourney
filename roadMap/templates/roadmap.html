@@ -31,7 +31,7 @@
         </ul>
     </div>
     <div class="caminoRoadmap">
-        <p>.</p>
+        <p style="margin: 20px;">.</p>
     </div>
     <div>
         <ul class="listaPasosPar">
@@ -46,6 +46,9 @@
                 {% endif %}
             {% endfor %}
         </ul>
+    </div>
+    <div class="container completion">
+        <p>Completion Percentage: {{ completionPercentage }}%</p>
     </div>
     <div class="contenedorPasos">
         <script type="application/json" id="checkpoints-data">
