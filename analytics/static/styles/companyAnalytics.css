@@ -1,11 +1,14 @@
-/* @media (max-width: 767.98){
-    .chart {
-        width: 85% !important;
-    }
+.subtitle{
+    background-color: #0D1B2A;
+    color: white;
 }
 
-@media (max-width: 991.98){
-    .chart {
-        width: 60% !important;
+.charts{
+    width: 100px;
+}
+
+@media (max-width: 600px) {
+    .charts{
+        width: 50px
     }
-} */
+}
