@@ -1,11 +1,10 @@
 from django.core.management.base import BaseCommand
 from roadMap.models import Interest
-import os
 import json
 
-class Command(BaseCommand):
-    help = 'Load movies from movies_descriptions.json into the Movie model'
+# Command to load interests from a JSON file
 
+class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         json_file_path = 'roadMap/management/commands/interests.json'
 
