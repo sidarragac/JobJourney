@@ -38,12 +38,20 @@ header {
     height: auto;
     padding: 40px 0px;
 }
-.left , .right{
+.left , .right {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
+
+.personCompany{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .container-inputs {
     display: flex;

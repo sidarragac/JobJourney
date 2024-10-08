@@ -34,9 +34,20 @@ def registerView(request):
                 Person.objects.create(user=user, dateOfBirth=dateOfBirth)
             login(request, user)
             return redirect('interestSelection')
+        else:
+            print(form)
+            context = {
+                'form': form,
+                'first_name': request.POST.get('first_name'),
+                'last_name': request.POST.get('last_name'),
+                'dateOfBirth': request.POST.get('dateOfBirth'),
+                'companyName': request.POST.get('companyName'),
+                'isCompany': request.POST.get('isCompany')
+            }
+            return render(request, 'register.html', context=context)
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html', {'form': form, 'isCompany': False})
 
 def interestSelectionView(request):
     if request.method == 'POST':
