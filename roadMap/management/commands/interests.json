@@ -1,58 +1,72 @@
 [
     {
         "name": "Natural Sciences",
-        "description": "Biology, Chemistry, Physics, Geology, Environmental Science, Zoology, Marine Biology, Astronomy, Ecology, Botany, Biochemistry, Earth Science"
+        "description": "Biology, Chemistry, Physics, Geology, Environmental Science, Zoology, Marine Biology, Astronomy, Ecology, Botany, Biochemistry, Earth Science",
+        "color": "#90BE6D"
     },
     {
         "name": "Mathematics and Statistics",
-        "description": "Pure Mathematics, Applied Mathematics, Statistics, Actuarial Science, Mathematical Physics, Computational Mathematics, Data Science, Operations Research, Financial Mathematics, Probability Theory, Biostatistics, Quantitative Analysis"
+        "description": "Pure Mathematics, Applied Mathematics, Statistics, Actuarial Science, Mathematical Physics, Computational Mathematics, Data Science, Operations Research, Financial Mathematics, Probability Theory, Biostatistics, Quantitative Analysis",
+        "color": "#F9393C"
     },
     {
         "name": "Engineering and Technology",
-        "description": "Civil Engineering, Mechanical Engineering, Electrical Engineering, Computer Engineering, Chemical Engineering, Aerospace Engineering, Biomedical Engineering, Environmental Engineering, Industrial Engineering, Software Engineering, Materials Science and Engineering, Robotics Engineering"
+        "description": "Civil Engineering, Mechanical Engineering, Electrical Engineering, Computer Engineering, Chemical Engineering, Aerospace Engineering, Biomedical Engineering, Environmental Engineering, Industrial Engineering, Software Engineering, Materials Science and Engineering, Robotics Engineering",
+        "color": "#206683"
     },
     {
         "name": "Medical and Health Sciences",
-        "description": "Medicine (MD), Nursing, Pharmacy, Dentistry, Veterinary Medicine, Public Health, Physical Therapy, Occupational Therapy, Nutrition and Dietetics, Biomedical Sciences, Radiology, Optometry"
+        "description": "Medicine (MD), Nursing, Pharmacy, Dentistry, Veterinary Medicine, Public Health, Physical Therapy, Occupational Therapy, Nutrition and Dietetics, Biomedical Sciences, Radiology, Optometry",
+        "color": "#43AA8B"
     },
     {
         "name": "Social Sciences",
-        "description": "Psychology, Sociology, Anthropology, Political Science, Economics, International Relations, Criminology, Geography (Human Geography), Social Work, Cultural Studies, Urban Studies, Gender Studies"
+        "description": "Psychology, Sociology, Anthropology, Political Science, Economics, International Relations, Criminology, Geography (Human Geography), Social Work, Cultural Studies, Urban Studies, Gender Studies",
+        "color": "#774304"
     },
     {
         "name": "Humanities",
-        "description": "History, Philosophy, Literature, Linguistics, Religious Studies, Classics, Art History, Cultural Studies, Ethics, Archaeology, Comparative Literature, Theology"
+        "description": "History, Philosophy, Literature, Linguistics, Religious Studies, Classics, Art History, Cultural Studies, Ethics, Archaeology, Comparative Literature, Theology",
+        "color": "#F9C74F"
     },
     {
         "name": "Arts and Design",
-        "description": "Fine Arts, Graphic Design, Interior Design, Fashion Design, Industrial Design, Animation, Film Studies, Photography, Music, Theater Arts, Visual Arts, Illustration"
+        "description": "Fine Arts, Graphic Design, Interior Design, Fashion Design, Industrial Design, Animation, Film Studies, Photography, Music, Theater Arts, Visual Arts, Illustration",
+        "color": "#552381"
     },
     {
         "name": "Business and Management",
-        "description": "Business Administration (MBA), Accounting, Finance, Marketing, Human Resources, Entrepreneurship, Supply Chain Management, International Business, Management Information Systems (MIS), Real Estate Management, Hospitality Management, Public Administration"
+        "description": "Business Administration (MBA), Accounting, Finance, Marketing, Human Resources, Entrepreneurship, Supply Chain Management, International Business, Management Information Systems (MIS), Real Estate Management, Hospitality Management, Public Administration",
+        "color": "#B0D4D2"
     },
     {
         "name": "Law and Legal Studies",
-        "description": "Law (LLB/JD), International Law, Criminal Law, Corporate Law, Environmental Law, Human Rights Law, Intellectual Property Law, Labor Law, Family Law, Health Law, Administrative Law, Tax Law"
+        "description": "Law (LLB/JD), International Law, Criminal Law, Corporate Law, Environmental Law, Human Rights Law, Intellectual Property Law, Labor Law, Family Law, Health Law, Administrative Law, Tax Law",
+        "color": "#FA9461"
     },
     {
         "name": "Education",
-        "description": "Early Childhood Education, Elementary Education, Secondary Education, Special Education, Educational Leadership, Curriculum and Instruction, Adult Education, Educational Technology, Higher Education, Language Education, STEM Education, Physical Education"
+        "description": "Early Childhood Education, Elementary Education, Secondary Education, Special Education, Educational Leadership, Curriculum and Instruction, Adult Education, Educational Technology, Higher Education, Language Education, STEM Education, Physical Education",
+        "color": "#F3722C"
     },
     {
         "name": "Computer Science and Information Systems",
-        "description": "Computer Science, Information Technology, Software Development, Cybersecurity, Data Science, Artificial Intelligence, Cloud Computing, Network Engineering, Game Development, Information Systems Management, Web Development, Computer Engineering"
+        "description": "Computer Science, Information Technology, Software Development, Cybersecurity, Data Science, Artificial Intelligence, Cloud Computing, Network Engineering, Game Development, Information Systems Management, Web Development, Computer Engineering",
+        "color": "#577590"
     },
     {
         "name": "Environmental and Agricultural Sciences",
-        "description": "Environmental Science, Agricultural Science, Forestry, Wildlife Management, Agronomy, Horticulture, Soil Science, Environmental Engineering, Natural Resource Management, Sustainable Agriculture, Aquaculture, Plant Sciences"
+        "description": "Environmental Science, Agricultural Science, Forestry, Wildlife Management, Agronomy, Horticulture, Soil Science, Environmental Engineering, Natural Resource Management, Sustainable Agriculture, Aquaculture, Plant Sciences",
+        "color": "#2E4601"
     },
     {
         "name": "Communication and Media",
-        "description": "Journalism, Media Studies, Public Relations, Broadcasting, Film and Television Production, Digital Media, Advertising, Communication Studies, Publishing, Corporate Communications, Social Media Management, Speech Communication"
+        "description": "Journalism, Media Studies, Public Relations, Broadcasting, Film and Television Production, Digital Media, Advertising, Communication Studies, Publishing, Corporate Communications, Social Media Management, Speech Communication",
+        "color": "#A975A6"
     },
     {
         "name": "Interdisciplinary Studies",
-        "description": "International Studies, Environmental Policy, Cognitive Science, Global Health, Urban Studies, Sustainability Studies, Science Technology and Society (STS), Women's and Gender Studies, Peace and Conflict Studies, Development Studies, Cultural and Media Studies, Liberal Studies"
+        "description": "International Studies, Environmental Policy, Cognitive Science, Global Health, Urban Studies, Sustainability Studies, Science Technology and Society (STS), Women's and Gender Studies, Peace and Conflict Studies, Development Studies, Cultural and Media Studies, Liberal Studies",
+        "color": "#BBA0AE"
     }
 ]

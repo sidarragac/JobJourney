@@ -70,6 +70,7 @@ def profile(request):
         company = Company.objects.get(user=user)
         context = {
             'name': company.companyName,
+            'username': company.username,
             'isCompany': True
         }
     else:
@@ -77,7 +78,9 @@ def profile(request):
         roadmaps = list(Roadmap.objects.filter(user=person))
         context = {
             'name': user.first_name + ' ' + user.last_name,
+            'username': user.username,
             'roadmaps': roadmaps,
+            'city': user.city,
             'isCompany': False
         }
     return render(request, 'userProfile.html', context=context)
