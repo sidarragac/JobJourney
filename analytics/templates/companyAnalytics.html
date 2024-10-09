@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Analytics {% endblock title %}</title>
     {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/companyAnalytics.css' %}">
     {% endblock styles %}
 </head>
 <body>
@@ -16,12 +17,22 @@
         <h2>Welcome to the analytics section...</h2>
         <h4>Here are some roadmaps and statistics you might find interesting:</h4>
     </div>
-        <div class="p-4" style="background-color: #1B263B; color:white;">
+        <div class="subtitle p-4 d-flex flex-md-row flex-sm-column justify-content-md-between aling-items-center">
             <h5 class="mb-0" style="padding-left: 25px;">Statistics for {{ name }} at {{ city }}</h5>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Filters
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
         </div>
-        <div class="d-flex flex-sm-row flex-column align-items-center justify-content-center">
-            <img src="data:image/svg+xml;base64,{{ chartOne }}" alt="Chart One" style="width: fit-content;">
-            <img src="data:image/svg+xml;base64,{{ chartTwo }}" alt="Chart Two" style="width: fit-content;">
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
+            <img src="data:image/svg+xml;base64,{{ chartOne }}" alt="Chart One" class="charts">
+            <img src="data:image/svg+xml;base64,{{ chartTwo }}" alt="Chart Two" class="charts">
         </div>
     <div class="d-flex flex-column align-items-center justify-content-center">
         {% for interest, roadmaps in suggestedRoadmaps.items %}
