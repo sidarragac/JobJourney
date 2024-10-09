@@ -13,7 +13,7 @@ def __companyAnalytics(companyId, companyCity=None):
     Charts:
     1. Number of users that have the same interest as the company in the same city.
     2. Age range of users that have the same interest as the company in the same city as follows:
-        Age < 18, 18 <= Age < 30, 30 <= Age < 50, Age >= 50.
+        Age < 18, 18 <= Age < 25, 25 <= Age < 35, 35 <= Age < 45, 45 <= Age < 55, Age >= 55.
     -- Suggested roadmaps based on company's interests.
     """
     def calculateAge(userId):
@@ -78,8 +78,9 @@ def __companyAnalytics(companyId, companyCity=None):
     relatedUsers = User.objects.filter(city=companyCity).exclude(isCompany=True)
 
     chartOneData, chartTwoData = collectData(companyInterests, relatedUsers)
+    colors = dict(Interest.objects.all().values_list('name', 'color', flat=True))
 
-    return usersPerInterest(chartOneData, companyCity), ageRangesPerInterest(chartTwoData, companyCity)
+    return usersPerInterest(chartOneData, colors), ageRangesPerInterest(chartTwoData, colors)
     
         
 
