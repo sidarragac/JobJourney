@@ -1,0 +1,129 @@
+.banner{
+    height:250px;
+    background-color: #0D1B2A;
+}
+.userProfile{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userProfile img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.profileInfo{
+    position: absolute;
+    width: 90%;
+    top: 220px;
+    height: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.list-profileInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    list-style: none;
+    padding: 0%;
+}
+
+.list-profileInfo h2{
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.contenedorRoadmapsGrande{
+    margin-top: 200px;
+}
+
+.socialMedias{
+    width: 100%;
+    justify-content: space-around;
+}
+
+.contenedorRoadmaps{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px #0d1b2a18;
+    border-radius: 10px;
+    background-color: #e0e1dd57;
+    width: 30%;
+    margin: 2% 10px;
+}
+
+.infoRoadmap1{
+    width: 55%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.infoRoadmap2{
+    width: 35%;
+}
+
+.tituloCard{
+    text-decoration: none; 
+    color:black; 
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+.cajaContenedorRoadmaps{
+    justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+    .userProfile{
+        height: 160px;
+        width: 160px;
+    }
+    .banner{
+        height: 200px;
+    }
+    .profileInfo{
+        top: 180px;
+    }
+    .contenedorRoadmaps{
+        width: 45%;
+        margin: 2% 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .list-profileInfo{
+        flex-direction: column;
+        align-items: center;
+    }
+    .list-profileInfo li{
+        margin: 10px 0;
+    }
+    .contenedorRoadmapsGrande{
+        margin-top: 400px;
+    }
+    .infoText{
+        margin-top: 20px;
+        width: 100%;
+    }
+    #infoUser{
+        margin-top: 50px;
+    }
+    .infoText h2 h3{
+        text-align: left;
+    }
+    .contenedorRoadmaps{
+        width: 90%;
+    }
+    .cajaContenedorRoadmaps{
+        justify-content: space-around;
+    }
+}
