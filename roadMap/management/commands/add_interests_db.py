@@ -16,6 +16,6 @@ class Command(BaseCommand):
             interest = interests[i]
             exist = Interest.objects.filter(name=interest['name']).first()
             if not exist:
-                Interest.objects.create(name=interest['name'], description=interest['description'])
+                Interest.objects.create(name=interest['name'], description=interest['description'], color=interest['color'])
         
         self.stdout.write(self.style.SUCCESS('Successfully loaded interests from interests.json'))
