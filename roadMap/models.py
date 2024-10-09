@@ -1,9 +1,14 @@
 from django.db import models
 from accounts.models import Person, User
+import numpy as np
+
+def genDefaultArray():
+    return np.random.rand(1536).tobytes()
 
 class Interest(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
+    color = models.CharField(max_length=7, default="#000000") # Hexadecimal color code to be shown in charts.
 
     def __str__(self):
         return self.name
@@ -22,6 +27,7 @@ class Roadmap(models.Model):
     numberOfLikes = models.IntegerField(default=0)
     user = models.ForeignKey(Person, on_delete=models.CASCADE)
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
+    embedding = models.BinaryField(default=genDefaultArray())
 
     def __str__(self):
         return self.mainGoal
