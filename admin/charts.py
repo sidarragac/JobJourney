@@ -4,20 +4,20 @@ import io, base64
 import numpy as np
 
 __Colors = {
-    "Natural Sciences": "green",
-    "Mathematics and Statistics": "red",
-    "Engineering and Technology": "darkblue",
-    "Medical and Health Sciences": "blue",
-    "Social Sciences": "brown",
-    "Humanities": "yellow",
-    "Arts and Design": "purple",
-    "Business and Management": "gray",
-    "Law and Legal Studies": "plum",
-    "Education": "aqua",
-    "Computer Science and Information Systems": "cyan",
-    "Environmental and Agricultural Sciences": "darkgreen",
-    "Communication and Media": "violet",
-    "Interdisciplinary Studies": "gold",
+    "Natural Sciences": "#90BE6D",
+    "Mathematics and Statistics": "#F9393C",
+    "Engineering and Technology": "#206683",
+    "Medical and Health Sciences": "#43AA8B",
+    "Social Sciences": "#774304",
+    "Humanities": "#F9C74F",
+    "Arts and Design": "#552381",
+    "Business and Management": "#B0D4D2",
+    "Law and Legal Studies": "#FA9461",
+    "Education": "#F3722C",
+    "Computer Science and Information Systems": "#577590",
+    "Environmental and Agricultural Sciences": "#2E4601",
+    "Communication and Media": "#A975A6",
+    "Interdisciplinary Studies": "#BBA0AE",
 }
 
 def __genImage():
