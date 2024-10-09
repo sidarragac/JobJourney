@@ -5,7 +5,7 @@ import numpy as np
 
 def __genImage():
     buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')
+    plt.savefig(buffer, format='svg', bbox_inches='tight')
     buffer.seek(0)
     plt.close()
 
@@ -33,7 +33,7 @@ def ageRangesPerInterest(data, city):
     #Formmated data:
     interests = list(data.keys())
     numInterests = len(interests)
-    ageRanges = ['-18', '18-30', '30-50', '+50']
+    ageRanges = ['18-', '18-24', '25-34', '35-44', '45-54', '55+']
     numAges = len(ageRanges)
 
     values = [[data[interest][age] for age in ageRanges] for interest in interests]

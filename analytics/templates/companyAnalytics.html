@@ -20,8 +20,8 @@
             <h5 class="mb-0" style="padding-left: 25px;">Statistics for {{ name }} at {{ city }}</h5>
         </div>
         <div class="d-flex flex-sm-row flex-column align-items-center justify-content-center">
-            <img src="data:image/png;base64,{{ chartOne }}" alt="Chart One" style="width: fit-content;">
-            <img src="data:image/png;base64,{{ chartTwo }}" alt="Chart Two" style="width: fit-content;">
+            <img src="data:image/svg+xml;base64,{{ chartOne }}" alt="Chart One" style="width: fit-content;">
+            <img src="data:image/svg+xml;base64,{{ chartTwo }}" alt="Chart Two" style="width: fit-content;">
         </div>
     <div class="d-flex flex-column align-items-center justify-content-center">
         {% for interest, roadmaps in suggestedRoadmaps.items %}
