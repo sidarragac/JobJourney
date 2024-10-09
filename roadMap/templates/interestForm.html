@@ -14,7 +14,7 @@
 </head>
 <body>
     {% block content %}
-    <div class="container main">
+    <div class="main">
         <form action="{% url 'roadmapGenerator' %}" method="POST">
             {% csrf_token %}
             <div class="input-field">

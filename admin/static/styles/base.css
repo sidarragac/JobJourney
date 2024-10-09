@@ -9,6 +9,13 @@ body {
   height: 100%;
 }
 
+.navbar {
+  position: sticky !important;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
 .userIcon{
     border-radius: 50%;
     background-color: #102C57;

@@ -1,57 +1,52 @@
 function toggleFields() {
     var radioButton = document.getElementById('btnradio2').checked;
-    var content = "";
-    var dataFields = document.getElementById('content');
-
     var isCompany = document.getElementById('isCompany');
 
+    var companyFields = document.getElementById('companyFields');
+    var personFields = document.getElementById('personFields');
+    var companyName = document.getElementById('companyName');
+    var first_name = document.getElementById('first_name');
+    var last_name = document.getElementById('last_name');
+
+
     if (radioButton) {
-        isCompany.value = "True";
-        content = `
-            <div class="input-box">
-                <div class="input-field">
-                    <input type="text" class="input" id="city" name="city" required autocomplete="off">
-                    <label for="city">City</label>
-                </div>
-                <div id="companyFields">
-                    <!-- Company fields -->
-                    <div class="input-field">
-                        <input type="text" class="input" id="companyName" name="companyName" autocomplete="off">
-                        <label for="companyName">Company Name</label>
-                    </div>
-                </div>
-            </div>
-        `;
+        companyFields.style.display = 'block';
+        personFields.style.display = 'none';
+        companyName.required = true;
+        first_name.required = false;
+        last_name.required = false;
+        isCompany.value = true;
     } else {
-        isCompany.value = "False";
-        content = `
-            <div class="input-box">
-                <div class="input-field">
-                    <input type="text" class="input" id="city" name="city" required autocomplete="off">
-                    <label for="city">City</label>
-                </div>
-                <!-- Person fields -->
-                <div id="personFields">
-                    <div class="input-field">
-                        <input type="text" class="input" id="first_name" name="first_name" required autocomplete="off">
-                        <label for="first_name">First Name</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" class="input" id="last_name" name="last_name" required autocomplete="off">
-                        <label for="last_name">Last Name</label>
-                    </div>
-                    <!-- birth date -->
-                    <div class="input-field">
-                        <input type="date" class="input" id="dateOfBirth" name="dateOfBirth" placeholder="">
-                        <label for="dateOfBirth">Birth Date</label>
-                    </div>
-                </div>
-            </div>
-        `;
+        companyFields.style.display = 'none';
+        personFields.style.display = 'block';
+        companyName.required = false;
+        first_name.required = true;
+        last_name.required = true;
+        isCompany.value = false;
     }
-    dataFields.innerHTML = content;
 }
 
 window.onload = function() {
+    document.getElementById('btnradio2').checked = document.getElementById('isCompany').value === 'true';
     toggleFields();  // Set the correct fields visibility on page load
 };
+
+document.getElementById('password2').addEventListener('keyup', () => {
+    var password1 = document.getElementById('password1');
+    var password2 = document.getElementById('password2');
+    if (password1.value === password2.value && password1.value !== "") {
+        password2.style.borderBottom = "2px solid green";
+    } else {
+        password2.style.borderBottom = "2px solid red";
+    }
+});
+
+document.getElementById('password1').addEventListener('keyup', () => {
+    var password1 = document.getElementById('password1');
+    var password2 = document.getElementById('password2');
+    if (password1.value === password2.value && password1.value !== "") {
+        password2.style.borderBottom = "2px solid green";
+    } else {
+        password2.style.borderBottom = "2px solid red";
+    }
+});

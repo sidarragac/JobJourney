@@ -1,11 +1,10 @@
 from django.core.management.base import BaseCommand
 from roadMap.models import Interest
-import os
 import json
 
-class Command(BaseCommand):
-    help = 'Load movies from movies_descriptions.json into the Movie model'
+# Command to load interests from a JSON file
 
+class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         json_file_path = 'roadMap/management/commands/interests.json'
 
@@ -17,6 +16,6 @@ class Command(BaseCommand):
             interest = interests[i]
             exist = Interest.objects.filter(name=interest['name']).first()
             if not exist:
-                Interest.objects.create(name=interest['name'], description=interest['description'])
+                Interest.objects.create(name=interest['name'], description=interest['description'], color=interest['color'])
         
         self.stdout.write(self.style.SUCCESS('Successfully loaded interests from interests.json'))
