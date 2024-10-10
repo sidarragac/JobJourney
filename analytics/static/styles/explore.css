@@ -1,0 +1,87 @@
+.interest {
+    margin: 25px auto;
+    width: 90%;
+    align-items: center;
+}
+
+.selectInterest, .inputObjective, .inputSalary {
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.labelInterest, .labelObjective, .labelSalary {
+    display: block;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.objective {
+    margin: 25px auto;
+    width: 100%;
+    align-items: center;
+}
+
+.salary {
+    margin: 25px auto;
+    width: 100%;
+    align-items: center;
+}
+
+.formClass {
+    border : 0px solid black;
+    width: 50% !important;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    margin: 50px auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.input{
+    height: 45px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+
+.contenedorRoadmaps{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px #0d1b2a18;
+    border-radius: 10px;
+    background-color: #e0e1dd57;
+    width: 30%;
+    margin: 2% 10px;
+}
+
+.infoRoadmap1{
+    width: 55%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.infoRoadmap2{
+    width: 35%;
+}
+
+.tituloCard{
+    text-decoration: none; 
+    color:black; 
+    width: 100%;
+}
