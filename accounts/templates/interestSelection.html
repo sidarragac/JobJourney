@@ -13,44 +13,42 @@
 </head>
 <body>
     {% block content %}
-    <div class="wrapper">
-        <div class="container main">
-            <div class="row">
-                <div class="content">
-                    <header>Select Interests</header>
-                    <div class="input-box">
-                        <form action="{% url 'interestSelection' %}" method="POST">
-                            {% csrf_token %}
-                            <!-- First interest -->
-                            <select name="interest1" class="form-select">
-                                <option value=""></option>
-                                {% for interest in interests %}
-                                    <option value="{{ interest.id }}">{{ interest.name }}</option>
-                                {% endfor %}
-                            </select>
-                            <!-- Second interest -->
-                            <select name="interest2" class="form-select">
-                                <option value=""></option>
-                                {% for interest in interests %}
-                                    <option value="{{ interest.id }}">{{ interest.name }}</option>
-                                {% endfor %}
-                            </select>
-                            <!-- Third interest -->
-                            <select name="interest3" class="form-select">
-                                <option value=""></option>
-                                {% for interest in interests %}
-                                    <option value="{{ interest.id }}">{{ interest.name }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="input-field">
-                                <div class="button">
-                                    <div class="input-field">
-                                        <input type="submit" class="submit" value="Done">
-                                    </div>
+    <div class="container main">
+        <div class="row">
+            <div class="content">
+                <header>Select Interests</header>
+                <div class="input-box">
+                    <form action="{% url 'interestSelection' %}" method="POST">
+                        {% csrf_token %}
+                        <!-- First interest -->
+                        <select name="interest1" class="form-select">
+                            <option value=""></option>
+                            {% for interest in interests %}
+                                <option value="{{ interest.id }}">{{ interest.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Second interest -->
+                        <select name="interest2" class="form-select">
+                            <option value=""></option>
+                            {% for interest in interests %}
+                                <option value="{{ interest.id }}">{{ interest.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Third interest -->
+                        <select name="interest3" class="form-select">
+                            <option value=""></option>
+                            {% for interest in interests %}
+                                <option value="{{ interest.id }}">{{ interest.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="input-field">
+                            <div class="button">
+                                <div class="input-field">
+                                    <input type="submit" class="submit" value="Done">
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

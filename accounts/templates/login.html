@@ -12,42 +12,40 @@
 </head>
 <body>
     {% block content %}
-    <div class="wrapper">
-        <div class="container main">
-            <div class="row">
-                <div class="col-md-6 left">
-                    <div class="input-box">
-                        <header>Login</header>
-                        <form action="{% url 'login' %}" method="POST">
-                            {% csrf_token %}
-                            <div class="input-field">
-                                <input type="text" class="input" id="username" name="username" required autocomplete="off">
-                                <label for="username">Username</label>
+    <div class="container main">
+        <div class="row total">
+            <div class="col-md-6 left">
+                <div class="input-box">
+                    <header>Login</header>
+                    <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-field">
+                            <input type="text" class="input" id="username" name="username" required autocomplete="off">
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="input" id="password" name="password" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <!-- Show errors -->
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
                             </div>
-                            <div class="input-field">
-                                <input type="password" class="input" id="password" name="password" required>
-                                <label for="password">Password</label>
-                            </div>
-                            <!-- Show errors -->
-                            {% if error %}
-                                <div class="alert alert-danger" role="alert">
-                                    {{ error }}
-                                </div>
-                            {% endif %}
-                            <div class="input-field">
-                                <input type="submit" class="button-1" value="login">
-                            </div>
-                            <div class="signup">
-                                <span>Don't have an account? <a href="{% url 'register' %}">Register here</a></span>
-                            </div>
-                        </form>
-                    </div>
+                        {% endif %}
+                        <div class="input-field">
+                            <input type="submit" class="button-1" value="login">
+                        </div>
+                        <div class="signup">
+                            <span>Don't have an account? <a href="{% url 'register' %}">Register here</a></span>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-md-6 side-image">
-                    <!-- Image -->
-                     <div class="text">
-                        <p>Join JobJourney</p>
-                     </div>
+            </div>
+            <div class="col-md-6 side-image">
+                <!-- Image -->
+                <div class="text">
+                    <p>Join JobJourney</p>
                 </div>
             </div>
         </div>
