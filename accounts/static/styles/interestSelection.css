@@ -10,15 +10,12 @@ header {
     margin-bottom: 20px;
 }
 
-.wrapper{
-    background: #ececec;
-    padding: 0 20px 0 20px;
-}
 .main{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 0 20px 0 20px;
 }
 .row{
   width:  900px;
@@ -26,7 +23,7 @@ header {
   border-radius: 35px;
   background: #fff;
   padding: 0px;
-  box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
 }
 .content{
     display: flex;
