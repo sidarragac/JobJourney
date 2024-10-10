@@ -1,12 +1,11 @@
-.wrapper{
-    padding: 0 20px 0 20px;
-}
 .main{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 0 20px 0 20px;
 }
+
 .total{
   width:  900px;
   height: auto;
@@ -15,20 +14,7 @@
   padding: 0px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
 }
-.text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.text p{
-    color: #fff;
-    font-size: 20px; 
-}
-i{
-    font-weight: 400;
-    font-size: 15px;
-}
+
 header {
     font-weight: 700;
     font-size: 20px;
@@ -38,26 +24,12 @@ header {
     height: auto;
     padding: 40px 0px;
 }
+
 .left , .right {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-}
-
-.personCompany{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.container-inputs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
 }
 
 .selector {
@@ -105,10 +77,10 @@ header {
   {
    top: -10px;
    font-size: 13px;
-   color: #5d5076;
+   color : #000;
  }
  .input-field .input:focus, .input-field .input:valid{
-    border-bottom: 1px solid #5d5076;
+    border-bottom: 1px solid #1b263b;
  }
 
  .login{
@@ -128,14 +100,6 @@ span a:hover{
     color: #000;
 }
 @media only screen and (max-width: 768px){
-    .text{
-        position: absolute;
-        top: 70%;
-        text-align: center;
-    }
-    .text p, i{
-        font-size: 16px;
-    }
     .row{
         max-width:420px;
         width: 100%;
