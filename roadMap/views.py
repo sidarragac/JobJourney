@@ -5,6 +5,7 @@ from .forms import *
 from .models import *
 from accounts.models import User, Person
 import json
+import numpy as np
 
 def __updateCheckpointStatus(checkpoint, roadmap):
     chkpt = Checkpoint.objects.get(numberOfCheckpoint=checkpoint, roadmap=roadmap)
@@ -54,11 +55,12 @@ def roadmapGenerator(request):
             interest = form.cleaned_data['interest']
             objective = form.cleaned_data['objective']
             salary = form.cleaned_data['salary']
-            bot = openAIManager()
-            roadmap = bot.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
+            openAI = openAIManager()
+            roadmap = openAI.generateRoadmap(objective=objective, salary=salary) #JSON with detailed roadmap.
+            embedding = np.array(openAI.embedObjective(objective)).tobytes()
             user = User.objects.get(username=request.user)
             person = Person.objects.get(user=user.id)
-            roadmapInstance = createDBRoadmap(roadmap, interest, person, objective)
+            roadmapInstance = createDBRoadmap(roadmap, interest, person, objective, embedding)
             createDBCheckpoints(roadmap, roadmapInstance)
 
 
@@ -105,14 +107,14 @@ def checkpointUpdate(request):
         __updateCheckpointStatus(checkpoint, roadmapId)
         return redirect(f'displayRoadmap/{roadmapId}/{stepNumber}')
     
-def createDBRoadmap(roadmapJSON, interest, person, objective):
+def createDBRoadmap(roadmapJSON, interest, person, objective, embedding):
     mainGoal = objective
     content = roadmapJSON
     completionPercentage = 0
     interest = __getInterest(interest)
     interest = Interest.objects.get(name=interest)
     numberOfLikes = 0
-    roadmap = Roadmap(mainGoal=mainGoal, content=content, completionPercentage=completionPercentage, interest=interest , numberOfLikes=numberOfLikes, user=person)
+    roadmap = Roadmap(mainGoal=mainGoal, content=content, completionPercentage=completionPercentage, interest=interest , numberOfLikes=numberOfLikes, user=person, embedding=embedding)
     roadmap.save()
     return roadmap
 
