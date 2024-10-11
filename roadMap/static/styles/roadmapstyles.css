@@ -8,7 +8,8 @@ body{
 
 .tituloRoadmap{
     text-align: center;
-    margin: 50px 0px;
+    width: 80%;
+    margin: auto;
 }
 
 .tituloRoadmap h1{
@@ -50,13 +51,17 @@ body{
     text-align: center;
     height: 200px;
     align-items: justify;
+    margin: 0px 30px;
+    transition: transform 0.5s ease;
+}
+
+.contenedorPasoImpar h3{
+    font-size: 22px;
+    margin: 0px;
 }
 
 .contenedorPasoImpar:hover{
-    background-color: #afafaf;
-    color: white;
-    rotate: 5deg;
-    transition: 0.5s;
+    transform: scale(1.1);
 }
 
 .contenedorPasos{
@@ -69,34 +74,23 @@ body{
 }
 
 .pasos{
-    width: 40%;
+    width: auto;
     height: auto;
     font-size: 20px;
     list-style: none;
     text-align: left;
-    border-radius: 5%;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
-    transition: 0.4s;
-    margin: 30px;    
-    display: flex;
+    transition: 0.4s; 
+    display: flex;  
     flex-direction: row;
-}
-
-.pasos:hover{
-    background-color: #f7f7f7;
-    scale: 1.05;
-    transition: 0.4s;
-}
-
-.contenedorPasoImpar:active{
-    background-color: #102C57;
-    color: white;
-    rotate: 5deg;
-    transition: 0.5s;
 }
 
 .listaPasosGrandes h2{
     margin-bottom: 25px;
+}
+
+.modals{
+    width: 50%;
+    padding: 0%;
 }
 
 .infoPaso{
@@ -113,8 +107,6 @@ body{
     align-content: center;
     height: auto;
     background-color: #dfdfdf;
-    border-radius: 0% 5% 5% 0%;
-    padding: 50px 50px 50px 20px;
 }
 
 .footer{
@@ -152,4 +144,192 @@ body{
     margin-top: 100px;
     font-size: larger;
     font-weight: 800;
+}
+
+.main{
+    width: 80%;
+    margin: 200px auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    transform: scale(0.9);
+}
+
+.main ul{
+    width: 100%;
+    display: flex;
+    margin: 50px 0px; 
+    padding: 0px;
+    justify-content: center ;
+}
+
+.main ul li{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress{
+    margin: 12px 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #778da9;
+    display: grid;
+    place-items: center;
+    color: white;
+    position: relative;
+    overflow: visible;
+    cursor: pointer;
+    transition: 0.5s;
+    align-items: center;
+}
+
+.progress::after{
+    content: "";
+    position: absolute;
+    width: 215px;
+    height: 8px;
+    background-color: #778da9;
+    right: 45px;
+    transition: background-color 0.5s ease;
+}
+
+.progress p{
+    margin: 0%;
+    font-size: 20px;
+}
+
+.progress .iconnn{
+    display: none;
+}
+
+.pasos1 , .pasos3, .pasos5{
+    bottom: 270px;
+    position: relative;
+}
+
+.paso1::after{
+    width: 0px;
+    height: 0px;
+}
+
+.active{
+    background-color: #415A77;
+    transition: background-color 0.5s ease;
+}
+
+.active::after{
+    background-color: #415A77;
+    transition: background-color 0.5s ease;
+}
+
+.active p{
+    display: none;
+}
+
+.active .iconnn{
+    display: flex;
+}
+
+
+@media(max-width: 1200px){
+    .main{
+        transform: scale(0.75);
+    }
+}
+
+@media(max-width: 992px){
+    .main{
+        margin: auto;
+        scale: 1.2;
+    }
+    .main ul{
+        flex-direction: column;
+    }
+    .main ul li{
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 200px;
+    }
+    .progress::after{
+        width: 8px;
+        height: 157px;
+        bottom: 45px;
+        left: 43%;
+        transform: rotate(-50%);
+        z-index: -1;
+    }
+    .paso2{
+        z-index: 5;
+    }
+    .pasos1 , .pasos3, .pasos5{
+        bottom: 0px;
+        right: 52%;
+        position: relative;
+    }
+    .paso1::after{
+        width: 0px;
+        height: 0px;
+    }
+    .contenedorPasoImpar{
+        width: 40%;
+        max-height: 180px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .contenedorPasoImpar h2, h3{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px){
+    .main{
+        margin: auto;
+    }
+    .main ul{
+        flex-direction: column;
+    }
+    .main ul li{
+        flex-direction: row;
+        justify-content: space-around;
+        height: 200px;
+    }
+    .progress::after{
+        width: 8px;
+        height: 157px;
+        bottom: 45px;
+        left: 43%;
+        transform: rotate(-50%);
+        z-index: -1;
+    }
+    .paso2{
+        z-index: 5;
+    }
+    .pasos1 , .pasos3, .pasos5{
+        bottom: 0px;
+        right: 0px;
+        position: relative;
+    }
+    .paso1::after{
+        width: 0px;
+        height: 0px;
+    }
+    .contenedorPasoImpar{
+        width: 60%;
+        max-height: 180px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .contenedorPasoImpar h2, h3{
+        font-size: 20px;
+    }
 }
