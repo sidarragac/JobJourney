@@ -20,32 +20,13 @@ def __getCheckpointsStatus(roadmapId):
 
     return checkpoints
 
-def __getInterest(interest):
-    relations = {
-        "natural_sciences": "Natural Sciences",
-        "mathematics_statistics": "Mathematics and Statistics",
-        "engineering_technology": "Engineering and Technology",
-        "medical_health_sciences": "Medical and Health Sciences",
-        "social_sciences": "Social Sciences",
-        "humanities": "Humanities",
-        "arts_design": "Arts and Design",
-        "business_management": "Business and Management",
-        "law_legal_studies": "Law and Legal Studies",
-        "education": "Education",
-        "computer_science_information_systems": "Computer Science and Information Systems",
-        "environmental_agricultural_sciences": "Environmental and Agricultural Sciences",
-        "communication_media": "Communication and Media",
-        "interdisciplinary_studies": "Interdisciplinary Studies"
-    }
-    return relations[interest]
-
 @login_required
 def interestForm(request):
     user = User.objects.get(username=request.user)
     if user.isCompany:
         return render(request, 'accessDenied.html')
     else:
-        return render(request, 'interestForm.html')
+        return render(request, 'interestForm.html', {'interests': Interest.objects.all()})
 
 @login_required
 def roadmapGenerator(request):
@@ -53,6 +34,7 @@ def roadmapGenerator(request):
         form = RoadmapCharacteristics(request.POST)
         if form.is_valid():
             interest = form.cleaned_data['interest']
+            interest = Interest.objects.get(id=interest).name
             objective = form.cleaned_data['objective']
             salary = form.cleaned_data['salary']
             openAI = openAIManager()
@@ -62,13 +44,11 @@ def roadmapGenerator(request):
             person = Person.objects.get(user=user.id)
             roadmapInstance = createDBRoadmap(roadmap, interest, person, objective, embedding)
             createDBCheckpoints(roadmap, roadmapInstance)
-
-
             return redirect(f'displayRoadmap/{roadmapInstance.id}')
         else:
-            return render(request, 'interestForm.html', {"message": "Some provided data are not valid."})
+            return render(request, 'interestForm.html', {'interests': Interest.objects.all(), "error": "Please select an interest and write an objective"})
     else:
-        return render(request, 'interestForm.html')
+        return render(request, 'interestForm.html', {'interests': Interest.objects.all()})
 
 def percentageCompletion(roadmapId):
     checkpoints = Checkpoint.objects.filter(roadmap=roadmapId, completed=True)
@@ -111,7 +91,6 @@ def createDBRoadmap(roadmapJSON, interest, person, objective, embedding):
     mainGoal = objective
     content = roadmapJSON
     completionPercentage = 0
-    interest = __getInterest(interest)
     interest = Interest.objects.get(name=interest)
     numberOfLikes = 0
     roadmap = Roadmap(mainGoal=mainGoal, content=content, completionPercentage=completionPercentage, interest=interest , numberOfLikes=numberOfLikes, user=person, embedding=embedding)
