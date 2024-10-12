@@ -13,6 +13,9 @@
 </head>
 <body>
     {% block content %}
+    <div class="contenedorTitulo">
+        <h1 class="tituloRoadmap">{{ roadmap.name }}</h1> 
+    </div>
     <div class="main">
         <ul>
             {% for step in roadmap.steps %}
@@ -59,14 +62,14 @@
                         {% else %}
                             <ul>
                                 {% for remarkablePoint in step.remarkablePoints %}
-                                    <li>{{ remarkablePoint }}</li>
+                                    <li><p>{{ remarkablePoint }}</p></li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
                         <b>Recommended Materials</b>
                         <ul>
                             {% for material in step.recommendedMaterials %}
-                                <li>{{material.title}}</li>
+                                <li><p>{{material.title}}</p></li>
                             {% endfor %}
                         </ul>
                     </div>

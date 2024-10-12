@@ -14,37 +14,30 @@
 </head>
 <body>
 {% block content %}
-<div class="container-fluid px-0">
-    <div class="w-100 p-5" style="background-color: #0D1B2A; color:white">
-        <h2>Welcome to the explore section...</h2>
-        <h4>Here are some roadmaps you might find interesting:</h4>
-    </div>
-    <div class="formClass">
-        <form action="{% url 'explore' %}" method="POST">
-            {% csrf_token %}
-            <div class="input-field">
-                <div class="interest">
-                    <label for="interest" class="labelInterest">Select area of interest</label>
-                    <select name="interest" id="interest" class="form-select" required onchange="verifyRequired()">
-                        <option value=""></option>
+    <div class="contenedorBanner">
+        <div class="banner">
+            <h2>Welcome to the explore section</h2>
+            <h4>Here are some roadmaps you might find interesting:</h4>
+            <div class="contenedorForm">
+                <form action="{% url 'explore' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" class="input objective" name="objective" id="objective" size="35" placeholder="Enter a objective" required onchange="verifyRequired()">
+                    <select name="interest" id="input interest" class="input interest" required onchange="verifyRequired()">
+                        <option value="" selected disabled style="color: rgba(128, 128, 128, 0.438);">Select an interest</option>
                         {% for id, interest in interests.items %}
                             <option value="{{ id }}">{{ interest }}</option>
                         {% endfor %}
                     </select>
-                </div>
+                    <div class="button">
+                        <div class="input-field">
+                            <input type="submit" class="button-1" value="Submit">
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="input-field">
-                <div class="objective">
-                    <label for="objective" class="labelObjective">Enter a objective</label>
-                    <input type="text" class="inputObjective input" name="objective" id="objective" size="35" placeholder="Ex: Software engineer at Google" required onchange="verifyRequired()">
-                </div>
-            </div>
-            <div class="button">
-                <div class="input-field">
-                    <input type="submit" class="button-1" value="Submit">
-                </div>
-            </div>
-        </form>
+        </div>
+    </div>
+    <div class="formClass">
     </div>
     {% if filtered %}
         <div class="d-flex flex-column align-items-center justify-content-center">
@@ -125,8 +118,9 @@
             {% endfor %}
         </div>
     {% endif %}
-</div>
-<script src="{% static 'scripts/explore.js' %}"></script>
-{% endblock content %}
+    {% endblock content %}
+    {% block scripts %}
+        <script src="{% static 'scripts/explore.js' %}"></script>
+    {% endblock scripts %}
 </body>
 </html>
