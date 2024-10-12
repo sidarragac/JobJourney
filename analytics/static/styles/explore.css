@@ -1,61 +1,72 @@
 .interest {
-    margin: 25px auto;
-    width: 90%;
+    height: 20px;
     align-items: center;
 }
 
-.selectInterest, .inputObjective, .inputSalary {
+.contenedorBanner{
+    background-color: #102C57;
+    height: 300px;
     width: 100%;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.labelInterest, .labelObjective, .labelSalary {
-    display: block;
-    padding: 10px;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.objective {
-    margin: 25px auto;
-    width: 100%;
-    align-items: center;
-}
-
-.salary {
-    margin: 25px auto;
-    width: 100%;
-    align-items: center;
-}
-
-.formClass {
-    border : 0px solid black;
-    width: 50% !important;
-    border-radius: 20px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
     text-align: center;
-    padding: 10px;
-    height: auto;
-    margin: 50px auto;
-}
-
-form {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
+.banner{
+    color: white;
+    width: 80%;
+    align-items: center;
+}
+
+.banner h2{
+    font-size: 3rem;
+    font-weight: 700    ;
+}
+
+.contenedorForm{
+    margin-top: 40px;
+}
+
+.contenedorForm form{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.interest{
+    border-radius: 12px 0px 0px 12px;
+}
 
 .input{
+    width: 30%;
     height: 45px;
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    margin: 5px;
+    border: 1.5px solid lightgrey;
     outline: none;
-    margin-bottom: 20px;
-    color: #40414a;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 20px -18px;
+    text-align: left;
+}
+
+.objective{
+    border-radius: 12px;
+}
+  
+.input:hover {
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 20px -17px;
+}
+  
+.input:active {
+    transform: scale(0.95);
+}
+  
+.input:focus {
+    border: 2px solid grey;
 }
 
 .contenedorRoadmaps{
@@ -84,4 +95,46 @@ form {
     text-decoration: none; 
     color:black; 
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .banner h2{
+        font-size: 2rem;
+    }
+
+}
+
+@media (max-width: 576px){
+    .contenedorBanner{
+        height: 500px;
+    }
+
+    .contenedorForm form{
+        flex-direction: column;
+    }
+
+    .input{
+        width: 80%;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+    .button{
+        margin-top: 10px;
+    }
+
+    .contenedorRoadmaps{
+        width: 80%;
+    }
+
+    .infoRoadmap1{
+        width: 100%;
+    }
+
+    .infoRoadmap2{
+        width: 100%;
+    }
+    .interest{
+        border-radius: 12px;
+    }
 }
