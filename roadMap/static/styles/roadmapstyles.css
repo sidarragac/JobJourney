@@ -6,14 +6,14 @@ body{
     font-family: "Montserrat", sans-serif !important;
 }
 
-.tituloRoadmap{
-    text-align: center;
-    width: 80%;
-    margin: auto;
-}
 
-.tituloRoadmap h1{
-    font-size: 100px;
+.tituloRoadmap{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    padding: 100px 0px 15px 0px;
+    font-size: 50px;
+    font-weight: 700;
 }
 
 .caminoRoadmap{
@@ -89,7 +89,7 @@ body{
 }
 
 .modals{
-    width: 50%;
+    width: 70%;
     padding: 0%;
 }
 
@@ -106,17 +106,18 @@ body{
     text-align: left;
     align-content: center;
     height: auto;
+    padding: 50px 50px 50px 20px;
     background-color: #dfdfdf;
 }
 
 .footer{
-    background-color: #000000;
+    background-color: #102C57;
     color: #f1f1f1;
     text-align: center;
     height: auto;
 }
 .footer h2{
-    padding: 90px 0px 60px 0px;
+    padding: 50px 0px 50px 0px;
     font-size: 50px;
 }
 
@@ -128,27 +129,24 @@ body{
 
 .conclutions{
     font-size: x-large;
-    width: 25%;
+    width: 35%;
     height: auto;
-}
- .liItem h2{
-    font-size: larger;
+    margin-bottom: 60px;
 }
 
- .liItem h3{
-    font-size: large;
+.conclutions h3{
+    font-size: x-large;
 }
 
 .completion{
     text-align: center;
-    margin-top: 100px;
     font-size: larger;
     font-weight: 800;
 }
 
 .main{
     width: 80%;
-    margin: 200px auto;
+    margin: 200px auto 50px auto;
     height: auto;
     display: flex;
     justify-content: center;
@@ -285,7 +283,33 @@ body{
     }
 
     .contenedorPasoImpar h2, h3{
-        font-size: 20px;
+        font-size: 20px ;
+    }
+    .pasos{
+        flex-direction: column;
+    }
+    .infoJob{
+        width: 100%;
+        padding: 30px 50px;
+    }
+    .infoPaso{
+        width: 100%;
+        padding: 30px 50px;
+    }
+    .pasos p{
+        font-size: 19px;
+    }
+    .contenedorConclutions{
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .conclutions{
+        width: 80%;
+        margin: 0 auto 40px auto;
+    }
+
+    .conclutions p{
+        font-size: 19px;
     }
 }
 
@@ -330,6 +354,23 @@ body{
 
     .contenedorPasoImpar h2, h3{
         font-size: 20px;
+    }
+    .pasos p{
+        font-size: 17px;
+    }
+
+    .conclutions p{
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 576px){
+    .pasos p{
+        font-size: 15px;
+    }
+    .tituloRoadmap{
+        font-size: 40px;
+        padding: 80px 0px 0px 0px;
     }
 }
 
@@ -399,7 +440,7 @@ form div{
   
 @keyframes pulse {
 0% {
-    box-shadow: 0 0 0 #0B6E4F90;
+    box-shadow: 0 0 0 #4c698a91;
     rotate: 20deg;
 }
 
@@ -408,11 +449,11 @@ form div{
 }
 
 75% {
-    box-shadow: 0 0 0 10px #0B6E4F60;
+    box-shadow: 0 0 0 10px #4c698a60;
 }
 
 100% {
-    box-shadow: 0 0 0 13px #0B6E4F30;
+    box-shadow: 0 0 0 13px #4c698a30;
     rotate: 0;
 }
 }
