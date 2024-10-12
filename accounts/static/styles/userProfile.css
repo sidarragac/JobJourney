@@ -1,6 +1,7 @@
 .banner{
     height:250px;
     background-color: #0D1B2A;
+    position: relative;
 }
 .userProfile{
     width: 200px;
@@ -18,7 +19,7 @@
 .profileInfo{
     position: absolute;
     width: 90%;
-    top: 220px;
+    top: 170px;
     height: auto;
     left: 0;
     right: 0;
@@ -91,7 +92,7 @@
         height: 200px;
     }
     .profileInfo{
-        top: 180px;
+        top: 140px;
     }
     .contenedorRoadmaps{
         width: 45%;

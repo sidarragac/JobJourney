@@ -1,4 +1,27 @@
 window.onload = function(){
+    initializeCheckboxes();
+    locateStep();
+    loadProgress();
+    showInfo();
+}
+
+function initializeCheckboxes(){
+    let numChkpts = 1; // Initialize counter
+    const checkpoints = JSON.parse(document.getElementById('checkpoints-data').textContent);
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="remarkablePoint"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.value = numChkpts;
+        if(checkpoints[numChkpts]){
+            checkbox.checked = true;    
+        }else{
+            checkbox.checked = false;
+        }
+        numChkpts++;
+    });
+}
+
+
+function locateStep(){
     const url = window.location.pathname;
     const splittedUrl = url.split('/');
     const stepNumber = parseInt(splittedUrl[splittedUrl.length-1]);
@@ -6,27 +29,6 @@ window.onload = function(){
         scrollToStep("Paso"+stepNumber);
     }
 }
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    let numChkpts = 1; // Initialize counter
-    const checkpoints = JSON.parse(document.getElementById('checkpoints-data').textContent);
-    
-    // Function to assign values to checkboxes and increment the counter
-    function initializeCheckboxes() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="remarkablePoint"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.value = numChkpts;
-            if(checkpoints[numChkpts]){
-                checkbox.checked = true;    
-            }else{
-                checkbox.checked = false;
-            }
-            numChkpts++;
-        });
-    }
-
-    initializeCheckboxes();
-});
 
 function scrollToStep(step){
     //Scroll to the step element with the given id.
@@ -44,4 +46,80 @@ function submitForm(checkbox, step){
     checkpoint.name = 'checkpoint';
 
     checkbox.form.submit();
+}
+
+function loadProgress(){
+    let count = 0
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="remarkablePoint"]');
+    for(count = 0; count < checkboxes.length; count++){
+        if(!checkboxes[count].checked){
+            break
+        }
+    }
+    console.log(count);
+        if(count >= 15){
+            document.getElementById('paso1').classList.add('active');
+            document.getElementById('paso2').classList.add('active');
+            document.getElementById('paso3').classList.add('active');
+            document.getElementById('paso4').classList.add('active');
+            document.getElementById('paso5').classList.add('active');
+    }else if(count >= 12){
+        document.getElementById('paso1').classList.add('active');
+        document.getElementById('paso2').classList.add('active');
+        document.getElementById('paso3').classList.add('active');
+        document.getElementById('paso4').classList.add('active');
+        document.getElementById('paso5').classList.remove('active');
+    }else if(count >= 9){
+        document.getElementById('paso1').classList.add('active');
+        document.getElementById('paso2').classList.add('active');
+        document.getElementById('paso3').classList.add('active');
+        document.getElementById('paso4').classList.remove('active');
+        document.getElementById('paso5').classList.remove('active');
+    }else if(count >= 6){
+        document.getElementById('paso1').classList.add('active');
+        document.getElementById('paso2').classList.add('active');
+        document.getElementById('paso3').classList.remove('active');
+        document.getElementById('paso4').classList.remove('active');
+        document.getElementById('paso5').classList.remove('active');
+    }else if(count >= 3){
+        document.getElementById('paso1').classList.add('active');
+        document.getElementById('paso2').classList.remove('active');
+        document.getElementById('paso3').classList.remove('active');
+        document.getElementById('paso4').classList.remove('active');
+        document.getElementById('paso5').classList.remove('active');
+    }
+}
+
+function showInfo(){
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const btn3 = document.getElementById('btn3');
+    const btn4 = document.getElementById('btn4');
+    const btn5 = document.getElementById('btn5');
+
+    const modal1 = document.getElementById('modal1');
+    const modal2 = document.getElementById('modal2');
+    const modal3 = document.getElementById('modal3');
+    const modal4 = document.getElementById('modal4');
+    const modal5 = document.getElementById('modal5');
+
+    btn1.addEventListener('click',() => {
+        modal1.showModal();
+    })
+
+    btn2.addEventListener('click',() => {
+        modal2.showModal();
+    })
+
+    btn3.addEventListener('click',() => {
+        modal3.showModal();
+    })
+
+    btn4.addEventListener('click',() => {
+        modal4.showModal();
+    })
+
+    btn5.addEventListener('click',() => {
+        modal5.showModal();
+    })
 }

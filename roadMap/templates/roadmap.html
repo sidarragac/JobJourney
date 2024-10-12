@@ -13,90 +13,73 @@
 </head>
 <body>
     {% block content %}
-    <div class="tituloRoadmap">
-        <h1>{{ roadmap.name }}</h1>
-    </div>
-    <div>
-        <ul class="listaPasosImpar">
+    <div class="main">
+        <ul>
             {% for step in roadmap.steps %}
-                {% if not step.number|divisibleby:2 %}
-                    <a href="#Paso{{step.number}}" class="contenedorPasoImpar">
-                        <li class="liItem">
-                            <h2>Step {{ step.number }}</h2>
-                            <h3>{{ step.name }}</h3>
-                        </li>
+                <li>
+                    <div class="progress paso{{step.number}}" id="paso{{step.number}}">
+                        <p>{{step.number}}</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="iconnn bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+                        </svg>
+                    </div>
+                    <a href="#Paso{{step.number}}" class="contenedorPasoImpar pasos{{step.number}}" id="btn{{step.number}}">
+                        <h3>{{ step.name }}</h3>
                     </a>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="caminoRoadmap">
-        <p style="margin: 20px;">.</p>
-    </div>
-    <div>
-        <ul class="listaPasosPar">
-            {% for step in roadmap.steps %}
-                {% if step.number|divisibleby:2 %}
-                    <a href="#Paso{{step.number}}" class="contenedorPasoImpar">
-                        <li class="liItem">
-                            <h2>Step {{ step.number }}</h2>
-                            <h3>{{ step.name }}</h3>
-                        </li>
-                    </a>
-                {% endif %}
+                </li>
             {% endfor %}
         </ul>
     </div>
     <div class="container completion">
         <p>Completion Percentage: {{ completionPercentage }}%</p>
     </div>
-    <div class="contenedorPasos">
-        <script type="application/json" id="checkpoints-data">
-            {{ checkpoints|safe }}
-        </script>  
         {% for step in roadmap.steps %}
-            <div class="pasos" id="Paso{{step.number}}">
-                <div class="infoPaso">
-                    <h2>Step {{ step.number }}</h2>
-                    <h3>{{ step.name }}</h3>
-                    <b>Checkpoints</b>
-                    {% if editable %}
-                        <form action="{% url 'checkpointUpdate' %}" method="POST">
-                            {% csrf_token %}
-                            {% for remarkablePoint in step.remarkablePoints %}
-                                <div class="d-flex align-items-center">
-                                    <input type="checkbox" id="remarkablePoint" name="remarkablePoint" value="0" onchange="submitForm(this, '{{ step.number }}')"><br>
-                                    <p>{{ remarkablePoint }}</p>
-                                </div>
-                            {% endfor %}
-                            <input type="hidden" id="roadmapId" name="roadmapId" value="{{ roadmapId }}">
-                            <input type="hidden" id="stepNumber" name="stepNumber" value="{{ step.number }}">
-                            <input type="hidden" id="checkpoint{{ step.number }}" name="checkpoint{{ step.number }}" value="0">
-                        </form>
-                    {% else %}
+            <dialog id="modal{{step.number}}" class="modals">
+                <div class="pasos" id="Paso{{step.number}}">
+                    <div class="infoPaso">
+                        <h2>Step {{ step.number }}</h2>
+                        <h3>{{ step.name }}</h3>
+                        <b>Checkpoints</b>
+                        {% if editable %}
+                            <form action="{% url 'checkpointUpdate' %}" method="POST">
+                                {% csrf_token %}
+                                {% for remarkablePoint in step.remarkablePoints %}
+                                    <div class="d-flex align-items-center"> 
+                                        <label class="contenedorCheckbox">
+                                            <input type="checkbox" id="remarkablePoint" name="remarkablePoint" value="0" onchange="submitForm(this, '{{ step.number }}')">
+                                              <div class="checkmark"></div>
+                                        </label>
+                                        <p style="margin: 0%;">{{ remarkablePoint }}</p>
+                                    </div>
+                                {% endfor %}
+                                <input type="hidden" id="roadmapId" name="roadmapId" value="{{ roadmapId }}">
+                                <input type="hidden" id="stepNumber" name="stepNumber" value="{{ step.number }}">
+                                <input type="hidden" id="checkpoint{{ step.number }}" name="checkpoint{{ step.number }}" value="0">
+                            </form>
+                        {% else %}
+                            <ul>
+                                {% for remarkablePoint in step.remarkablePoints %}
+                                    <li>{{ remarkablePoint }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <b>Recommended Materials</b>
                         <ul>
-                            {% for remarkablePoint in step.remarkablePoints %}
-                                <li>{{ remarkablePoint }}</li>
+                            {% for material in step.recommendedMaterials %}
+                                <li>{{material.title}}</li>
                             {% endfor %}
                         </ul>
-                    {% endif %}
-                    <b>Recommended Materials</b>
-                    <ul>
-                        {% for material in step.recommendedMaterials %}
-                            <li>{{material.title}}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="infoJob">
-                    <div>
+                    </div>
+                    <div class="infoJob">
                         <h3>Job you should aspire to</h3>
                         <h4>{{step.jobSuggestion.title}}</h4>
                         <p>{{step.jobSuggestion.description}}</p>
                     </div>
                 </div>
+            </dialog>
+            <div>
             </div>
         {% endfor %}
-    </div>
     <div class="footer">
         <h2>Conclusions</h2>
         <div class="contenedorConclutions">
@@ -113,6 +96,7 @@
     {% endblock content %}
     {% block scripts %}
     <script src="{% static 'scripts/roadmap.js' %}"></script>
+    <script type="application/json" id="checkpoints-data">{{ checkpoints|safe }}</script> 
     {% endblock scripts %}
 </body>
 </html>
