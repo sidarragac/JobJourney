@@ -21,8 +21,8 @@
             <div class="contenedorForm">
                 <form action="{% url 'explore' %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" class="input objective" name="objective" id="objective" size="35" placeholder="Enter a objective" required onchange="verifyRequired()">
-                    <select name="interest" id="input interest" class="input interest" required onchange="verifyRequired()">
+                    <input type="text" class="input objective" name="objective" id="objective" size="35" placeholder="Filter by objective" required onchange="verifyRequired()">
+                    <select name="interest" id="interest" class="input interest" required onchange="verifyRequired()">
                         <option value="" selected disabled style="color: rgba(128, 128, 128, 0.438);">Select an interest</option>
                         {% for id, interest in interests.items %}
                             <option value="{{ id }}">{{ interest }}</option>
@@ -96,9 +96,11 @@
                                         <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
                                             <div class="d-flex flex-row align-items-center">
                                                 <p style="margin: 0px 3px 0px 10px;">{{ roadmap.numberOfLikes }}</p>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                                                </svg>
+                                                <a href="{% url 'like' roadmap.id %}" class="likeButton">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                                    </svg>
+                                                </a>
                                             </div>
                                             <div class="d-flex flex-row align-items-center">
                                                 <p style="margin: 0px 3px 0px 10px">{{ roadmap.completionPercentage }}%</p>
