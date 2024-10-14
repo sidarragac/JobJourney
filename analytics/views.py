@@ -1,9 +1,8 @@
-from django.shortcuts import render, HttpResponseRedirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from accounts.models import User, Person, Company
-from roadMap.models import Roadmap, Interest, UserInterest, LikeRoadmap
+from roadMap.models import Roadmap, Interest, UserInterest
 from admin.charts import usersPerInterest, ageRangesPerInterest #Charts
 from admin.openAIManager import openAIManager
 from copy import deepcopy
@@ -193,19 +192,3 @@ def explore(request):
             'filtered': False
         }
         return render(request, 'explore.html', context=context)
-    
-def likeRoadmap(request, roadmapID):
-    user = request.user
-    person = Person.objects.get(user=user)
-    roadmap = Roadmap.objects.get(id=roadmapID)
-    current_likes = roadmap.numberOfLikes
-    liked = LikeRoadmap.objects.filter(user=person, roadmap=roadmap).count()
-    if not liked:
-        liked = LikeRoadmap.objects.create(user=person, roadmap=roadmap)
-        current_likes+=1
-    else:
-        liked = LikeRoadmap.objects.filter(user=person, roadmap=roadmap).delete()
-        current_likes-=1
-    roadmap.numberOfLikes = current_likes
-    roadmap.save()
-    return HttpResponseRedirect(reverse('explore'))

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.urls import reverse
 from admin.openAIManager import openAIManager
 from django.contrib.auth.decorators import login_required
 from .forms import *
@@ -65,6 +66,10 @@ def displayRoadmap(request, roadmapId, stepNumber=0):
     editable = True
     if user.id != roadmap.user.user_id:
         editable = False
+    person = Person.objects.get(user=user)
+    liked = LikeRoadmap.objects.filter(user=person, roadmap=roadmap).count()
+    if liked:
+        liked = True
     checkpoints = __getCheckpointsStatus(roadmapId)
     context = {
         'completionPercentage': completionPercentage,
@@ -72,7 +77,8 @@ def displayRoadmap(request, roadmapId, stepNumber=0):
         'roadmapId': roadmapId,
         'stepNumber': stepNumber, 
         'checkpoints': json.dumps(checkpoints),
-        'editable': editable
+        'editable': editable,
+        'liked': liked
     }
     return render(request, 'roadmap.html', context)
 
@@ -106,6 +112,22 @@ def createDBCheckpoints(roadmapJSON, roadmap):
             checkpoint = Checkpoint(numberOfCheckpoint=counter, roadmap=roadmap, completed=False)
             checkpoint.save()
             counter += 1
+
+def likeRoadmap(request, roadmapID):
+    user = request.user
+    person = Person.objects.get(user=user)
+    roadmap = Roadmap.objects.get(id=roadmapID)
+    current_likes = roadmap.numberOfLikes
+    liked = LikeRoadmap.objects.filter(user=person, roadmap=roadmap).count()
+    if not liked:
+        liked = LikeRoadmap.objects.create(user=person, roadmap=roadmap)
+        current_likes+=1
+    else:
+        liked = LikeRoadmap.objects.filter(user=person, roadmap=roadmap).delete()
+        current_likes-=1
+    roadmap.numberOfLikes = current_likes
+    roadmap.save()
+    return HttpResponseRedirect(reverse('displayRoadmap', args=[roadmapID]))
 
 def home(request):
     return render(request, 'home.html')
