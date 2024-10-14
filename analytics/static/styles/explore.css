@@ -139,4 +139,7 @@
     }
 }
 
-/* Like button */
+.like path{
+    fill: #ff0000;
+    stroke-width: 0;
+}

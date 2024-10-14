@@ -128,3 +128,8 @@
         justify-content: space-around;
     }
 }
+
+.like path{
+    fill: #ff0000;
+    stroke-width: 0;
+}
