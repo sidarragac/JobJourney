@@ -59,17 +59,17 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'home'%}">Home</a>
                         </li>
+                        {% if not user.isCompany %}
                         <li class="nav-item listItem">
-                            <a class="nav-link" href="{% url 'interestForm'%}">Roadmaps</a>
+                            <a class="nav-link" href="{% url 'interestForm'%}">Create Roadmap</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'explore'%}">Explore</a>
                         </li>
                         {% if user.isCompany %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'analytics'%}">Analytics</a>
-                        </li>
-                        {% endif %}
-                        {% if not user.isCompany %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'explore'%}">Explore</a>
                         </li>
                         {% endif %}
                         {% if not user.is_authenticated %}

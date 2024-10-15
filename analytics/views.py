@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from accounts.models import User, Person, Company
@@ -156,6 +156,8 @@ def __filteredRoadmaps(objective, interest, userId):
 @login_required
 def analytics(request): #Only for companies.
     user = User.objects.get(username=request.user) #Username is unique as well.
+    if not user.isCompany:
+        return redirect('home')
     company = Company.objects.get(user=user.id)
     chartOne, chartTwo = __companyAnalytics(user.id)
     suggestedRoadmaps = __suggestedRoadmaps(user.id)

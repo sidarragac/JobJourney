@@ -25,12 +25,15 @@ def __getCheckpointsStatus(roadmapId):
 def interestForm(request):
     user = User.objects.get(username=request.user)
     if user.isCompany:
-        return render(request, 'accessDenied.html')
+        return redirect('home')
     else:
         return render(request, 'interestForm.html', {'interests': Interest.objects.all()})
 
 @login_required
 def roadmapGenerator(request):
+    user = User.objects.get(username=request.user)
+    if user.isCompany:
+        return redirect('home')
     if request.method == 'POST':
         form = RoadmapCharacteristics(request.POST)
         if form.is_valid():
@@ -81,8 +84,6 @@ def displayRoadmap(request, roadmapId, stepNumber=0):
         'liked': liked
     }
     return render(request, 'roadmap.html', context)
-
-
 
 @login_required
 def checkpointUpdate(request):
