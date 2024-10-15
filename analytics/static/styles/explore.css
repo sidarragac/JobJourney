@@ -28,15 +28,37 @@
     margin-top: 40px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
 }
 
-.contenedorForm form{
+.contenedorForm .form1{
     display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
+    width: 70%;
     align-items: center;
+}
+
+.contenedorForm .form2{
+    width: 30%;
+    margin-left: 5px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+.resultados{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.tituloResultados{
+    margin: 0px;
+    padding: 0px;
+    font-size: 40px;
+    font-weight: 700;
 }
 
 .interest{
@@ -72,6 +94,11 @@
     border: 2px solid grey;
 }
 
+.cajaContenedorRoadmaps{
+    display: flex;
+    width: 100%;
+}
+
 .contenedorRoadmaps{
     display: flex;
     flex-direction: column;
@@ -81,6 +108,7 @@
     background-color: #e0e1dd57;
     width: 30%;
     margin: 2% 10px;
+    padding: 10px;
 }
 
 .infoRoadmap1{
@@ -89,6 +117,13 @@
     justify-content: space-around;
     flex-direction: column;
 }
+
+.cajaContenedorRoadmaps{
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+}
+
 
 .infoRoadmap2{
     width: 35%;
@@ -100,9 +135,41 @@
     width: 100%;
 }
 
+.dropdownboton{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+}
+
+.dropdownboton:active{
+    background-color: gray;
+}
+
+.dropdown-menu{
+    padding: 0px;
+}
+
+.dropdown-menu p{
+    margin: 0px;
+    padding: 5px;
+}
+
+.dropdown-menu p:hover{
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .banner h2{
         font-size: 2rem;
+    }
+    .contenedorRoadmaps{
+        width: 45%;
+        margin: 2% 10px;
+    }
+    .tituloResultados{
+        font-size: 35px;
     }
 
 }
@@ -111,7 +178,18 @@
     .contenedorBanner{
         height: 500px;
     }
-
+    .contenedorForm{
+        flex-direction: column;
+    }
+    .contenedorForm .form1{
+        width: 100%;
+        justify-content: center;
+    }
+    .contenedorForm .form2{
+        width: 100%;
+        margin-left: 0px;
+        justify-content: center;
+    }
     .contenedorForm form{
         flex-direction: column;
     }
@@ -123,7 +201,20 @@
     }
 
     .button{
-        margin-top: 10px;
+        width: 100% !important; 
+    }
+
+    .button-1{
+        margin: 10px auto;
+        width: 30% !important;
+    }
+
+    .tituloResultados{
+        font-size: 28px;
+    }
+
+    .botonDropdown{
+        transform: scale(0.9);
     }
 
     .contenedorRoadmaps{
@@ -139,6 +230,9 @@
     }
     .interest{
         border-radius: 12px;
+    }
+    .cajaContenedorRoadmaps{
+        justify-content: space-around;
     }
 }
 
