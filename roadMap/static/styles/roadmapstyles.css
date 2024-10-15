@@ -39,6 +39,24 @@ body{
     list-style: none;
 }
 
+.botonClose2{
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+}
+
+.botonClose1{
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+}
+
 .contenedorPasoImpar{
     text-decoration: none;
     background-color: #f1f1f1;
@@ -94,6 +112,7 @@ body{
 }
 
 .infoPaso{
+    position: relative;
     width: 60%;
     height: auto;
     text-align: left;
@@ -254,6 +273,12 @@ body{
         flex-direction: row;
         justify-content: flex-end;
         height: 200px;
+    }
+    .botonClose2{
+        display: block;
+    }
+    .botonClose1{
+        display: none;
     }
     .progress::after{
         width: 8px;
@@ -535,3 +560,4 @@ form div{
       transform: scale(1);
     }
   }
+
