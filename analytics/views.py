@@ -126,14 +126,13 @@ def __filteredRoadmaps(objective, interest, userId):
                 i += 1
         elif distances[sortedDistanceIndex[i]] > 0.0: #if exists a good match.
             #Take the 9 best matches.
-            print(distances[sortedDistanceIndex[i]])
             while i < 9 and i < len(sortedDistanceIndex) and distances[sortedDistanceIndex[i]] > 0.0:
                 filteredRoadmaps.append(roadmaps[sortedDistanceIndex[i]])
                 i += 1
         else:
             #No good matches found (distance <= 0.0 are not related.) 
             return None
-
+        
         return filteredRoadmaps
 
 
