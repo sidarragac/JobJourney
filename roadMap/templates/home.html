@@ -12,8 +12,15 @@
 </head>
 <body>
     {% block content %}
-    <div class="container">
-        <h1 class="first-title">Welcome To JobJourney</h1>
+    <div class="contenedorPrimeraInfo">
+        <div class="contenedorTitulo">
+            <h1>Welcome to JobJourney</h1>
+            <h3>The journey to your dream job</h3>
+            <a href="{% url 'interestForm'%}" class="botonCrearRoadmap">Create a roadmap</a>
+        </div>
+        <div class="contenedorImagen">
+            <img src="{% static 'images/roadmap.png' %}" alt="roadmap">
+        </div>
     </div>
     {% endblock content %}
 
