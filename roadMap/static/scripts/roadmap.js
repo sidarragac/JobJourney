@@ -26,15 +26,15 @@ function locateStep(){
     const splittedUrl = url.split('/');
     const stepNumber = parseInt(splittedUrl[splittedUrl.length-1]);
     if(splittedUrl.length == 5 && stepNumber > 0){ //Must be equal to 5 to be an after mark page.
-        scrollToStep("Paso"+stepNumber);
+        openModal(stepNumber);
     }
 }
 
-function scrollToStep(step){
-    //Scroll to the step element with the given id.
-    const stepElement = document.getElementById(step);
+function openModal(step){
+    //Open the modal of the step element with the given id.
+    const stepElement = document.getElementById('modal'+step);
     if(stepElement){
-        stepElement.scrollIntoView({behavior: "smooth", block: "start"});
+        stepElement.showModal();
     }
 }
 
