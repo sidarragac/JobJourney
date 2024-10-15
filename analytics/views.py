@@ -8,8 +8,7 @@ from admin.openAIManager import openAIManager
 from copy import deepcopy
 import numpy as np
 
-
-def __companyAnalytics(companyId, companyCity=None):
+def __analyticsCharts(companyId, companyCity=None):
     """
     Company analytics: Charts with valuable information about user's roadmaps.
     Charts:
@@ -84,18 +83,28 @@ def __companyAnalytics(companyId, companyCity=None):
 
     return usersPerInterest(chartOneData, colors), ageRangesPerInterest(chartTwoData, colors)     
 
+def __roadmapsStatistics(userId, city):
+    userInterests = UserInterest.objects.filter(user=userId)
+    roadmapCompletion = {}
+    suggestedRoadmaps = []
+    for userInterest in userInterests:
+        roadmaps = Roadmap.objects.filter(interest=userInterest.interest_id, user__user__city=city).order_by('-completionPercentage')
+        if not roadmaps:
+            roadmapCompletion[userInterest.interest] = 0
+            continue
+        percentages = [roadmap.completionPercentage for roadmap in roadmaps]
+        roadmapCompletion[userInterest.interest] = (sum(percentages) / len(percentages)) if percentages else 0
+        suggestedRoadmaps.extend(list(roadmaps)[0:6 if len(roadmaps) > 6 else len(roadmaps)])
+    return roadmapCompletion, suggestedRoadmaps
+
 def __suggestedRoadmaps(userId):
     #Suggested roadmaps based on person's interests.
     userInterests = UserInterest.objects.filter(user=userId)
-    suggestedRoadmaps = {}
+    suggestedRoadmaps = []
     for userInterest in userInterests:
         roadmaps = list(Roadmap.objects.select_related('user').filter(interest=userInterest.interest_id).exclude(user=userId))
-        interest = Interest.objects.get(id=userInterest.interest_id).name
         if roadmaps:
-            suggestedRoadmaps[interest] = roadmaps
-        else:
-            suggestedRoadmaps[interest] = None
-
+            suggestedRoadmaps.extend(roadmaps)
     return suggestedRoadmaps
 
 def __filteredRoadmaps(objective, interest, userId):
@@ -158,17 +167,22 @@ def analytics(request): #Only for companies.
     user = User.objects.get(username=request.user) #Username is unique as well.
     if not user.isCompany:
         return redirect('home')
-    company = Company.objects.get(user=user.id)
-    chartOne, chartTwo = __companyAnalytics(user.id)
-    suggestedRoadmaps = __suggestedRoadmaps(user.id)
-    context = {
-        'chartOne': chartOne,
-        'chartTwo': chartTwo,
-        'suggestedRoadmaps': suggestedRoadmaps,
-        'name': company.companyName,
-        'city': user.city
-    }
-    return render(request, 'companyAnalytics.html', context=context)
+    
+    if request.method == 'POST':
+        pass
+    else:
+        company = Company.objects.get(user=user.id)
+        chartOne, chartTwo = __analyticsCharts(user.id)
+        roadmapCompletion, suggestedRoadmaps = __roadmapsStatistics(user.id, user.city)
+        context = {
+            'chartOne': chartOne,
+            'chartTwo': chartTwo,
+            'suggestedRoadmaps': suggestedRoadmaps,
+            'roadmapCompletion': roadmapCompletion,
+            'name': company.companyName,
+            'city': user.city
+        }
+        return render(request, 'analytics.html', context=context)
         
 @login_required
 def explore(request):

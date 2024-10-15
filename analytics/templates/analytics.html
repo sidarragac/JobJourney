@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Analytics {% endblock title %}</title>
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/analytics.css' %}">
+    {% endblock styles %}
+</head>
+<body>
+{% block content %}
+<div class="container-fluid px-0">
+    <div class="p-5" style="background-color: #0D1B2A; color:white;">
+        <h2>Welcome to the analytics section...</h2>
+        <h4>Here are some roadmaps and statistics you might find interesting:</h4>
+    </div>
+    <div class="subtitle p-4 d-flex flex-md-row flex-sm-column justify-content-md-between aling-items-center">
+        <h5 class="mb-0" style="padding-left: 25px;">Statistics for {{ name }} at {{ city }}</h5>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Filters
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+            </div>
+    </div>
+    <div class="sectionTitle">
+        <h3 class="p-5">Average roadmap completion percentage and statistics</h2>
+    </div>
+    <div class="fullData d-flex flex-md-row flex-column justify-content-md-around w-100">
+        <div class="d-flex flex-column justify-content-md-around justify-content-sm-center align-items-center gap-2">
+            {% for interest, completion in roadmapCompletion.items %}
+                <div class="data">
+                    <i><p style="font-size: larger; margin-bottom: 0px;">{{ interest.name }}</p></i>
+                    <b><p style="font-size: xx-large; margin-bottom: 0px;">{{ completion }}%</p></b>
+                    <div class="interestTag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27" fill="{{ interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                        </svg>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
+            <img src="data:image/svg+xml;base64,{{ chartOne }}" alt="Chart One" id="chartOne" class="chartOne">
+            <img src="data:image/svg+xml;base64,{{ chartTwo }}" alt="Chart Two" id="chartTwo" class="chartTwo">
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        {% for interest, roadmaps in suggestedRoadmaps.items %}
+                <div class="{{ interest }} row w-100">
+                    {% if roadmaps %}
+                        <h2 class="text-center pt-4">Roadmaps for {{ interest }}</h2>
+                        <div class="row row-cols-1 row-cols-md-3 d-flex justify-content-sm-center justify-content-md-center">
+                            {% for roadmap in roadmaps %}
+                                <div class="card m-2 p-0">
+                                    <a href="/roadmap/displayRoadmap/{{roadmap.id}}" style="text-decoration: none; color:black"><h5 class="card-title text-center my-1">{{ roadmap }}</h5></a>
+                                    <br>
+                                    <div class="card-body" style="background-color: #E0E1DD;">
+                                        <div>
+                                            <p class="card-text">Number of likes: {{ roadmap.numberOfLikes }}</p>
+                                            <p class="card-text">Created by: {{ roadmap.user }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <h2 class="text-center pt-4">There are no roadmap suggestions for {{ interest }}</h2>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% block scripts %}
+    <script src="{% static 'scripts/analytics.js' %}"></script>
+{% endblock scripts %}
+{% endblock content %}
+</body>
+</html>
