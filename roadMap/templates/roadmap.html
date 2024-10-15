@@ -40,6 +40,11 @@
             <dialog id="modal{{step.number}}" class="modals">
                 <div class="pasos" id="Paso{{step.number}}">
                     <div class="infoPaso">
+                        <button class="botonClose2 btn-cerrar-modal{{ step.number }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                            </svg>
+                        </button>
                         <h2>Step {{ step.number }}</h2>
                         <h3>{{ step.name }}</h3>
                         <b>Checkpoints</b>
@@ -74,6 +79,11 @@
                         </ul>
                     </div>
                     <div class="infoJob">
+                        <button class="botonClose1 btn-cerrar-modal{{ step.number }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                            </svg>
+                        </button>
                         <h3>Job you should aspire to</h3>
                         <h4>{{step.jobSuggestion.title}}</h4>
                         <p>{{step.jobSuggestion.description}}</p>
