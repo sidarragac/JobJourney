@@ -1,0 +1,46 @@
+.subtitle{
+    background-color: #0D1B2A;
+    color: white;
+}
+
+.sectionTitle{
+    background-color: #415A77;
+    color : white;
+}
+
+.data{
+    position: relative;
+    width: 350px;
+    border-style: solid ;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chartOne{
+    width: 500px;
+    transition: width 0.3s linear;
+}
+.chartTwo{
+    width: 400px;
+    transition: width 0.3s linear;
+}
+
+.interestTag {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+}
+
+@media (max-width: 600px) {
+    .chartOne{
+        width: 100%;
+    }
+    .chartTwo{
+        width: 100%;
+    }
+}
