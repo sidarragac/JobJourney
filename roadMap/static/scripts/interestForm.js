@@ -36,3 +36,10 @@ function changeValue(slidervalue) {
     var value = document.getElementById('value');
     value.innerHTML = slidervalue.value;
 }
+
+document.getElementById('interestForm').onsubmit = function() {
+    // Show the loading screen
+    document.getElementById('loading-screen').style.display = 'block';
+    document.getElementById('content-container').classList.add('blurry');
+    return true;
+};
