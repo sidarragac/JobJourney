@@ -26,6 +26,9 @@
 
 .contenedorForm{
     margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .contenedorForm form{
