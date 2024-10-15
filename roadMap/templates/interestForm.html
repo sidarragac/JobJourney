@@ -14,8 +14,8 @@
 </head>
 <body>
     {% block content %}
-    <div class="main">
-        <form action="{% url 'roadmapGenerator' %}" method="POST">
+    <div class="main" id="content-container">
+        <form id="interestForm" action="{% url 'roadmapGenerator' %}" method="POST">
             {% csrf_token %}
             <div class="input-field">
                 <div class="interest">
@@ -48,12 +48,20 @@
                 {{ error }}
                 </div>
             {% endif %}
-            <div class="button">
+            <div class="button" id="button">
                 <div class="input-field">
                     <input type="submit" class="button-1" value="Generate">
                 </div>
             </div>
         </form>
+    </div>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Generating your roadmap, please wait...</p>
+        </div>
     </div>
     {% endblock content %}
     {% block scripts %}
