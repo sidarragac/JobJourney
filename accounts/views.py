@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import *
 from .models import *
-from roadMap.models import Interest, UserInterest, Roadmap
+from roadMap.models import Interest, UserInterest, Roadmap, LikeRoadmap
 
 # Create your views here.
 def loginView(request):
@@ -70,16 +70,20 @@ def profile(request):
         company = Company.objects.get(user=user)
         context = {
             'name': company.companyName,
-            'username': company.username,
+            'username': user.username,
+            'city' : user.city,
             'isCompany': True
         }
     else:
         person = Person.objects.get(user=user)
         roadmaps = list(Roadmap.objects.filter(user=person))
+        likedRoadmaps = list(LikeRoadmap.objects.filter(user=person))
+        likedRoadmaps = [roadmap.roadmap for roadmap in likedRoadmaps]
         context = {
             'name': user.first_name + ' ' + user.last_name,
             'username': user.username,
             'roadmaps': roadmaps,
+            'likedRoadmaps': likedRoadmaps,
             'city': user.city,
             'isCompany': False
         }

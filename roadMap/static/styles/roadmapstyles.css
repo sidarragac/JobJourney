@@ -477,7 +477,7 @@ form div{
     margin : 10px 0;
   }
   
-  .checkmarkLike {
+  .checkmarkLiked {
     top: 0;
     left: 0;
     height: 2em;
@@ -486,7 +486,7 @@ form div{
     animation: dislike_effect 400ms ease;
   }
 
-  .checkmarkUnlike {
+  .checkmarkNotliked {
     top: 0;
     left: 0;
     height: 2em;
@@ -495,12 +495,12 @@ form div{
     animation: dislike_effect 400ms ease;
   }
   
-  .containerLike input:checked ~ .checkmarkLike path{
+  .containerLike input:checked ~ .checkmarkLiked path{
     fill: #FF5353;
     stroke-width: 0;
   }
   
-  .containerLike input:checked ~ .checkmarkLike {
+  .containerLike input:checked ~ .checkmarkLiked {
     animation: like_effect 400ms ease;
   }
   

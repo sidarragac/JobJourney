@@ -39,7 +39,11 @@
                     <h3>{{ username }}</h3>
                 </li>
                 <li class="infoText">
-                    <h2>Name</h2>
+                    {% if isCompany %}
+                        <h2>Company name</h2>
+                    {% else %}
+                        <h2>Name</h2>
+                    {% endif %}
                     <h3>{{ name }}</h3>
                 </li>
                 <li class="infoText">
@@ -49,50 +53,66 @@
             </ul>
         </div>
     </div>
-    {% if isCompany %}
-        <h1 style="text-align: center;">Nothing to display yet (Work in progress) :D </h1>
-    {% else %}
-        <div class="container contenedorRoadmapsGrande">
-            <h1 class="my-5">Your roadmaps</h1> 
-            <div class="row cajaContenedorRoadmaps">
-                <!-- row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 -->
-                {% if roadmaps %}
-                        {% for roadmap in roadmaps %}
-                            <div class="contenedorRoadmaps flex-column justify-content-between">
+    <div class="container contenedorRoadmapsGrande">
+        {% if not isCompany %}
+            <h1 class="my-5">My roadmaps</h1>
+        {% endif %}
+        <div class="row cajaContenedorRoadmaps">
+            <!-- row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 -->
+            {% if roadmaps %}
+                    {% for roadmap in roadmaps %}
+                        <div class="contenedorRoadmaps flex-column justify-content-between">
+                            <div class="top d-flex flex-row justify-content-center">
                                 <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
-                                    <h5 class="card-title text-center my-1">{{ roadmap }}</h5>
+                                    <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
                                 </a>
-                                <br>
-                                <div class="d-flex flex-row w-100 justify-content-between">
-                                    <div class="infoRoadmap1">
-                                        <p>Interest: {{ roadmap.interest }}</p>
-                                    </div>
-                                    <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
-                                        <div class="d-flex flex-row align-items-center">
-                                            <p style="margin: 0px 3px 0px 10px;">{{ roadmap.numberOfLikes }}</p>
-                                            <div class="like d-flex justify-content-center">
-                                                <svg viewBox="0 0 256 256" height="20" width="20">
-                                                    <rect fill="none" height="16" width="16"></rect>
-                                                    <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-row align-items-center">
-                                            <p style="margin: 0px 3px 0px 10px">{{ roadmap.completionPercentage }}%</p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                                <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zm3.354 5.646a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7 9.293l3.646-3.647z"/>
+                                <div class="interestTag">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27" fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="d-flex flex-row w-100 justify-content-between">
+                                <div class="infoRoadmap1">
+                                    <p>Interest: {{ roadmap.interest }}</p>
+                                </div>
+                                <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <p style="margin: 0px 3px 0px 10px;">{{ roadmap.numberOfLikes }}</p>
+                                        {% if roadmap in likedRoadmaps %}
+                                        <div class="liked d-flex justify-content-center">
+                                            <svg viewBox="0 0 256 256" height="20" width="20">
+                                                <rect fill="none" height="16" width="16"></rect>
+                                                <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
                                             </svg>
                                         </div>
+                                        {% else %}
+                                        <div class="notliked d-flex justify-content-center">
+                                            <svg viewBox="0 0 256 256" height="20" width="20">
+                                                <rect fill="none" height="16" width="16"></rect>
+                                                <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
+                                            </svg>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <p style="margin: 0px 3px 0px 10px">{{ roadmap.completionPercentage }}%</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                            <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zm3.354 5.646a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7 9.293l3.646-3.647z"/>
+                                        </svg>
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}
-                {% else %}
+                        </div>
+                    {% endfor %}
+            {% else %}
+                {% if not isCompany %}
                     <h2 class="text-center pt-4">You haven't created any roadmap.</h2>
                 {% endif %}
-            </div>
+            {% endif %}
         </div>
-    {% endif %}
+    </div>
 </div>
 {% endblock content %}
 </body>
