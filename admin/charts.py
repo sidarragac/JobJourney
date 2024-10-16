@@ -23,6 +23,12 @@ def usersPerInterest(data, colors):
     numberOfUsers = list(data.values())
 
     plt.figure(figsize=(10, 10))
+
+    if not numberOfUsers:
+        plt.title(f"Users per Interest", fontsize=16, weight='bold', loc='left')
+        plt.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
+        return __genImage()
+
     plt.pie(numberOfUsers, labels=interests, colors=[colors[interest] for interest in interests], 
             autopct='%1.1f%%', wedgeprops={"edgecolor": 'white', "linewidth": 1}, startangle=140, textprops={'fontsize': 16, 'weight': 'bold'})
 
@@ -49,6 +55,12 @@ def ageRangesPerInterest(data, colors):
     barWidth = 0.25
     
     fig, ax = plt.subplots(figsize=(10, 10))
+
+    if not values:
+        ax.set_title(f"User's Age Range per interest", fontsize=16, weight='bold', loc='left')
+        ax.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
+        return __genImage()
+
     for idx, (interest, val) in enumerate(zip(interests, values)):
         ax.bar(x + idx * barWidth, val, width = barWidth, label=interest, color=colors[interest])
 
@@ -76,6 +88,12 @@ def roadmapCompletionPercentage(data, colors):
             colorList.append(colors[interest])
 
     plt.figure(figsize=(8, 6))
+
+    if not completionPercentages:
+        plt.title(f"Roadmap Completion Percentage by Interest", fontsize=16, weight='bold', loc='left')
+        plt.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
+        return __genImage()
+
     sns.stripplot(x=interests, y=completionPercentages, hue=interests, legend=False, palette=colors, jitter=True, dodge=True)
 
     plt.title("Roadmap Completion Percentage by Interest", fontsize=16, weight='bold', loc='left')
