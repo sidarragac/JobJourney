@@ -132,7 +132,19 @@
 .tituloCard{
     text-decoration: none; 
     color:black; 
+    width: 80%;
+    margin-top: 10px;
+}
+
+.top {
+    position: relative;
     width: 100%;
+}
+
+.interestTag {
+    position: absolute;
+    right: -5px;
+    top: 5px;
 }
 
 .dropdownboton{
@@ -236,7 +248,13 @@
     }
 }
 
-.like path{
+/* like icon */
+.liked path{
     fill: #ff0000;
     stroke-width: 0;
+}
+
+.notliked path{
+    fill: #ffffff;
+    stroke-width: 10;
 }

@@ -4,7 +4,7 @@ from admin.openAIManager import openAIManager
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
-from accounts.models import User, Person
+from accounts.models import User, Person, Company
 import json
 import numpy as np
 
@@ -69,12 +69,15 @@ def displayRoadmap(request, roadmapId, stepNumber=0):
     editable = True
     if user.id != roadmap.user.user_id:
         editable = False
-    person = Person.objects.get(user=user)
-    liked = LikeRoadmap.objects.filter(user=person, roadmap=roadmap).count()
+    liked = False
+    if not user.isCompany:
+        person = Person.objects.get(user=user)
+        liked = LikeRoadmap.objects.filter(user=person, roadmap=roadmap).count()
     if liked:
         liked = True
     checkpoints = __getCheckpointsStatus(roadmapId)
     context = {
+        'user': user,
         'completionPercentage': completionPercentage,
         'roadmap': roadmap.content, 
         'roadmapId': roadmapId,
