@@ -39,8 +39,8 @@ def __analyticsCharts(companyId, companyCity):
             return '55+'
 
     def collectData(companyInterests, relatedUsers):
-        chartOneData = {} #Dict with the number of users that have the same interest as the company.
-        chartTwoData = {} #Dict with the number of users per age range that have the same interest as the company.
+        interestChartData = {} #Dict with the number of users that have the same interest as the company.
+        AgeChartData = {} #Dict with the number of users per age range that have the same interest as the company.
         ranges = {
             '18-': 0,
             '18-24': 0,
@@ -57,28 +57,28 @@ def __analyticsCharts(companyId, companyCity):
                 continue
             for interest in commonInterests:
                 #Chart 1:
-                if interest in chartOneData:
-                    chartOneData[interest] += 1
+                if interest in interestChartData:
+                    interestChartData[interest] += 1
                 else:
-                    chartOneData[interest] = 1
+                    interestChartData[interest] = 1
 
                 #Chart 2:
-                if interest in chartTwoData:
-                    chartTwoData[interest][age] += 1
+                if interest in AgeChartData:
+                    AgeChartData[interest][age] += 1
                 else:
-                    chartTwoData[interest] = deepcopy(ranges)
-                    chartTwoData[interest][age] += 1
+                    AgeChartData[interest] = deepcopy(ranges)
+                    AgeChartData[interest][age] += 1
 
 
-        return chartOneData, chartTwoData
+        return interestChartData, AgeChartData
 
     companyInterests = set(UserInterest.objects.select_related('interest').filter(user=companyId).values_list('interest__name', flat=True))
     relatedUsers = User.objects.filter(city=companyCity).exclude(isCompany=True)
 
-    chartOneData, chartTwoData = collectData(companyInterests, relatedUsers)
+    interestChartData, AgeChartData = collectData(companyInterests, relatedUsers)
     colors = dict(Interest.objects.all().values_list('name', 'color'))
 
-    return usersPerInterest(chartOneData, colors), ageRangesPerInterest(chartTwoData, colors)     
+    return usersPerInterest(interestChartData, colors), ageRangesPerInterest(AgeChartData, colors)     
 
 def __roadmapsStatistics(userId, city):
     
@@ -173,10 +173,22 @@ def analytics(request): #Only for companies.
     if not user.isCompany:
         return redirect('home')
     
+    company = Company.objects.get(user=user.id)
+
     if request.method == 'POST':
-        pass
+        city = request.POST.get('city')
+        chartOne, chartTwo = __analyticsCharts(user.id, city)
+        roadmapCompletion, suggestedRoadmaps, chartThree = __roadmapsStatistics(user.id, city)
+        context = {
+            'userInterests': chartOne,
+            'userAgeInterest': chartTwo,
+            'completionPercentage': chartThree,
+            'suggestedRoadmaps': suggestedRoadmaps,
+            'roadmapCompletion': roadmapCompletion,
+            'name': company.companyName,
+            'city': city
+        }
     else:
-        company = Company.objects.get(user=user.id)
         chartOne, chartTwo = __analyticsCharts(user.id, user.city)
         roadmapCompletion, suggestedRoadmaps, chartThree = __roadmapsStatistics(user.id, user.city)
         context = {
@@ -188,7 +200,7 @@ def analytics(request): #Only for companies.
             'name': company.companyName,
             'city': user.city
         }
-        return render(request, 'analytics.html', context=context)
+    return render(request, 'analytics.html', context=context)
         
 @login_required
 def explore(request):
@@ -207,7 +219,6 @@ def explore(request):
             'filtered': True,
             'likedRoadmaps': likedRoadmaps
         }
-        return render(request, 'explore.html', context=context)
     else:
         suggestedRoadmaps = __suggestedRoadmaps(user.id)
         likedRoadmaps = list(LikeRoadmap.objects.filter(user=user.id, roadmap__in=suggestedRoadmaps))
@@ -218,4 +229,4 @@ def explore(request):
             'filtered': False,
             'likedRoadmaps': likedRoadmaps
         }
-        return render(request, 'explore.html', context=context)
+    return render(request, 'explore.html', context=context)
