@@ -6,7 +6,7 @@
     flex-direction: row;
 }
 .contenedorTitulo{
-    width: 65%;
+    width: 60%;
     text-align: center;
     padding: 20px;
     display: flex;
@@ -25,14 +25,12 @@
     color: #aaaaa9;
 }
 .contenedorImagen{
-    width: 35%;
+    width: 40%;
     text-align: center;
     padding: 20px;
 }
-.contenedorImagen{
-    width: 50%;
-    text-align: center;
-    padding: 20px;
+.contenedorImagen img{
+    width: 100%;
 }
 .botonCrearRoadmap{
     margin-top: 20px;
@@ -43,4 +41,57 @@
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
+}
+
+@media (max-width: 992px){
+    .contenedorTitulo{
+        width: 50%;
+    }
+    .contenedorImagen{
+        width: 50%;
+    }
+    .contenedorTitulo h1{
+        font-size: 60px;
+    }
+    .contenedorTitulo h3{
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 768px){
+    .contenedorTitulo h1{
+        font-size: 55px;
+    }
+    .contenedorTitulo h3{
+        font-size: 20px;
+    }
+    .botonCrearRoadmap{
+        padding: 7px 25px;
+    }
+    .contenedorPrimeraInfo{
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .contenedorImagen{
+        width: 80%;
+        margin: auto;
+    }
+    .contenedorTitulo{
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px){
+    .contenedorTitulo h1{
+        font-size: 45px;
+    }
+    .contenedorTitulo h3{
+        font-size: 15px;
+    }
+    .botonCrearRoadmap{
+        padding: 5px 20px;
+    }
+    .contenedorImagen{
+        width: 100%;
+    }
 }
