@@ -3,18 +3,19 @@ from django.contrib.auth.decorators import login_required
 from datetime import date
 from accounts.models import User, Person, Company
 from roadMap.models import Roadmap, Interest, UserInterest, LikeRoadmap
-from admin.charts import usersPerInterest, ageRangesPerInterest #Charts
+from admin.charts import usersPerInterest, ageRangesPerInterest, roadmapCompletionPercentage #Charts
 from admin.openAIManager import openAIManager
 from copy import deepcopy
 import numpy as np
 
-def __analyticsCharts(companyId, companyCity=None):
+def __analyticsCharts(companyId, companyCity):
     """
     Company analytics: Charts with valuable information about user's roadmaps.
     Charts:
     1. Number of users that have the same interest as the company in the same city.
     2. Age range of users that have the same interest as the company in the same city as follows:
         Age < 18, 18 <= Age < 25, 25 <= Age < 35, 35 <= Age < 45, 45 <= Age < 55, Age >= 55.
+    3. Completion percentage of roadmaps based on company's interests and selected city.
     -- Suggested roadmaps based on company's interests.
     """
     def calculateAge(userId):
@@ -70,10 +71,6 @@ def __analyticsCharts(companyId, companyCity=None):
 
 
         return chartOneData, chartTwoData
-    
-
-    if not companyCity:
-        companyCity = User.objects.get(id=companyId).city
 
     companyInterests = set(UserInterest.objects.select_related('interest').filter(user=companyId).values_list('interest__name', flat=True))
     relatedUsers = User.objects.filter(city=companyCity).exclude(isCompany=True)
@@ -84,18 +81,26 @@ def __analyticsCharts(companyId, companyCity=None):
     return usersPerInterest(chartOneData, colors), ageRangesPerInterest(chartTwoData, colors)     
 
 def __roadmapsStatistics(userId, city):
+    
+    def completionPercentageChart():
+        colors = dict(Interest.objects.all().values_list('name', 'color'))
+        return roadmapCompletionPercentage(roadmapCompletion, colors)
+    
     userInterests = UserInterest.objects.filter(user=userId)
     roadmapCompletion = {}
+    completionPercentage = {}
     suggestedRoadmaps = []
     for userInterest in userInterests:
         roadmaps = Roadmap.objects.filter(interest=userInterest.interest_id, user__user__city=city).order_by('-completionPercentage')
         if not roadmaps:
-            roadmapCompletion[userInterest.interest] = 0
+            roadmapCompletion[userInterest.interest.name] = []
+            completionPercentage[userInterest.interest] = 0
             continue
         percentages = [roadmap.completionPercentage for roadmap in roadmaps]
-        roadmapCompletion[userInterest.interest] = (sum(percentages) / len(percentages)) if percentages else 0
+        roadmapCompletion[userInterest.interest.name] = percentages
+        completionPercentage[userInterest.interest] = (sum(percentages) / len(percentages)) if percentages else 0
         suggestedRoadmaps.extend(list(roadmaps)[0:6 if len(roadmaps) > 6 else len(roadmaps)])
-    return roadmapCompletion, suggestedRoadmaps
+    return completionPercentage, suggestedRoadmaps, completionPercentageChart()
 
 def __suggestedRoadmaps(userId):
     #Suggested roadmaps based on person's interests.
@@ -172,11 +177,12 @@ def analytics(request): #Only for companies.
         pass
     else:
         company = Company.objects.get(user=user.id)
-        chartOne, chartTwo = __analyticsCharts(user.id)
-        roadmapCompletion, suggestedRoadmaps = __roadmapsStatistics(user.id, user.city)
+        chartOne, chartTwo = __analyticsCharts(user.id, user.city)
+        roadmapCompletion, suggestedRoadmaps, chartThree = __roadmapsStatistics(user.id, user.city)
         context = {
-            'chartOne': chartOne,
-            'chartTwo': chartTwo,
+            'userInterests': chartOne,
+            'userAgeInterest': chartTwo,
+            'completionPercentage': chartThree,
             'suggestedRoadmaps': suggestedRoadmaps,
             'roadmapCompletion': roadmapCompletion,
             'name': company.companyName,
