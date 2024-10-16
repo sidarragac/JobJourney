@@ -97,6 +97,12 @@ function showInfo(){
     const btn4 = document.getElementById('btn4');
     const btn5 = document.getElementById('btn5');
 
+    const close1 = document.getElementsByClassName('btn-cerrar-modal1');
+    const close2 = document.getElementsByClassName('btn-cerrar-modal2');
+    const close3 = document.getElementsByClassName('btn-cerrar-modal3');
+    const close4 = document.getElementsByClassName('btn-cerrar-modal4');
+    const close5 = document.getElementsByClassName('btn-cerrar-modal5');
+
     const modal1 = document.getElementById('modal1');
     const modal2 = document.getElementById('modal2');
     const modal3 = document.getElementById('modal3');
@@ -122,4 +128,40 @@ function showInfo(){
     btn5.addEventListener('click',() => {
         modal5.showModal();
     })
+
+    close1[0].addEventListener('click',() => {
+        modal1.close();
+    })
+    close1[1].addEventListener('click',() => {
+        modal1.close();
+    })
+
+    close2[0].addEventListener('click',() => {
+        modal2.close();
+    })
+    close2[1].addEventListener('click',() => {
+        modal2.close();
+    })
+
+    close3[0].addEventListener('click',() => {
+        modal3.close();
+    })
+    close3[1].addEventListener('click',() => {
+        modal3.close();
+    })
+
+    close4[0].addEventListener('click',() => {
+        modal4.close();
+    })
+    close4[1].addEventListener('click',() => {
+        modal4.close();
+    })
+
+    close5[0].addEventListener('click',() => {
+        modal5.close();
+    })
+    close5[1].addEventListener('click',() => {
+        modal5.close();
+    })
+
 }
