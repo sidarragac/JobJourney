@@ -1,7 +1,11 @@
-from matplotlib import pyplot as plt
-import matplotlib
-import io, base64
+import io
+import base64
+import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
+
+# Set Seaborn style
+sns.set_theme(context='notebook', style="whitegrid")
 
 def __genImage():
     buffer = io.BytesIO()
@@ -9,26 +13,35 @@ def __genImage():
     buffer.seek(0)
     plt.close()
 
-    imagePNG = buffer.getvalue()
+    imageSVG = buffer.getvalue()
     buffer.close()
-    graphic = base64.b64encode(imagePNG)
+    graphic = base64.b64encode(imageSVG)
     return graphic.decode('utf-8')
 
 def usersPerInterest(data, colors):
-    matplotlib.use('Agg')
-    fix, ax = plt.subplots()
-    
-    ax.pie(list(data.values()), labels=list(data.keys()), colors=[colors[label] for label in list(data.keys())], autopct='%1.1f%%',
-            wedgeprops={"edgecolor": 'white', "linewidth": 1})
+    interests = list(data.keys())
+    numberOfUsers = list(data.values())
 
-    plt.title(f"Users per Interest")
+    plt.figure(figsize=(10, 10))
+
+    if not numberOfUsers:
+        plt.title(f"Users per Interest", fontsize=16, weight='bold', loc='left')
+        plt.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
+        return __genImage()
+
+    plt.pie(numberOfUsers, labels=interests, colors=[colors[interest] for interest in interests], 
+            autopct='%1.1f%%', wedgeprops={"edgecolor": 'white', "linewidth": 1}, startangle=140, textprops={'fontsize': 16, 'weight': 'bold'})
+
+    centre_circle = plt.Circle((0,0),0.70,fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(centre_circle)
+
+    plt.title("Users per Interest", fontsize=18, weight='bold', loc='left')
     plt.tight_layout()
 
     return __genImage()
 
-
 def ageRangesPerInterest(data, colors):
-    matplotlib.use('Agg')
     #Formmated data:
     interests = list(data.keys())
     numInterests = len(interests)
@@ -41,17 +54,51 @@ def ageRangesPerInterest(data, colors):
     x = np.arange(numAges) #Label locations
     barWidth = 0.25
     
-    fix, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    if not values:
+        ax.set_title(f"User's Age Range per interest", fontsize=16, weight='bold', loc='left')
+        ax.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
+        return __genImage()
+
     for idx, (interest, val) in enumerate(zip(interests, values)):
         ax.bar(x + idx * barWidth, val, width = barWidth, label=interest, color=colors[interest])
 
-    ax.set_title(f"User's Age Range per interest")
-    ax.set_xlabel('Age Categories')
-    ax.set_ylabel('Number of persons per interest')
+    ax.set_title(f"User's Age Range per interest", fontsize=16, weight='bold', loc='left')
+    ax.set_xlabel('Age Categories', fontsize=14, weight='bold')
+    ax.set_ylabel('Number of persons per interest', fontsize=14, weight='bold')
     ax.set_xticks(x + barWidth * (numInterests - 1) / 2)
-    ax.set_xticklabels(ageRanges)
+    ax.set_xticklabels(ageRanges, fontsize=14)
     yMax = max([max(val) for val in values])
+    ax.tick_params(axis='y', labelsize=14)
     ax.set_yticks(np.arange(0, yMax + 1, 1))
-    ax.legend()
+    ax.legend(title='Interests', bbox_to_anchor=(1.05, 1), loc='upper left')
+
+    return __genImage()
+
+def roadmapCompletionPercentage(data, colors):
+    #Data Preparation to plot
+    interests = []
+    completionPercentages = []
+    colorList = []
+    for interest, percentages in data.items():
+        for pct in percentages:
+            interests.append(interest)
+            completionPercentages.append(pct)
+            colorList.append(colors[interest])
+
+    plt.figure(figsize=(8, 6))
+
+    if not completionPercentages:
+        plt.title(f"Roadmap Completion Percentage by Interest", fontsize=16, weight='bold', loc='left')
+        plt.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
+        return __genImage()
+
+    sns.stripplot(x=interests, y=completionPercentages, hue=interests, legend=False, palette=colors, jitter=True, dodge=True)
+
+    plt.title("Roadmap Completion Percentage by Interest", fontsize=16, weight='bold', loc='left')
+    plt.xlabel('Interest', fontsize=14, weight='bold')
+    plt.ylabel('Completion Percentage', fontsize=14, weight='bold')
+    plt.tight_layout()
 
     return __genImage()

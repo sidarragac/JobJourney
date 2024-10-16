@@ -14,7 +14,6 @@ function verifyRequired(){
 
 function sortRoadmaps(filtered, higher){
     var roadmapsList = document.getElementById(filtered+'Roadmaps');
-    console.log(roadmapsList);
     var roadmaps = Array.from(roadmapsList.getElementsByClassName('roadmap'));
     roadmaps.sort((a,b) => {
         var likesA = parseInt(a.getAttribute('likes'));
