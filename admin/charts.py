@@ -24,13 +24,13 @@ def usersPerInterest(data, colors):
 
     plt.figure(figsize=(10, 10))
     plt.pie(numberOfUsers, labels=interests, colors=[colors[interest] for interest in interests], 
-            autopct='%1.1f%%', wedgeprops={"edgecolor": 'white', "linewidth": 1}, startangle=140)
+            autopct='%1.1f%%', wedgeprops={"edgecolor": 'white', "linewidth": 1}, startangle=140, textprops={'fontsize': 16, 'weight': 'bold'})
 
     centre_circle = plt.Circle((0,0),0.70,fc='white')
     fig = plt.gcf()
     fig.gca().add_artist(centre_circle)
 
-    plt.title("Users per Interest", fontsize=16, weight='bold', loc='left')
+    plt.title("Users per Interest", fontsize=18, weight='bold', loc='left')
     plt.tight_layout()
 
     return __genImage()
@@ -56,8 +56,9 @@ def ageRangesPerInterest(data, colors):
     ax.set_xlabel('Age Categories', fontsize=14, weight='bold')
     ax.set_ylabel('Number of persons per interest', fontsize=14, weight='bold')
     ax.set_xticks(x + barWidth * (numInterests - 1) / 2)
-    ax.set_xticklabels(ageRanges)
+    ax.set_xticklabels(ageRanges, fontsize=14)
     yMax = max([max(val) for val in values])
+    ax.tick_params(axis='y', labelsize=14)
     ax.set_yticks(np.arange(0, yMax + 1, 1))
     ax.legend(title='Interests', bbox_to_anchor=(1.05, 1), loc='upper left')
 
