@@ -23,7 +23,7 @@
                     {% csrf_token %}
                     <input type="text" class="input objective" name="objective" id="objective" size="35" placeholder="Filter by objective" required onchange="verifyRequired()">
                     <select name="interest" id="interest" class="input interest" required onchange="verifyRequired()">
-                        <option value="" selected disabled style="color: rgba(128, 128, 128, 0.438);">Select an interest</option>
+                        <option value="" selected disabled style="color: rgba(128, 128, 128, 0.438);">Filter by interest</option>
                         {% for id, interest in interests.items %}
                             <option value="{{ id }}">{{ interest }}</option>
                         {% endfor %}
@@ -72,9 +72,16 @@
                 <div class="row cajaContenedorRoadmaps" id="filteredRoadmaps">
                     {% for roadmap in filteredRoadmaps %}
                         <div likes="{{ roadmap.numberOfLikes }}" class="contenedorRoadmaps flex-column justify-content-between roadmap">
-                            <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
-                                <h5 class="card-title text-center my-1">{{ roadmap }}</h5>
-                            </a>
+                            <div class="top d-flex flex-row justify-content-center">
+                                <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
+                                    <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
+                                </a>
+                                <div class="interestTag">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27" fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                                    </svg>
+                                </div>
+                            </div>
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
@@ -83,12 +90,21 @@
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
                                     <div class="d-flex flex-row align-items-center">
                                         <p style="margin: 0px 3px 0px 10px;">{{ roadmap.numberOfLikes }}</p>
-                                        <div class="like d-flex justify-content-center">
+                                        {% if roadmap in likedRoadmaps %}
+                                        <div class="liked d-flex justify-content-center">
                                             <svg viewBox="0 0 256 256" height="20" width="20">
                                                 <rect fill="none" height="16" width="16"></rect>
                                                 <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
                                             </svg>
                                         </div>
+                                        {% else %}
+                                        <div class="notliked d-flex justify-content-center">
+                                            <svg viewBox="0 0 256 256" height="20" width="20">
+                                                <rect fill="none" height="16" width="16"></rect>
+                                                <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
+                                            </svg>
+                                        </div>
+                                        {% endif %}
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
                                         <p style="margin: 0px 3px 0px 10px">{{ roadmap.completionPercentage }}%</p>
@@ -116,7 +132,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li>
-                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('filtered', false)">
+                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('', false)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
                                     </svg>
@@ -124,7 +140,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('filtered', true)">
+                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('', true)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
                                     </svg>
@@ -136,9 +152,16 @@
                 <div class="row cajaContenedorRoadmaps" id="Roadmaps">
                     {% for roadmap in suggestedRoadmaps %}
                         <div likes="{{ roadmap.numberOfLikes }}" class="contenedorRoadmaps flex-column justify-content-between roadmap">
-                            <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
-                                <h5 class="card-title text-center my-1">{{ roadmap }}</h5>
-                            </a>
+                            <div class="top d-flex flex-row justify-content-center">
+                                <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
+                                    <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
+                                </a>
+                                <div class="interestTag">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27" fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                                    </svg>
+                                </div>
+                            </div>
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
@@ -147,12 +170,21 @@
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
                                     <div class="d-flex flex-row align-items-center">
                                         <p style="margin: 0px 3px 0px 10px;">{{ roadmap.numberOfLikes }}</p>
-                                        <div class="like d-flex justify-content-center">
+                                        {% if roadmap in likedRoadmaps %}
+                                        <div class="liked d-flex justify-content-center">
                                             <svg viewBox="0 0 256 256" height="20" width="20">
                                                 <rect fill="none" height="16" width="16"></rect>
                                                 <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
                                             </svg>
                                         </div>
+                                        {% else %}
+                                        <div class="notliked d-flex justify-content-center">
+                                            <svg viewBox="0 0 256 256" height="20" width="20">
+                                                <rect fill="none" height="16" width="16"></rect>
+                                                <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
+                                            </svg>
+                                        </div>
+                                        {% endif %}
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
                                         <p style="margin: 0px 3px 0px 10px">{{ roadmap.completionPercentage }}%</p>

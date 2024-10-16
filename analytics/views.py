@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from accounts.models import User, Person, Company
-from roadMap.models import Roadmap, Interest, UserInterest
+from roadMap.models import Roadmap, Interest, UserInterest, LikeRoadmap
 from admin.charts import usersPerInterest, ageRangesPerInterest #Charts
 from admin.openAIManager import openAIManager
 from copy import deepcopy
@@ -192,18 +192,24 @@ def explore(request):
         objective = request.POST.get('objective')
         interest = request.POST.get('interest')
         searchTerm, filteredRoadmaps = __filteredRoadmaps(objective, interest, user.id)
+        likedRoadmaps = list(LikeRoadmap.objects.filter(user=user.id, roadmap__in=filteredRoadmaps))
+        likedRoadmaps = [roadmap.roadmap for roadmap in likedRoadmaps]
         context = {
             'searchTerm': searchTerm,
             'filteredRoadmaps': filteredRoadmaps,
             'interests': interests,
-            'filtered': True
+            'filtered': True,
+            'likedRoadmaps': likedRoadmaps
         }
         return render(request, 'explore.html', context=context)
     else:
         suggestedRoadmaps = __suggestedRoadmaps(user.id)
+        likedRoadmaps = list(LikeRoadmap.objects.filter(user=user.id, roadmap__in=suggestedRoadmaps))
+        likedRoadmaps = [roadmap.roadmap for roadmap in likedRoadmaps]
         context = {
             'suggestedRoadmaps': suggestedRoadmaps,
             'interests': interests,
-            'filtered': False
+            'filtered': False,
+            'likedRoadmaps': likedRoadmaps
         }
         return render(request, 'explore.html', context=context)
