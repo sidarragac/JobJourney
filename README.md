@@ -61,7 +61,12 @@ To keep a copy of our project, you can follow the next steps:
     python manage.py migrate
   ```
   * This step will create ```db.sqlite3``` file. This is the database with all the required tables and relationships.
-8. Run the development server.
+8. Create the database interests registers.
+  ```bash
+    python manage.py add_interests_db
+  ```
+  * This step will add all the required information about the interests to the database.
+9. Run the development server.
   ```bash
     python manage.py runserver
   ```
