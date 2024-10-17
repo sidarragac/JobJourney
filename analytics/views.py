@@ -98,7 +98,7 @@ def __roadmapsStatistics(userId, city):
             continue
         percentages = [roadmap.completionPercentage for roadmap in roadmaps]
         roadmapCompletion[userInterest.interest.name] = percentages
-        completionPercentage[userInterest.interest] = (sum(percentages) / len(percentages)) if percentages else 0
+        completionPercentage[userInterest.interest] = int(sum(percentages) / len(percentages)) if percentages else 0
         suggestedRoadmaps.extend(list(roadmaps)[0:6 if len(roadmaps) > 6 else len(roadmaps)])
     return completionPercentage, suggestedRoadmaps, completionPercentageChart()
 
