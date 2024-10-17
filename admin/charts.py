@@ -3,9 +3,17 @@ import base64
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import textwrap
 
-# Set Seaborn style
 sns.set_theme(context='notebook', style="whitegrid")
+
+def __wrapLabels(ax, width, break_long_words=False):
+    labels = []
+    for label in ax.get_xticklabels():
+        text = label.get_text()
+        labels.append(textwrap.fill(text, width=width,
+                      break_long_words=break_long_words))
+    ax.set_xticklabels(labels, rotation=0)
 
 def __genImage():
     buffer = io.BytesIO()
@@ -22,10 +30,10 @@ def usersPerInterest(data, colors):
     interests = list(data.keys())
     numberOfUsers = list(data.values())
 
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(24, 10))
 
     if not numberOfUsers:
-        plt.title(f"Users per Interest", fontsize=16, weight='bold', loc='left')
+        plt.title(f"Users per Interest", fontsize=30, weight='bold', loc='left')
         plt.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
         return __genImage()
 
@@ -36,8 +44,10 @@ def usersPerInterest(data, colors):
     fig = plt.gcf()
     fig.gca().add_artist(centre_circle)
 
-    plt.title("Users per Interest", fontsize=18, weight='bold', loc='left')
+    plt.title("Users per Interest", fontsize=30, weight='bold', loc='left')
     plt.tight_layout()
+
+    __wrapLabels(fig.gca(), 10)
 
     return __genImage()
 
@@ -57,14 +67,14 @@ def ageRangesPerInterest(data, colors):
     fig, ax = plt.subplots(figsize=(10, 10))
 
     if not values:
-        ax.set_title(f"User's Age Range per interest", fontsize=16, weight='bold', loc='left')
+        ax.set_title(f"User's Age Range per interest", fontsize=25, weight='bold', loc='left')
         ax.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
         return __genImage()
 
     for idx, (interest, val) in enumerate(zip(interests, values)):
         ax.bar(x + idx * barWidth, val, width = barWidth, label=interest, color=colors[interest])
 
-    ax.set_title(f"User's Age Range per interest", fontsize=16, weight='bold', loc='left')
+    ax.set_title(f"User's Age Range per interest", fontsize=25, weight='bold', loc='left')
     ax.set_xlabel('Age Categories', fontsize=14, weight='bold')
     ax.set_ylabel('Number of people per interest', fontsize=14, weight='bold')
     ax.set_xticks(x + barWidth * (numInterests - 1) / 2)
@@ -73,6 +83,8 @@ def ageRangesPerInterest(data, colors):
     ax.tick_params(axis='y', labelsize=14)
     ax.set_yticks(np.arange(0, yMax + 1, 1))
     ax.legend(title='Interests', bbox_to_anchor=(1.05, 1), loc='upper left')
+    
+    __wrapLabels(ax, 10)
 
     return __genImage()
 
@@ -90,15 +102,19 @@ def roadmapCompletionPercentage(data, colors):
     plt.figure(figsize=(8, 6))
 
     if not completionPercentages:
-        plt.title(f"Roadmap Completion Percentage by Interest", fontsize=16, weight='bold', loc='left')
+        plt.title(f"Roadmap Completion Percentage by Interest", fontsize=18, weight='bold', loc='left')
         plt.text(0.5, 0.5, "No data available", fontsize=16, weight='bold', ha='center')
         return __genImage()
 
     sns.stripplot(x=interests, y=completionPercentages, hue=interests, legend=False, palette=colors, jitter=True, dodge=True)
 
-    plt.title("Roadmap Completion Percentage by Interest", fontsize=16, weight='bold', loc='left')
+    plt.title("Roadmap Completion Percentage by Interest", fontsize=18, weight='bold', loc='left')
     plt.xlabel('Interest', fontsize=14, weight='bold')
     plt.ylabel('Completion Percentage', fontsize=14, weight='bold')
     plt.tight_layout()
+
+    fig = plt.gcf()
+
+    __wrapLabels(fig.gca(), 10)
 
     return __genImage()
