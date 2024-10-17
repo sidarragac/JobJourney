@@ -66,7 +66,7 @@ def ageRangesPerInterest(data, colors):
 
     ax.set_title(f"User's Age Range per interest", fontsize=16, weight='bold', loc='left')
     ax.set_xlabel('Age Categories', fontsize=14, weight='bold')
-    ax.set_ylabel('Number of persons per interest', fontsize=14, weight='bold')
+    ax.set_ylabel('Number of people per interest', fontsize=14, weight='bold')
     ax.set_xticks(x + barWidth * (numInterests - 1) / 2)
     ax.set_xticklabels(ageRanges, fontsize=14)
     yMax = max([max(val) for val in values])
