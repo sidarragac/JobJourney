@@ -1,11 +1,13 @@
 import io
 import base64
+import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import textwrap
 
 sns.set_theme(context='notebook', style="whitegrid")
+matplotlib.use('Agg')
 
 def __wrapLabels(ax, width, break_long_words=False):
     labels = []
