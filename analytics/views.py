@@ -210,8 +210,10 @@ def explore(request):
         objective = request.POST.get('objective')
         interest = request.POST.get('interest')
         searchTerm, filteredRoadmaps = __filteredRoadmaps(objective, interest, user.id)
-        likedRoadmaps = list(LikeRoadmap.objects.filter(user=user.id, roadmap__in=filteredRoadmaps))
-        likedRoadmaps = [roadmap.roadmap for roadmap in likedRoadmaps]
+        likedRoadmaps = []
+        if filteredRoadmaps:
+            likedRoadmaps = list(LikeRoadmap.objects.filter(user=user.id, roadmap__in=filteredRoadmaps))
+            likedRoadmaps = [roadmap.roadmap for roadmap in likedRoadmaps]
         context = {
             'searchTerm': searchTerm,
             'filteredRoadmaps': filteredRoadmaps,
