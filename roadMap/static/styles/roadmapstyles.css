@@ -500,8 +500,9 @@ form div{
     user-select: none;
     transition: 100ms;
     margin : 10px 0;
+    width: auto;
   }
-  
+
   .checkmarkLiked {
     top: 0;
     left: 0;
@@ -529,7 +530,7 @@ form div{
     animation: like_effect 400ms ease;
   }
   
-  .containerlike:hover {
+  .containerLike:hover {
     transform: scale(1.1);
   }
   
@@ -561,3 +562,30 @@ form div{
     }
   }
 
+  /* Clone button */
+
+.containerClone input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.containerClone {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    transition: 100ms;
+    margin : 10px 0;
+    width: auto;
+}
+
+.cloneIcon {
+    top: 0;
+    left: 0;
+    height: 2em;
+    width: 2em;
+}
