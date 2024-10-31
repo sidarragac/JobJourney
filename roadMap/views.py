@@ -81,6 +81,7 @@ def displayRoadmap(request, roadmapId, stepNumber=0):
         'completionPercentage': completionPercentage,
         'roadmap': roadmap.content, 
         'roadmapId': roadmapId,
+        'roadmapOwner': roadmap.user.user,
         'stepNumber': stepNumber, 
         'checkpoints': json.dumps(checkpoints),
         'editable': editable,
@@ -132,6 +133,23 @@ def likeRoadmap(request, roadmapID):
     roadmap.numberOfLikes = current_likes
     roadmap.save()
     return HttpResponseRedirect(reverse('displayRoadmap', args=[roadmapID]))
+
+def cloneRoadmap(request, roadmapID):
+    user = request.user
+    person = Person.objects.get(user=user)
+    roadmap = Roadmap.objects.get(id=roadmapID)
+    userRoadmaps = list(Roadmap.objects.filter(user=person))
+    exists = False
+    for userRoadmap in userRoadmaps:
+        if roadmap.content == userRoadmap.content:
+            exists = True
+    if exists:
+        return HttpResponseRedirect(reverse('displayRoadmap', args=[roadmapID]))
+    else:
+        clonedRoadmap = createDBRoadmap(roadmap.content, roadmap.interest, person, roadmap.mainGoal, roadmap.embedding)
+        createDBCheckpoints(clonedRoadmap.content, clonedRoadmap)
+        return HttpResponseRedirect(reverse('displayRoadmap', args=[clonedRoadmap.id]))
+
 
 def home(request):
     return render(request, 'home.html')

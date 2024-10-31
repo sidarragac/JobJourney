@@ -589,3 +589,7 @@ form div{
     height: 2em;
     width: 2em;
 }
+
+.containerClone:hover {
+    transform: scale(1.1);
+}

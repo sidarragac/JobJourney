@@ -8,4 +8,5 @@ urlpatterns = [
     path('displayRoadmap/<int:roadmapId>', views.displayRoadmap, name='displayRoadmap'),
     path('displayRoadmap/<int:roadmapId>/<int:stepNumber>', views.displayRoadmap, name='displayRoadmap'),
     path('displayRoadmap/<int:roadmapID>/like', views.likeRoadmap, name='like'),
+    path('displayRoadmap/<int:roadmapID>/clone', views.cloneRoadmap, name='clone')
 ]
