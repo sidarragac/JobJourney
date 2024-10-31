@@ -15,10 +15,13 @@
 <body>
     {% block content %}
     <div class="main" id="content-container">
+        <div class="input-camp title-container">
+            <h1>Generate Roadmap</h1>
+        </div>
         <form id="interestForm" action="{% url 'roadmapGenerator' %}" method="POST">
             {% csrf_token %}
             <div class="input-field">
-                <div class="interest">
+                <div class="input-camp">
                     <label for="interest" class="labelInterest">Select area of interest</label>
                     <select name="interest" id="interest" class="form-select">
                         <option value=""></option>
@@ -29,18 +32,16 @@
                 </div>
             </div>
             <div class="input-field">
-                <div class="objective">
+                <div class="input-camp">
                     <label for="objective" class="labelObjective">Enter your objective</label>
                     <input type="text" class="inputObjective input" name="objective" id="objective" size="35" placeholder="Ex: Software engineer at Google">
                 </div>
             </div>
-            <div class="" style="width: 80%;">
-                <div class="salary">
-                    <div class="container">
-                        <label for="salary" class="labelSalary">Select expected salary per year in USD</label>
-                        <h5 id="value" name="value"></h5>
-                        <input type="range" class="form-range" min="10000" max="500000" step="5000" id="salary" name="salary" onchange="changeValue(this)">
-                    </div>
+            <div class="input-field">
+                <div class="input-camp">
+                    <label for="salary" class="labelSalary">Select expected salary per year in USD</label>
+                    <h5 id="value" name="value"></h5>
+                    <input type="range" class="form-range" min="10000" max="500000" step="5000" id="salary" name="salary" onchange="changeValue(this)">
                 </div>
             </div>
             {% if error %}

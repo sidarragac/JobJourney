@@ -1,4 +1,4 @@
-.main{
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,13 +6,14 @@
     padding: 0 20px 0 20px;
 }
 
-.total{
-  width:  900px;
-  height: auto;
-  border-radius: 35px;
-  background: #fff;
-  padding: 0px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+.total {
+    margin: 100px auto;
+    width: 900px;
+    height: auto;
+    border-radius: 35px;
+    background: #fff;
+    padding: 0px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
 }
 
 header {
@@ -25,11 +26,11 @@ header {
     padding: 40px 0px;
 }
 
-.left , .right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+.left, .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .selector {
@@ -40,18 +41,19 @@ header {
     margin-bottom: 20px;
 }
 
-.input-box{
-  width: 330px;
-  box-sizing: border-box;
+.input-box {
+    width: 330px;
+    box-sizing: border-box;
 }
 
-.input-field{
+.input-field {
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 0 10px 0 10px;
 }
-.input{
+
+.input {
     height: 45px;
     width: 100%;
     background: transparent;
@@ -61,47 +63,53 @@ header {
     margin-bottom: 20px;
     color: #40414a;
 }
-.input-box .input-field label{
+
+.input-box .input-field label {
     position: absolute;
     top: 10px;
     left: 10px;
     pointer-events: none;
     transition: .2s;
 }
-.input-field input:focus ~ label
-   {
+
+.input-field input:focus~label {
     top: -10px;
     font-size: 13px;
-  }
-  .input-field input:valid ~ label
-  {
-   top: -10px;
-   font-size: 13px;
-   color : #000;
- }
- .input-field .input:focus, .input-field .input:valid{
-    border-bottom: 1px solid #1b263b;
- }
+}
 
- .login{
+.input-field input:valid~label {
+    top: -10px;
+    font-size: 13px;
+    color: #000;
+}
+
+.input-field .input:focus,
+.input-field .input:valid {
+    border-bottom: 1px solid #1b263b;
+}
+
+.login {
     text-align: center;
     font-size: small;
     margin-top: 25px;
     margin-bottom: 25px;
 }
-span a{
+
+span a {
     text-decoration: none;
     font-weight: 700;
     color: #000;
     transition: .5s;
 }
-span a:hover{
+
+span a:hover {
     text-decoration: underline;
     color: #000;
 }
-@media only screen and (max-width: 768px){
-    .row{
-        max-width:420px;
+
+@media only screen and (max-width: 768px) {
+    .row {
+        max-width: 420px;
         width: 100%;
     }
 }
