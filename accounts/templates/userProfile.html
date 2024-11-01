@@ -15,12 +15,12 @@
 <body>
 {% block content %}
 <div class="container-fluid px-0">
-    <div class="w-100 p-5 banner">
+    <div class="w-100 banner">
         <div class="profileInfo">
             <ul class="list-profileInfo">
                 <li>
                     <div class="userProfile d-flex flex-column">
-                        <img src="{% static 'images/santi.jpeg' %}" class="user-pick">
+                        <img src="{% static user.image %}" class="user-pick">
                         <div class="d-flex flex-row mt-3 socialMedias">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16" style="color: black;">
                                 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
@@ -52,6 +52,49 @@
                 </li>
             </ul>
         </div>
+        <div class="settingsButton" id="settingsButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+            </svg>
+        </div>
+        <dialog id="modal">
+            <div class="modalContainer">
+                <form action="{% url 'editProfile' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="settingsPhoto">
+                        <h4>Profile Photo</h4>
+                        <img src="{% static user.image %}" class="" id="profilePic">
+                        <label for="inputFile" class="button-1 buttonPhoto">Change photo</label>
+                        <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile" name="inputFile">
+                    </div>
+                    <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
+                    <div class="settingsSocial">
+                        <h4>Social Media Links</h4>
+                        <div class="socialMedia">
+                            <label>Link Instagram</label>
+                            <input type="text" id="Instagram" name="Instagram" value="{{instagram|default_if_none:''}}">
+                        </div>
+                        <div class="socialMedia">
+                            <label>Link LinkedIn</label>
+                            <input type="text" id="LinkedIn" name="LinkedIn" value="{{linkedin|default_if_none:''}}" >
+                        </div>
+                        <div class="socialMedia">
+                            <label>Link Facebook</label>
+                            <input type="text" id="Facebook" name="Facebook" value="{{facebook|default_if_none:''}}">
+                        </div>
+                        <div class="inputField">
+                            <input type="submit" class="button-1" value="submit" style="padding: 10px;">
+                        </div>
+                    </div>
+                    <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
+                    <div class="settingsInterests">
+                        <h4>Interests</h4>
+                        <a href="interestSelection.html" class="button-1 buttonInterestSelection">Change your Interests</a>
+                    </div>
+                </form>
+            </div>
+        </dialog>
     </div>
     <div class="container contenedorRoadmapsGrande">
         {% if not isCompany %}
@@ -116,4 +159,7 @@
 </div>
 {% endblock content %}
 </body>
+{% block scripts %}
+<script src="{% static 'scripts/userProfile.js' %}"></script>
+{% endblock scripts %}
 </html>

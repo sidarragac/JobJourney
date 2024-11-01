@@ -63,16 +63,20 @@ def interestSelectionView(request):
         return redirect('home')
     return render(request, 'interestSelection.html', {'interests': Interest.objects.all()})
 
-@login_required
-def profile(request):
-    user = User.objects.get(username=request.user)
+def infoUser(user):
+    instagram = UserSocialMedia.objects.get(socialMedia__name="Instagram",user=user) if UserSocialMedia.objects.filter(socialMedia__name="Instagram",user=user).exists() else None
+    facebook = UserSocialMedia.objects.get(socialMedia__name="Facebook",user=user) if UserSocialMedia.objects.filter(socialMedia__name="Facebook",user=user).exists() else None
+    linkedin = UserSocialMedia.objects.get(socialMedia__name="LinkedIn",user=user) if UserSocialMedia.objects.filter(socialMedia__name="LinkedIn",user=user).exists() else None
     if user.isCompany:
         company = Company.objects.get(user=user)
         context = {
             'name': company.companyName,
             'username': user.username,
             'city' : user.city,
-            'isCompany': True
+            'isCompany': True,
+            'instagram': instagram.link if instagram else None,
+            'facebook': facebook.link if facebook else None,
+            'linkedin': linkedin.link if linkedin else None,
         }
     else:
         person = Person.objects.get(user=user)
@@ -85,6 +89,53 @@ def profile(request):
             'roadmaps': roadmaps,
             'likedRoadmaps': likedRoadmaps,
             'city': user.city,
-            'isCompany': False
+            'isCompany': False,
+            'instagram': instagram.link if instagram else None,
+            'facebook': facebook.link if facebook else None,
+            'linkedin': linkedin.link if linkedin else None,
         }
+    return context
+
+@login_required
+def profile(request):
+    user = User.objects.get(username=request.user)
+    context = infoUser(user)
+    return render(request, 'userProfile.html', context=context)
+
+def editProfile(request):
+    user = User.objects.get(username=request.user)
+    context = infoUser(user)
+    if request.method == 'POST':
+        # Actualizar la imagen de perfil
+        uploaded_image = request.FILES.get('inputFile')
+        print(uploaded_image)
+        if uploaded_image:
+            if user.image.url != 'images/default-avatar.jpg':
+                user.image.delete()
+            user.image = uploaded_image  # Asigna la imagen nueva
+
+        # Actualizar o crear el enlace de Instagram
+        UserSocialMedia.objects.update_or_create(
+            user=user,
+            socialMedia=SocialMedia.objects.get(name='Instagram'),
+            defaults={'link': request.POST.get('Instagram', '')}
+        )
+        
+        # Actualizar o crear el enlace de Facebook
+        UserSocialMedia.objects.update_or_create(
+            user=user,
+            socialMedia=SocialMedia.objects.get(name='Facebook'),
+            defaults={'link': request.POST.get('Facebook', '')}
+        )
+        
+        # Actualizar o crear el enlace de LinkedIn
+        UserSocialMedia.objects.update_or_create(
+            user=user,
+            socialMedia=SocialMedia.objects.get(name='LinkedIn'),
+            defaults={'link': request.POST.get('LinkedIn', '')}
+        )
+        user.save()
+        context = infoUser(user)
+        return redirect('profile')
+
     return render(request, 'userProfile.html', context=context)
