@@ -165,3 +165,21 @@ function showInfo(){
     })
 
 }
+
+const btnModalDelete = document.getElementById('btn-modalDelete');
+const btnModalDeleteClose = document.getElementById('btn-modalDeleteClose');
+var modalDelete = document.getElementById('modalDelete');
+
+btnModalDelete.addEventListener("click",()=>{
+    modalDelete.showModal();
+})
+
+btnModalDeleteClose.addEventListener("click",()=>{
+    modalDelete.close();
+})
+
+window.onclick = function(event) {
+    if (event.target == modalDelete) {
+        modalDelete.close();
+    }
+}

@@ -150,6 +150,16 @@ def cloneRoadmap(request, roadmapID):
         createDBCheckpoints(clonedRoadmap.content, clonedRoadmap)
         return HttpResponseRedirect(reverse('displayRoadmap', args=[clonedRoadmap.id]))
 
+def deleteRoadmap(request, roadmapID):
+    user = request.user
+    person = Person.objects.get(user=user)
+    roadmap = Roadmap.objects.get(id=roadmapID)
+    if person == roadmap.user:
+        roadmap.delete()
+        return redirect('profile')
+    else:
+        return HttpResponseRedirect(reverse('displayRoadmap', args=[roadmapID]))
+
 
 def home(request):
     return render(request, 'home.html')

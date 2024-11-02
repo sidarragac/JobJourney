@@ -60,7 +60,7 @@ body{
 .contenedorPasoImpar{
     text-decoration: none;
     background-color: #f1f1f1;
-    border-radius: 20%;
+    border-radius: 30px;
     padding: 20px;
     color: black;
     transition: 0.5s;
@@ -109,6 +109,16 @@ body{
 .modals{
     width: 70%;
     padding: 0%;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+dialog {
+    border-width: 0;
+    border-radius: 30px;
 }
 
 .infoPaso{
@@ -562,9 +572,9 @@ form div{
     }
   }
 
-  /* Clone button */
+  /* Clone and delete buttons */
 
-.containerClone input {
+.containerCloneDelete input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -572,7 +582,7 @@ form div{
     width: 0;
 }
 
-.containerClone {
+.containerCloneDelete {
     display: block;
     position: relative;
     cursor: pointer;
@@ -583,13 +593,21 @@ form div{
     width: auto;
 }
 
-.cloneIcon {
+.icon {
     top: 0;
     left: 0;
     height: 2em;
     width: 2em;
 }
 
-.containerClone:hover {
+.containerCloneDelete:hover {
     transform: scale(1.1);
+}
+
+.modalDelete {
+    max-width: 35%;
+}
+
+.deleteConfirmation {
+    text-align: center;
 }
