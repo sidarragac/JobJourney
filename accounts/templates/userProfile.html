@@ -2,164 +2,211 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"> </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"> </script>
     <title>{% block title %} {{ user }}'s profile {% endblock title %}</title>
     {% block styles %}
     <link rel="stylesheet" href="{% static 'styles/userProfile.css'%}">
     {% endblock styles %}
 </head>
+
 <body>
-{% block content %}
-<div class="container-fluid px-0">
-    <div class="w-100 banner">
-        <div class="profileInfo">
-            <ul class="list-profileInfo">
-                <li>
-                    <div class="userProfile d-flex flex-column">
-                        <img src="{% static user.image %}" class="user-pick">
-                        <div class="d-flex flex-row mt-3 socialMedias">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16" style="color: black;">
-                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                            </svg>
+    {% block content %}
+    <div class="container-fluid px-0">
+        <div class="w-100 banner">
+            <div class="profileInfo">
+                <ul class="listProfileInfo">
+                    <li>
+                        <div class="userProfile d-flex flex-column">
+                            <img src="{% static user.image %}" class="userPick">
+                            <div class="socialMedias">
+                                <ul class="socialMediasList">
+                                    <li class="iconContent">
+                                        <a class="link" data-social="instagram" aria-label="Instagram"
+                                            href="{{instagram|default_if_none:''}}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                            </svg>
+                                        </a>
+                                        <div class="tooltip">Instagram</div>
+                                    </li>
+                                    <li class="iconContent">
+                                        <a class="link" data-social="linkedin" aria-label="LinkedIn"
+                                            href="https://www.pinterest.com/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+                                            </svg>
+                                        </a>
+                                        <div class="tooltip">LinkedIn</div>
+                                    </li>
+                                    <li class="iconContent">
+                                        <a class="link" data-social="facebook" aria-label="Facebook"
+                                            href="https://dribbble.com/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                                            </svg>
+                                        </a>
+                                        <div class="tooltip">Facebook</div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="infoText" id="infoUser">
-                    <h2>User</h2>
-                    <h3>{{ username }}</h3>
-                </li>
-                <li class="infoText">
-                    {% if isCompany %}
+                    </li>
+                    <li class="infoText" id="infoUser">
+                        <h2>User</h2>
+                        <h3>{{ username }}</h3>
+                    </li>
+                    <li class="infoText">
+                        {% if isCompany %}
                         <h2>Company name</h2>
-                    {% else %}
+                        {% else %}
                         <h2>Name</h2>
-                    {% endif %}
-                    <h3>{{ name }}</h3>
-                </li>
-                <li class="infoText">
-                    <h2>City</h2>
-                    <h3>{{ city }}</h3>
-                </li>
-            </ul>
-        </div>
-        <div class="settingsButton" id="settingsButton">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
-                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
-            </svg>
-        </div>
-        <dialog id="modal">
-            <div class="modalContainer">
-                <form action="{% url 'editProfile' %}" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="settingsPhoto">
-                        <h4>Profile Photo</h4>
-                        <img src="{% static user.image %}" class="" id="profilePic">
-                        <label for="inputFile" class="button-1 buttonPhoto">Change photo</label>
-                        <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile" name="inputFile">
-                    </div>
-                    <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
-                    <div class="settingsSocial">
-                        <h4>Social Media Links</h4>
-                        <div class="socialMedia">
-                            <label>Link Instagram</label>
-                            <input type="text" id="Instagram" name="Instagram" value="{{instagram|default_if_none:''}}">
-                        </div>
-                        <div class="socialMedia">
-                            <label>Link LinkedIn</label>
-                            <input type="text" id="LinkedIn" name="LinkedIn" value="{{linkedin|default_if_none:''}}" >
-                        </div>
-                        <div class="socialMedia">
-                            <label>Link Facebook</label>
-                            <input type="text" id="Facebook" name="Facebook" value="{{facebook|default_if_none:''}}">
-                        </div>
-                        <div class="inputField">
-                            <input type="submit" class="button-1" value="submit" style="padding: 10px;">
-                        </div>
-                    </div>
-                    <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
-                    <div class="settingsInterests">
-                        <h4>Interests</h4>
-                        <a href="interestSelection.html" class="button-1 buttonInterestSelection">Change your Interests</a>
-                    </div>
-                </form>
+                        {% endif %}
+                        <h3>{{ name }}</h3>
+                    </li>
+                    <li class="infoText">
+                        <h2>City</h2>
+                        <h3>{{ city }}</h3>
+                    </li>
+                </ul>
             </div>
-        </dialog>
-    </div>
-    <div class="container contenedorRoadmapsGrande">
-        {% if not isCompany %}
+            <div class="settingsButton" id="settingsButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                    <path
+                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                </svg>
+            </div>
+            <dialog id="modal">
+                <div class="modalContainer">
+                    <form action="{% url 'editProfile' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="settingsPhoto">
+                            <h4>Profile Photo</h4>
+                            <img src="{% static user.image %}" class="userPick" id="profilePic">
+                            <label for="inputFile" class="button-1 buttonPhoto">Change photo</label>
+                            <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile"
+                                name="inputFile">
+                        </div>
+                        <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
+                        <div class="settingsSocial">
+                            <h4>Social Media Links</h4>
+                            <div class="socialMedia">
+                                <label>Link Instagram</label>
+                                <input type="text" id="Instagram" name="Instagram"
+                                    value="{{instagram|default_if_none:''}}">
+                            </div>
+                            <div class="socialMedia">
+                                <label>Link LinkedIn</label>
+                                <input type="text" id="LinkedIn" name="LinkedIn"
+                                    value="{{linkedin|default_if_none:''}}">
+                            </div>
+                            <div class="socialMedia">
+                                <label>Link Facebook</label>
+                                <input type="text" id="Facebook" name="Facebook"
+                                    value="{{facebook|default_if_none:''}}">
+                            </div>
+                            <div class="inputField">
+                                <input type="submit" class="button-1" value="submit" style="padding: 10px;">
+                            </div>
+                        </div>
+                        <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
+                        <div class="settingsInterests">
+                            <h4>Interests</h4>
+                            <a href="interestSelection.html" class="button-1 buttonInterestSelection">Change your
+                                Interests</a>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+        </div>
+        <div class="container contenedorRoadmapsGrande">
+            {% if not isCompany %}
             <h1 class="my-5">My roadmaps</h1>
-        {% endif %}
-        <div class="row cajaContenedorRoadmaps">
-            <!-- row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 -->
-            {% if roadmaps %}
-                    {% for roadmap in roadmaps %}
-                        <div class="contenedorRoadmaps flex-column justify-content-between">
-                            <div class="top d-flex flex-row justify-content-center">
-                                <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
-                                    <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
-                                </a>
-                                <div class="interestTag">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27" fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                        <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+            {% endif %}
+            <div class="row cajaContenedorRoadmaps">
+                <!-- row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 -->
+                {% if roadmaps %}
+                {% for roadmap in roadmaps %}
+                <div class="contenedorRoadmaps flex-column justify-content-between">
+                    <div class="top d-flex flex-row justify-content-center">
+                        <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
+                            <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
+                        </a>
+                        <div class="interestTag">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27"
+                                fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path
+                                    d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex flex-row w-100 justify-content-between">
+                        <div class="infoRoadmap1">
+                            <p>Interest: {{ roadmap.interest }}</p>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
+                            <div class="d-flex flex-row align-items-center">
+                                <p style="margin: 0px 3px 0px 10px;">{{ roadmap.numberOfLikes }}</p>
+                                {% if roadmap in likedRoadmaps %}
+                                <div class="liked d-flex justify-content-center">
+                                    <svg viewBox="0 0 256 256" height="20" width="20">
+                                        <rect fill="none" height="16" width="16"></rect>
+                                        <path
+                                            d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z"
+                                            stroke-width="20px" stroke="#000" fill="none"></path>
                                     </svg>
                                 </div>
+                                {% else %}
+                                <div class="notliked d-flex justify-content-center">
+                                    <svg viewBox="0 0 256 256" height="20" width="20">
+                                        <rect fill="none" height="16" width="16"></rect>
+                                        <path
+                                            d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z"
+                                            stroke-width="20px" stroke="#000" fill="none"></path>
+                                    </svg>
+                                </div>
+                                {% endif %}
                             </div>
-                            <br>
-                            <div class="d-flex flex-row w-100 justify-content-between">
-                                <div class="infoRoadmap1">
-                                    <p>Interest: {{ roadmap.interest }}</p>
-                                </div>
-                                <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <p style="margin: 0px 3px 0px 10px;">{{ roadmap.numberOfLikes }}</p>
-                                        {% if roadmap in likedRoadmaps %}
-                                        <div class="liked d-flex justify-content-center">
-                                            <svg viewBox="0 0 256 256" height="20" width="20">
-                                                <rect fill="none" height="16" width="16"></rect>
-                                                <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
-                                            </svg>
-                                        </div>
-                                        {% else %}
-                                        <div class="notliked d-flex justify-content-center">
-                                            <svg viewBox="0 0 256 256" height="20" width="20">
-                                                <rect fill="none" height="16" width="16"></rect>
-                                                <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" stroke-width="20px" stroke="#000" fill="none"></path>
-                                            </svg>
-                                        </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <p style="margin: 0px 3px 0px 10px">{{ roadmap.completionPercentage }}%</p>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                            <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zm3.354 5.646a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7 9.293l3.646-3.647z"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <p style="margin: 0px 3px 0px 10px">{{ roadmap.completionPercentage }}%</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zm3.354 5.646a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7 9.293l3.646-3.647z" />
+                                </svg>
                             </div>
                         </div>
-                    {% endfor %}
-            {% else %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
                 {% if not isCompany %}
-                    <h2 class="text-center pt-4">You haven't created any roadmap.</h2>
+                <h2 class="text-center pt-4">You haven't created any roadmap.</h2>
                 {% endif %}
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
-{% endblock content %}
+    {% endblock content %}
 </body>
 {% block scripts %}
 <script src="{% static 'scripts/userProfile.js' %}"></script>
 {% endblock scripts %}
+
 </html>

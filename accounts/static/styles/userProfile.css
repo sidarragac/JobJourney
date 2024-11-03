@@ -7,7 +7,7 @@
 }
 .userProfile{
     width: 200px;
-    height: 200px;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,6 +42,11 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
+}
+
+.infoText{
+    position: relative;
+    bottom: 50px;
 }
 
 .settingsPhoto input{
@@ -106,23 +111,25 @@
 .settingsButton p{
     margin: 0px 6px;
 }
-.userProfile img{
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-}
 
 .profileInfo{
     position: absolute;
     width: 90%;
-    top: 170px;
+    top: 145px;
     height: auto;
     left: 0;
     right: 0;
     margin: auto;
 }
 
-.list-profileInfo{
+.userPick{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.listProfileInfo{
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
@@ -130,7 +137,69 @@
     padding: 0%;
 }
 
-.list-profileInfo h2{
+ul{
+    list-style: none;
+}
+  
+.socialMediasList {
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 10px;
+padding: 0%;
+}
+.socialMediasList .iconContent {
+margin: 0 10px;
+position: relative;
+}
+.socialMediasList .iconContent .tooltip {
+position: absolute;
+top: -10px;
+left: 50%;
+transform: translateX(-50%);
+background-color: #5e5c5c;
+color: #fff;
+padding: 6px 10px;
+border-radius: 5px;
+opacity: 0;
+visibility: hidden;
+font-size: 14px;
+transition: all 0.3s ease;
+}
+.socialMediasList .iconContent:hover .tooltip {
+opacity: 1;
+visibility: visible;
+top: -30px;
+}
+.socialMediasList .iconContent .link {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+color: #4d4d4d;
+background-color: #ececec80;
+transition: all 0.3s ease-in-out;
+}
+.socialMediasList .iconContent .link:hover {
+box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+.socialMediasList .iconContent .link svg {
+width: 30px;
+height: 30px;
+}
+.socialMediasList .iconContent .link[data-social="instagram"]:hover {
+color: #DD2A7B;
+}
+.socialMediasList .iconContent .link[data-social="linkedin"]:hover {
+color: #0E76AB;
+}
+.socialMediasList .iconContent .link[data-social="facebook"]:hover {
+color: #3B5998;
+}
+
+.listProfileInfo h2{
     margin: 0;
     font-size: 1.5rem;
     font-weight: 800;
@@ -142,7 +211,6 @@
 
 .socialMedias{
     width: 100%;
-    justify-content: space-around;
 }
 
 .contenedorRoadmaps{
@@ -192,14 +260,21 @@
 
 @media (max-width: 768px) {
     .userProfile{
-        height: 160px;
-        width: 160px;
+        height: 220px;
+        width: 170px;
+    }
+    .userPick{
+        width: 170px;
+        height: 170px;
+    }
+    .infoText{
+        bottom: 40px;
     }
     .banner{
         height: 200px;
     }
     .profileInfo{
-        top: 140px;
+        top: 110px;
     }
     .contenedorRoadmaps{
         width: 45%;
@@ -208,11 +283,11 @@
 }
 
 @media (max-width: 576px) {
-    .list-profileInfo{
+    .listProfileInfo{
         flex-direction: column;
         align-items: center;
     }
-    .list-profileInfo li{
+    .listProfileInfo li{
         margin: 10px 0;
     }
     .contenedorRoadmapsGrande{
@@ -246,3 +321,4 @@
     fill: #ffffff;
     stroke-width: 10;
 }
+
