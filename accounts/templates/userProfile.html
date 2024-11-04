@@ -121,13 +121,13 @@
                                     value="{{facebook|default_if_none:''}}">
                             </div>
                             <div class="inputField">
-                                <input type="submit" class="button-1" value="submit" style="padding: 10px;">
+                                <input type="submit" class="button-1" value="Apply changes" style="padding: 10px;">
                             </div>
                         </div>
                         <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
                         <div class="settingsInterests">
                             <h4>Interests</h4>
-                            <a href="interestSelection.html" class="button-1 buttonInterestSelection">Change your
+                            <a href="{% url 'interestSelection' %}" class="button-1 buttonInterestSelection">Change your
                                 Interests</a>
                         </div>
                     </form>

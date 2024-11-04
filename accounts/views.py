@@ -57,10 +57,13 @@ def interestSelectionView(request):
             if interest:
                 interests.append(interest)
         user = request.user
+        amount = UserInterest.objects.filter(user=user).count()
         for interest in interests:
             if not UserInterest.objects.filter(user=user, interest=Interest.objects.get(id=interest)).exists():
+                if amount >= 3:
+                    UserInterest.objects.filter(user=user).first().delete()
                 UserInterest.objects.create(user=user, interest=Interest.objects.get(id=interest))
-        return redirect('home')
+        return redirect('profile')
     return render(request, 'interestSelection.html', {'interests': Interest.objects.all()})
 
 def infoUser(user):
