@@ -4,6 +4,7 @@ window.onload = function(){
     loadProgress();
     showInfo();
     deleteConfirm();
+    roadmapCompletedConfetti();
 }
 
 function initializeCheckboxes(){
@@ -28,6 +29,43 @@ function locateStep(){
     const stepNumber = parseInt(splittedUrl[splittedUrl.length-1]);
     if(splittedUrl.length == 5 && stepNumber > 0){ //Must be equal to 5 to be an after mark page.
         openModal(stepNumber);
+    }
+}
+
+function roadmapCompletedConfetti(){
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="remarkablePoint"]');
+    let bool = true;
+    if(checkboxes.length == 0){
+        bool = false;
+        return;
+    }
+    for(count = 0; count < checkboxes.length; count++){
+        if(!checkboxes[count].checked){
+            bool = false;
+            break
+        }
+    }
+    if(bool){
+        var duration = 10 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+        var timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        var particleCount = 100 * (timeLeft / duration);
+        // since particles fall down, start a bit higher than random
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        }, 250);    
     }
 }
 
@@ -58,12 +96,12 @@ function loadProgress(){
         }
     }
     console.log(count);
-        if(count >= 15){
-            document.getElementById('paso1').classList.add('active');
-            document.getElementById('paso2').classList.add('active');
-            document.getElementById('paso3').classList.add('active');
-            document.getElementById('paso4').classList.add('active');
-            document.getElementById('paso5').classList.add('active');
+    if(count >= 15){
+        document.getElementById('paso1').classList.add('active');
+        document.getElementById('paso2').classList.add('active');
+        document.getElementById('paso3').classList.add('active');
+        document.getElementById('paso4').classList.add('active');
+        document.getElementById('paso5').classList.add('active');
     }else if(count >= 12){
         document.getElementById('paso1').classList.add('active');
         document.getElementById('paso2').classList.add('active');

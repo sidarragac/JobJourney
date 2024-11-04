@@ -57,14 +57,15 @@ body{
     display: block;
 }
 
-.contenedorPasoImpar{
+.contenedorPasos{
     text-decoration: none;
     background-color: #f1f1f1;
     border-radius: 30px;
     padding: 20px;
     color: black;
     transition: 0.5s;
-    width: 200px;
+    width: 250px;
+    overflow: hidden;
     align-content: center;
     text-align: center;
     height: 200px;
@@ -73,22 +74,13 @@ body{
     transition: transform 0.5s ease;
 }
 
-.contenedorPasoImpar h3{
+.contenedorPasos h3{
     font-size: 22px;
     margin: 0px;
 }
 
-.contenedorPasoImpar:hover{
+.contenedorPasos:hover{
     transform: scale(1.1);
-}
-
-.contenedorPasos{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 90%;
-    margin: 100px auto;
 }
 
 .pasos{
@@ -211,7 +203,7 @@ body{
 .progress::after{
     content: "";
     position: absolute;
-    width: 215px;
+    width: 265px;
     height: 8px;
     background-color: #778da9;
     right: 45px;
@@ -255,9 +247,15 @@ body{
     display: flex;
 }
 
-@media(max-width: 1200px){
+@media(max-width: 1400px){
     .main{
         transform: scale(0.75);
+    }
+}
+
+@media(max-width: 1200px){
+    .main{
+        transform: scale(0.65);
     }
 }
 
@@ -300,14 +298,14 @@ body{
         width: 0px;
         height: 0px;
     }
-    .contenedorPasoImpar{
+    .contenedorPasos{
         width: 40%;
         max-height: 180px;
         border-radius: 20px;
         overflow: hidden;
     }
 
-    .contenedorPasoImpar h2, h3{
+    .contenedorPasos h2, h3{
         font-size: 20px ;
     }
     .pasos{
@@ -370,14 +368,14 @@ body{
         width: 0px;
         height: 0px;
     }
-    .contenedorPasoImpar{
+    .contenedorPasos{
         width: 60%;
         max-height: 180px;
         border-radius: 20px;
         overflow: hidden;
     }
 
-    .contenedorPasoImpar h2, h3{
+    .contenedorPasos h2, h3{
         font-size: 20px;
     }
     .pasos p{

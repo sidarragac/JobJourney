@@ -26,7 +26,7 @@
                             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
                         </svg>
                     </div>
-                    <a href="#Paso{{step.number}}" class="contenedorPasoImpar pasos{{step.number}}" id="btn{{step.number}}">
+                    <a href="#Paso{{step.number}}" class="contenedorPasos pasos{{step.number}}" id="btn{{step.number}}">
                         <h3>{{ step.name }}</h3>
                     </a>
                 </li>
@@ -183,6 +183,7 @@
     {% block scripts %}
     <script src="{% static 'scripts/roadmap.js' %}"></script>
     <script type="application/json" id="checkpoints-data">{{ checkpoints|safe }}</script> 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     {% endblock scripts %}
 </body>
 </html>
