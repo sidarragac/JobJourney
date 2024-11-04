@@ -135,7 +135,7 @@
                         </div>
                     </a>
                     <dialog id="modalDelete" class="modalDelete">
-                        <div class="deleteConfirmation d-flex flex-column align-items-center justify-content-center">
+                        <div class="modalMessage d-flex flex-column align-items-center justify-content-center">
                             <h4>Are you sure?</h4>
                             <p>Are you sure you want to delete this roadmap? This action cannot be undone.</p>
                         </div>
@@ -152,8 +152,19 @@
                             </div>
                         </div>
                     </dialog>
-                {% endif %}
-                </div>
+                    {% endif %}
+                    <dialog id="modalClone" class="modalClone">
+                        <div class="modalMessage d-flex flex-column align-items-center justify-content-center">
+                            <h4 id="modalTitle"></h4>
+                            <p id="modalBody"></p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="button m-2">
+                                <input type="button" class="button-1" value="Close" id="btn-modalClone">
+                            </div>
+                        </div>
+                    </dialog>
+            </div>
         {% endif %}
     <div class="footer">
         <h2>Conclusions</h2>

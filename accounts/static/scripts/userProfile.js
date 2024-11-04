@@ -11,3 +11,9 @@ let inputFile = document.getElementById("inputFile");
 inputFile.onchange = function() {
     profilePic.src = URL.createObjectURL(inputFile.files[0]);
 }
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.close();
+    }
+}
