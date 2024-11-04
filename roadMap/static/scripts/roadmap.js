@@ -3,6 +3,7 @@ window.onload = function(){
     locateStep();
     loadProgress();
     showInfo();
+    deleteConfirm();
 }
 
 function initializeCheckboxes(){
@@ -166,20 +167,57 @@ function showInfo(){
 
 }
 
-const btnModalDelete = document.getElementById('btn-modalDelete');
-const btnModalDeleteClose = document.getElementById('btn-modalDeleteClose');
-var modalDelete = document.getElementById('modalDelete');
+function deleteConfirm(){
 
-btnModalDelete.addEventListener("click",()=>{
-    modalDelete.showModal();
-})
+    const btnModalDelete = document.getElementById('btn-modalDelete');
+    const btnModalDeleteClose = document.getElementById('btn-modalDeleteClose');
+    var modalDelete = document.getElementById('modalDelete');
 
-btnModalDeleteClose.addEventListener("click",()=>{
-    modalDelete.close();
-})
+    if (btnModalDelete == null || btnModalDeleteClose == null || modalDelete == null) {
+        return;
+    }
+    
+    btnModalDelete.addEventListener("click",()=>{
+        modalDelete.showModal();
+    })
 
-window.onclick = function(event) {
-    if (event.target == modalDelete) {
+    btnModalDeleteClose.addEventListener("click",()=>{
         modalDelete.close();
+    })
+
+    window.onclick = function(event) {
+        if (event.target == modalDelete) {
+            modalDelete.close();
+        }
     }
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const status = urlParams.get("status");
+
+    if (status) {
+        const modalClone = document.getElementById("modalClone");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBody");
+
+        if (status === "success") {
+            modalTitle.textContent = "Success";
+            modalBody.textContent = "Roadmap cloned successfully!";
+        } else if (status === "exists") {
+            modalTitle.textContent = "Warning";
+            modalBody.textContent = "You already have a roadmap with the same content. Visit your profile to see it.";
+        }
+
+        modalClone.showModal();
+
+        // Clear the status parameter from the URL
+        history.replaceState(null, "", window.location.pathname);
+    }
+
+    document.getElementById("btn-modalClone").addEventListener("click", function () {
+        modalClone.close();
+    });
+
+});

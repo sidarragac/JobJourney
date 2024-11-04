@@ -139,16 +139,13 @@ def cloneRoadmap(request, roadmapID):
     person = Person.objects.get(user=user)
     roadmap = Roadmap.objects.get(id=roadmapID)
     userRoadmaps = list(Roadmap.objects.filter(user=person))
-    exists = False
-    for userRoadmap in userRoadmaps:
-        if roadmap.content == userRoadmap.content:
-            exists = True
+    exists = any(roadmap.content == userRoadmap.content for userRoadmap in userRoadmaps)
     if exists:
-        return HttpResponseRedirect(reverse('displayRoadmap', args=[roadmapID]))
+        return HttpResponseRedirect(f"{reverse('displayRoadmap', args=[roadmapID])}?status=exists")
     else:
         clonedRoadmap = createDBRoadmap(roadmap.content, roadmap.interest, person, roadmap.mainGoal, roadmap.embedding)
         createDBCheckpoints(clonedRoadmap.content, clonedRoadmap)
-        return HttpResponseRedirect(reverse('displayRoadmap', args=[clonedRoadmap.id]))
+        return HttpResponseRedirect(f"{reverse('displayRoadmap', args=[clonedRoadmap.id])}?status=success")
 
 def deleteRoadmap(request, roadmapID):
     user = request.user
