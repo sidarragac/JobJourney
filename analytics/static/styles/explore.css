@@ -109,6 +109,7 @@
     width: 30%;
     margin: 2% 10px;
     padding: 10px;
+    min-height: 240px;
 }
 
 .infoRoadmap1{
