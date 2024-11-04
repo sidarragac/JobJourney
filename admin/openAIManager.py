@@ -1,11 +1,10 @@
-import os, json
+import json
 from openai import OpenAI
-from dotenv import load_dotenv
+from django.conf import settings
 
 class openAIManager():
-    load_dotenv(".env")
     def __init__(self):
-        api_key = os.getenv("OPENAI_API_KEY")
+        api_key = settings.OPENAI_API_KEY
         self.client = OpenAI(api_key=api_key)
         self.models = {
             'gpt': "gpt-4o-mini",

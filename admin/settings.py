@@ -11,7 +11,18 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os   
+import os
+from dotenv import load_dotenv
+
+# Environment Variables
+load_dotenv('.env')
+# Google OAuth client vars.
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
+GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI')
+
+# OpenAI API key.
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +40,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "34.123.225.208",
     "127.0.0.1",
+    'localhost',
 ]
 
 
