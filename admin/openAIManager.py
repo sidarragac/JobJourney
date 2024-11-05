@@ -4,7 +4,7 @@ from django.conf import settings
 
 class openAIManager():
     def __init__(self):
-        api_key = settings.OPENAI_API_KEY
+        api_key = settings.KEYS['OPENAI_API_KEY']
         self.client = OpenAI(api_key=api_key)
         self.models = {
             'gpt': "gpt-4o-mini",
