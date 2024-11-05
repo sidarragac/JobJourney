@@ -3,7 +3,7 @@ from accounts.models import Person, User
 import numpy as np
 
 def genDefaultArray():
-    return np.random.rand(1536).tobytes()
+    return np.zeros(1536, dtype=np.int64).tobytes()
 
 class Interest(models.Model):
     name = models.CharField(max_length=100)
