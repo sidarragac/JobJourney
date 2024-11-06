@@ -126,12 +126,12 @@ body {
   border: none;
   outline: none;
   height: 45px;
-  background: #ececec;
+  background: #E0E1DD;
   border-radius: 10px;
   transition: .4s;
 }
 .button-1:hover{
-  background: rgba(37, 95, 156, 0.937);
+  background: #415A77;
   color: #fff;
 }
 

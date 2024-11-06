@@ -71,7 +71,7 @@ body{
     height: 200px;
     align-items: justify;
     margin: 0px 30px;
-    transition: transform 0.5s ease;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .contenedorPasos h3{
