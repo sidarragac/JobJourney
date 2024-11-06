@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/completeRegistration.css' %}">
+    {% endblock styles %}
+    <title>{% block title %} Complete Registration {% endblock title %}</title>
+</head>
+<body>
+    {% block content %}
+        <div class="container main">
+            <div class="row total">
+                <header>Welcome {{ name }}. Complete your registration</header>
+                <form action="{% url 'completeRegistration' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="selector">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked onclick="toggleFields()">
+                            <label class="btn btn-outline-dark" for="btnradio1">Person</label>
+                        
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="toggleFields()">
+                            <label class="btn btn-outline-dark" for="btnradio2" style=" border-radius: 0px 5px 5px 0px;">Company</label>
+                            <input type="hidden" id="isCompany" name="isCompany">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 left">
+                            <div class="input-box">
+                                <div class="input-field">
+                                    <input type="text" class="input" id="username" name="username" required autocomplete="off">
+                                    <label for="username">Username</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="email" class="input" id="email" name="email" required autocomplete="off" value="{{ email|default_if_none:'' }}" onkeydown="return false">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="password" class="input" id="password1" name="password1" onkeydown="return false" placeholder="Leave empty">
+                                    <label for="password1">Password</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="password" class="input" id="password2" name="password2" onkeydown="return false" placeholder="Leave empty">
+                                    <label for="password2">Confirm Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 right" id="content">
+                            <div class="input-box">
+                                <!-- Default fields -->
+                                <div class="defaultFields">
+                                    <div class="input-field">
+                                        <input type="text" class="input" id="city" name="city" required autocomplete="off">
+                                        <label for="city">City</label>
+                                    </div>
+                                </div>
+                                <!-- Person fields -->
+                                <div class="personFields" id="personFields">
+                                    <div class="input-field">
+                                        <input type="text" class="input" id="first_name" name="first_name" required autocomplete="off" value="{{ firstName|default_if_none:'' }}" onkeydown="return false">
+                                        <label for="first_name">First Name</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input type="text" class="input" id="last_name" name="last_name" required autocomplete="off" value="{{ lastName|default_if_none:'' }}" onkeydown="return false">
+                                        <label for="last_name">Last Name</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input type="date" class="input" id="dateOfBirth" name="dateOfBirth" placeholder="" value="{{ dateOfBirth|default_if_none:'' }}">
+                                        <label for="dateOfBirth">Birth Date</label>
+                                    </div>
+                                </div>
+                                <!-- Company fields -->
+                                <div class="companyFields" id="companyFields">
+                                    <div class="input-field">
+                                        <input type="text" class="input" id="companyName" name="companyName" required autocomplete="off" value="{{ companyName|default_if_none:'' }}">
+                                        <label for="companyName">Company Name</label>
+                                    </div>
+                                </div>
+
+                                <!-- Google's image URL -->
+                                <input type="hidden" name="image" id="image" value="{{ image|default_if_none:'' }}">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button" style="margin-bottom: 25px;">
+                        <div class="input-field">
+                            <input type="submit" class="button-1" value="Complete Registration">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <script src="{% static 'scripts/completeRegistration.js' %}"></script>
+    {% endblock content %}
+</body>
+</html>
