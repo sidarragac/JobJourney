@@ -51,19 +51,19 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li>
-                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('filtered', false)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('', true)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                                     </svg>
-                                    <p>Increasing number of likes</p>
+                                    <p>Most likes</p>
                                 </div>
                             </li>
                             <li>
-                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('filtered', true)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                                <div name="moreLikes" class="dropdown-item dropdownboton" id="moreLikes" onclick="sortRoadmaps('', false)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
                                     </svg>
-                                    <p>Decreasing number of likes</p>
+                                    <p>Least likes</p>
                                 </div>
                             </li>
                         </ul>
@@ -71,21 +71,19 @@
                 </div>
                 <div class="row cajaContenedorRoadmaps" id="filteredRoadmaps">
                     {% for roadmap in filteredRoadmaps %}
-                        <div likes="{{ roadmap.numberOfLikes }}" class="contenedorRoadmaps flex-column justify-content-between roadmap">
+                        <div likes="{{ roadmap.numberOfLikes }}" class="contenedorRoadmaps flex-column justify-content-between">
+                            <div class="interestColor" style="background-color: {{ roadmap.interest.color }};">
+
+                            </div>
                             <div class="top d-flex flex-row justify-content-center">
                                 <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
                                     <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
                                 </a>
-                                <div class="interestTag">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27" fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                        <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
-                                    </svg>
-                                </div>
                             </div>
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
-                                    <p>User: {{ roadmap.user }}</p>
+                                    <p>Owner: {{ roadmap.user }}</p>
                                     <p>Interest: {{ roadmap.interest }}</p>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
@@ -148,26 +146,22 @@
                                     <p>Least likes</p>
                                 </div>
                             </li>
-                            
+                        </ul>
                     </div>
                 </div>
                 <div class="row cajaContenedorRoadmaps" id="Roadmaps">
                     {% for roadmap in suggestedRoadmaps %}
-                        <div likes="{{ roadmap.numberOfLikes }}" class="contenedorRoadmaps flex-column justify-content-between roadmap">
+                        <div likes="{{ roadmap.numberOfLikes }}" class="contenedorRoadmaps flex-column justify-content-between">
+                            <div class="interestColor" style="background-color: {{ roadmap.interest.color }};"></div>
                             <div class="top d-flex flex-row justify-content-center">
                                 <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
                                     <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
                                 </a>
-                                <div class="interestTag">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27" fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                        <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
-                                    </svg>
-                                </div>
                             </div>
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
-                                    <p>User: {{ roadmap.user }}</p>
+                                    <p>Owner: {{ roadmap.user }}</p>
                                     <p>Interest: {{ roadmap.interest }}</p>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">

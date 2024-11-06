@@ -136,24 +136,18 @@
         </div>
         <div class="container contenedorRoadmapsGrande">
             {% if not isCompany %}
-            <h1 class="my-5">My roadmaps</h1>
+            <h1 class="my-5" style="font-weight: 600;">My roadmaps</h1>
             {% endif %}
             <div class="row cajaContenedorRoadmaps">
                 <!-- row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 -->
                 {% if roadmaps %}
                 {% for roadmap in roadmaps %}
                 <div class="contenedorRoadmaps flex-column justify-content-between">
+                    <div class="interestColor" style="background-color: {{ roadmap.interest.color }};"></div>
                     <div class="top d-flex flex-row justify-content-center">
                         <a href="/roadmap/displayRoadmap/{{roadmap.id}}" class="tituloCard">
                             <h5 class="card-title text-center my-1">{{ roadmap.content.name }}</h5>
                         </a>
-                        <div class="interestTag">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="27" height="27"
-                                fill="{{ roadmap.interest.color }}"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                <path
-                                    d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
-                            </svg>
-                        </div>
                     </div>
                     <br>
                     <div class="d-flex flex-row w-100 justify-content-between">
