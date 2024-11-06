@@ -16,8 +16,8 @@
 {% block content %}
     <div class="contenedorBanner">
         <div class="banner">
-            <h2>Welcome to the explore section</h2>
-            <h4>Here are some roadmaps you might find interesting:</h4>
+            <h2>Explore section</h2>
+            <h4>Have a look at other people's journeys</h4>
             <div class="contenedorForm">
                 <form action="{% url 'explore' %}" method="POST" class="form1">
                     {% csrf_token %}
@@ -85,6 +85,7 @@
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
+                                    <p>User: {{ roadmap.user }}</p>
                                     <p>Interest: {{ roadmap.interest }}</p>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
@@ -166,6 +167,7 @@
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
+                                    <p>User: {{ roadmap.user }}</p>
                                     <p>Interest: {{ roadmap.interest }}</p>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">

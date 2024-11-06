@@ -4,13 +4,15 @@
 }
 
 .contenedorBanner{
-    background-color: #102C57;
+    background-color: #1B263B;
     height: 300px;
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
 }
 
 .banner{
@@ -109,6 +111,13 @@
     width: 30%;
     margin: 2% 10px;
     padding: 10px;
+    min-height: 240px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.17);
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.contenedorRoadmaps:hover{
+    transform: scale(1.04);
 }
 
 .infoRoadmap1{
@@ -155,8 +164,26 @@
     flex-direction: row;
 }
 
+.botonDropdown{
+    border-radius: 12px;
+    padding: 10px;
+    margin: 5px;
+    background-color: rgb(147, 147, 147);
+    color: white;
+    border: none;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 20px -18px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .dropdownboton:active{
-    background-color: gray;
+    background-color: grey;
 }
 
 .dropdown-menu{
@@ -226,7 +253,7 @@
     }
 
     .botonDropdown{
-        transform: scale(0.9);
+        transform: scale(0.9);;
     }
 
     .contenedorRoadmaps{
