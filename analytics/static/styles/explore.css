@@ -107,17 +107,29 @@
     align-items: center;
     border: solid 1px #0d1b2a18;
     border-radius: 10px;
-    background-color: #e0e1dd57;
+    background-color: #eff0ef;
     width: 30%;
     margin: 2% 10px;
     padding: 10px;
     min-height: 240px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.17);
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
 }
 
-.contenedorRoadmaps:hover{
-    transform: scale(1.04);
+.contenedorRoadmaps:active{
+    background-color: rgb(226, 224, 224);
+} 
+
+.interestColor {
+    width: 100%;
+    height: 100%;
+    top: 7px;
+    right: 7px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: -2;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.17);
 }
 
 .infoRoadmap1{
@@ -148,12 +160,6 @@
 .top {
     position: relative;
     width: 100%;
-}
-
-.interestTag {
-    position: absolute;
-    right: -5px;
-    top: 5px;
 }
 
 .dropdownboton{
@@ -198,6 +204,24 @@
 .dropdown-menu p:hover{
     cursor: pointer;
 }
+@media (max-width: 1400px){
+    .contenedorRoadmaps{
+        min-height: 270px;
+    }
+}
+
+@media (max-width: 1200px){
+    .contenedorRoadmaps{
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 992px){
+    .contenedorRoadmaps{
+        min-height: 340px;
+    }
+}
+
 
 @media (max-width: 768px) {
     .banner h2{
@@ -258,6 +282,7 @@
 
     .contenedorRoadmaps{
         width: 80%;
+        min-height: 270px;
     }
 
     .infoRoadmap1{
