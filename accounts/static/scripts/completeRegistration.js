@@ -26,31 +26,20 @@ function toggleFields() {
     }
 }
 
+function setReadOnly(){
+    let fields = ['email', 'password1', 'password2', 'first_name', 'last_name'];
+    fields.forEach(field => {
+        document.getElementById(field).style.pointerEvents = 'none';
+    });
+}
+
 window.onload = function() {
     document.getElementById('btnradio2').checked = document.getElementById('isCompany').value === 'true';
     toggleFields();  // Set the correct fields visibility on page load
+    setReadOnly(); // Set the already filled fields to be read only
 };
 
-document.getElementById('password2').addEventListener('keyup', () => {
-    var password1 = document.getElementById('password1');
-    var password2 = document.getElementById('password2');
-    if (password1.value === password2.value && password1.value !== "") {
-        password2.style.borderBottom = "2px solid green";
-    } else {
-        password2.style.borderBottom = "2px solid red";
-    }
-});
-
-document.getElementById('password1').addEventListener('keyup', () => {
-    var password1 = document.getElementById('password1');
-    var password2 = document.getElementById('password2');
-    if (password1.value === password2.value && password1.value !== "") {
-        password2.style.borderBottom = "2px solid green";
-    } else {
-        password2.style.borderBottom = "2px solid red";
-    }
-});
-
+// Verify that the birthday is a valid date
 document.getElementById('dateOfBirth').addEventListener('change', () => {
     let dateOfBirth = document.getElementById('dateOfBirth');
     let age = new Date().getFullYear() - new Date(dateOfBirth.value).getFullYear();
