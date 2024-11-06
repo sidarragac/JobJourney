@@ -79,16 +79,12 @@
                                         <label for="companyName">Company Name</label>
                                     </div>
                                 </div>
-
-                                <!-- Google's image URL -->
-                                <input type="hidden" name="image" id="image" value="{{ image|default_if_none:'' }}">
-
                             </div>
                         </div>
                     </div>
                     <div class="button" style="margin-bottom: 25px;">
                         <div class="input-field">
-                            <input type="submit" class="button-1" value="Complete Registration">
+                            <input type="submit" id="submitButton" class="button-1" value="Complete Registration">
                         </div>
                     </div>
                 </form>

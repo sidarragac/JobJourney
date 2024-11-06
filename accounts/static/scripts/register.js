@@ -50,3 +50,16 @@ document.getElementById('password1').addEventListener('keyup', () => {
         password2.style.borderBottom = "2px solid red";
     }
 });
+
+document.getElementById('dateOfBirth').addEventListener('change', () => {
+    let dateOfBirth = document.getElementById('dateOfBirth');
+    let age = new Date().getFullYear() - new Date(dateOfBirth.value).getFullYear();
+    let button = document.getElementById('submitButton');
+    if(age <= 0){
+        button.disabled = true;
+        dateOfBirth.style.borderBottom = "2px solid red";
+    }else{
+        button.disabled = false;
+        dateOfBirth.style.borderBottom = "1px solid black";
+    }
+});
