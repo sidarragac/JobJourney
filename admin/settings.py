@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os   
+import os
+from dotenv import load_dotenv, dotenv_values
+
+# Environment Variables
+KEYS = dotenv_values('.env')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +33,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "34.123.225.208",
     "127.0.0.1",
+    'localhost',
 ]
 
 
