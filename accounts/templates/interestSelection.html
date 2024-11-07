@@ -13,43 +13,55 @@
 </head>
 <body>
     {% block content %}
-    <div class="container main">
-        <div class="row">
-            <div class="content">
-                <header>Select Interests</header>
-                <div class="input-box">
-                    <form action="{% url 'interestSelection' %}" method="POST">
-                        {% csrf_token %}
-                        <!-- First interest -->
+    <div class="main">
+        <div class="content">
+            <div class="titleContainer">
+                <h1>Select Your Interests</h1>
+            </div>
+            <div class="input-box">
+                <form action="{% url 'interestSelection' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="description">
+                        <h6>Select up to 3 interests that will be used to recommend community’s roadmaps. You can always change them or set the up later in your profile.</h6>
+                    </div>
+                    <!-- First interest -->
+                     <div>
+                        <label for="interest1" class="interestLabel">Interest 1</label>
                         <select name="interest1" class="form-select">
                             <option value=""></option>
                             {% for interest in interests %}
                                 <option value="{{ interest.id }}">{{ interest.name }}</option>
                             {% endfor %}
                         </select>
-                        <!-- Second interest -->
+                    </div>
+                    <!-- Second interest -->
+                    <div>
+                        <label for="interest2" class="interestLabel">Interest 2</label>
                         <select name="interest2" class="form-select">
                             <option value=""></option>
                             {% for interest in interests %}
                                 <option value="{{ interest.id }}">{{ interest.name }}</option>
                             {% endfor %}
                         </select>
-                        <!-- Third interest -->
+                    </div>
+                    <!-- Third interest -->
+                    <div>
+                        <label for="interest3" class="interestLabel">Interest 3</label>
                         <select name="interest3" class="form-select">
                             <option value=""></option>
                             {% for interest in interests %}
                                 <option value="{{ interest.id }}">{{ interest.name }}</option>
                             {% endfor %}
                         </select>
-                        <div class="input-field">
-                            <div class="button">
-                                <div class="input-field">
-                                    <input type="submit" class="submit" value="Done">
-                                </div>
+                    </div>
+                    <div class="input-field">
+                        <div class="button">
+                            <div class="input-field">
+                                <input type="submit" class="submit" value="Done">
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
