@@ -102,6 +102,7 @@
 
 #modal{
     width: 600px;
+    position: relative;
 }
 
 #modal::backdrop{
@@ -111,6 +112,15 @@
 
 .settingsButton p{
     margin: 0px 6px;
+}
+
+.closeButton{
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
 }
 
 .profileInfo{
