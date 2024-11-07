@@ -89,6 +89,11 @@ function submitForm(checkbox, step){
 
 function loadProgress(){
     let count = 0
+    const paso1 = document.querySelectorAll('.paso1');
+    const paso2 = document.querySelectorAll('.paso2');
+    const paso3 = document.querySelectorAll('.paso3');
+    const paso4 = document.querySelectorAll('.paso4');
+    const paso5 = document.querySelectorAll('.paso5');
     const checkboxes = document.querySelectorAll('input[type="checkbox"][name="remarkablePoint"]');
     for(count = 0; count < checkboxes.length; count++){
         if(!checkboxes[count].checked){
@@ -97,35 +102,85 @@ function loadProgress(){
     }
     console.log(count);
     if(count >= 15){
-        document.getElementById('paso1').classList.add('active');
-        document.getElementById('paso2').classList.add('active');
-        document.getElementById('paso3').classList.add('active');
-        document.getElementById('paso4').classList.add('active');
-        document.getElementById('paso5').classList.add('active');
+        paso1.forEach(element => {
+            element.classList.add('active');
+        });
+        paso2.forEach(element => {
+            element.classList.add('active');
+        });
+        paso3.forEach(element => {
+            element.classList.add('active');
+        });
+        paso4.forEach(element => {
+            element.classList.add('active');
+        });
+        paso5.forEach(element => {
+            element.classList.add('active');
+        });
     }else if(count >= 12){
-        document.getElementById('paso1').classList.add('active');
-        document.getElementById('paso2').classList.add('active');
-        document.getElementById('paso3').classList.add('active');
-        document.getElementById('paso4').classList.add('active');
-        document.getElementById('paso5').classList.remove('active');
+        paso1.forEach(element => {
+            element.classList.add('active');
+        });
+        paso2.forEach(element => {
+            element.classList.add('active');
+        });
+        paso3.forEach(element => {
+            element.classList.add('active');
+        });
+        paso4.forEach(element => {
+            element.classList.add('active');
+        });
+        paso5.forEach(element => {
+            element.classList.remove('active');
+        });
     }else if(count >= 9){
-        document.getElementById('paso1').classList.add('active');
-        document.getElementById('paso2').classList.add('active');
-        document.getElementById('paso3').classList.add('active');
-        document.getElementById('paso4').classList.remove('active');
-        document.getElementById('paso5').classList.remove('active');
+        paso1.forEach(element => {
+            element.classList.add('active');
+        });
+        paso2.forEach(element => {
+            element.classList.add('active');
+        });
+        paso3.forEach(element => {
+            element.classList.add('active');
+        });
+        paso4.forEach(element => {
+            element.classList.remove('active');
+        });
+        paso5.forEach(element => {
+            element.classList.remove('active');
+        });
     }else if(count >= 6){
-        document.getElementById('paso1').classList.add('active');
-        document.getElementById('paso2').classList.add('active');
-        document.getElementById('paso3').classList.remove('active');
-        document.getElementById('paso4').classList.remove('active');
-        document.getElementById('paso5').classList.remove('active');
+        paso1.forEach(element => {
+            element.classList.add('active');
+        });
+        paso2.forEach(element => {
+            element.classList.add('active');
+        });
+        paso3.forEach(element => {
+            element.classList.remove('active');
+        });
+        paso4.forEach(element => {
+            element.classList.remove('active');
+        });
+        paso5.forEach(element => {
+            element.classList.remove('active');
+        });
     }else if(count >= 3){
-        document.getElementById('paso1').classList.add('active');
-        document.getElementById('paso2').classList.remove('active');
-        document.getElementById('paso3').classList.remove('active');
-        document.getElementById('paso4').classList.remove('active');
-        document.getElementById('paso5').classList.remove('active');
+        paso1.forEach(element => {
+            element.classList.add('active');
+        });
+        paso2.forEach(element => {
+            element.classList.remove('active');
+        });
+        paso3.forEach(element => {
+            element.classList.remove('active');
+        });
+        paso4.forEach(element => {
+            element.classList.remove('active');
+        });
+        paso5.forEach(element => {
+            element.classList.remove('active');
+        }); 
     }
 }
 

@@ -7,7 +7,7 @@ body{
 }
 
 .contenedorTitulo{
-    background-color: #102C57;
+    background-color: #1B263B;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -205,6 +205,7 @@ body{
     top: 30px;
     right: 55%;
     transition: background-color 0.5s ease;
+    z-index: -1;
 }
 
 .progress{
@@ -253,12 +254,12 @@ body{
     height: 0px;
 }
 
-.active{
+.active.progress{
     background-color: #415A77;
     transition: background-color 0.5s ease;
 }
 
-.active::after{
+.active.containerProgress::after{
     background-color: #415A77;
     transition: background-color 0.5s ease;
 }
@@ -304,6 +305,10 @@ body{
         transform: rotate(-50%);
         z-index: -1;
         display: block;
+    }
+    .active.progress::after{
+        background-color: #415A77;
+        transition: background-color 0.5s ease;
     }
     .paso2{
         z-index: 5;
