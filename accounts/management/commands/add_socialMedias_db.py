@@ -5,7 +5,7 @@ import json
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        json_file_path = 'roadMap/management/commands/socialMedias.json'
+        json_file_path = 'accounts/management/commands/socialMedias.json'
 
         # Load data from the JSON file
         with open(json_file_path, 'r') as file:
