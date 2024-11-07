@@ -41,7 +41,13 @@ To keep a copy of our project, you can follow the next steps:
   ```bash
     pip install -r requirements.txt
   ```
-6. Get your OpenAI API KEY[^1], and save it on a ``` .env ``` file located on the project root folder, with the following structure: ``` OPENAI_API_KEY = <YOUR OPENAI API KEY> ```.
+6. Create a ```.env``` file on the root folder of your project. There, you must save your OpenAI API KEY[^1] and the Client ID, Client Secret and redirect URI of your Google project[^2] for the OAuth in the following format:
+```.env
+  OPENAI_API_KEY=<YOUR OPENAI API KEY>
+  GOOGLE_CLIENT_ID=<YOUR GOOGLE PROJECT CLIENT ID>
+  GOOGLE_CLIENT_SECRET=<YOUR GOOGLE PROJECT CLIENT SECRET>
+  GOOGLE_REDIRECT_URI=<YOUR GOOGLE PROJECT REDIRECT URI>
+```
   * Up to this point, your folder should look like this:
   ```bash
     JobJourney
@@ -56,7 +62,7 @@ To keep a copy of our project, you can follow the next steps:
     ├───README.md
     └───requirements.txt
   ```
-7. Make the database migrations.
+7. Migrate the database.
   ```bash
     python manage.py migrate
   ```
@@ -66,7 +72,12 @@ To keep a copy of our project, you can follow the next steps:
     python manage.py add_interests_db
   ```
   * This step will add all the required information about the interests to the database.
-9. Run the development server.
+9. Create the database Social Media information.
+  ```bash
+    python manage.py add_socialMedias_db
+  ```
+  * This step will add all the required information about the social medias to the database.
+10.  Run the development server.
   ```bash
     python manage.py runserver
   ```
@@ -75,3 +86,4 @@ To keep a copy of our project, you can follow the next steps:
 Copyright 2024, Santiago Idárraga, Juan José Botero, Mateo García. All rights reserved JobJourney.
 
 [^1]: To know more about the OpenAI API, please visit the [OpenAI website](https://openai.com/api/). Please be aware that a $5 fee is required to get access to one key.
+[^2]: To know more about the OAuth and it's requirements, visit the [Google website](https://developers.google.com/identity/protocols/oauth2) for the OAuth2 process.
