@@ -144,3 +144,18 @@ dialog {
   border-width: 0;
   border-radius: 30px;
 }
+
+.translator {
+  position: relative;
+}
+
+.googleTranslate{
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background-color: #e9ecef;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
