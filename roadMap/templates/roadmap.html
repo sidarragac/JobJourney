@@ -20,11 +20,13 @@
         <ul>
             {% for step in roadmap.steps %}
                 <li>
-                    <div class="progress paso{{step.number}}" id="paso{{step.number}}">
-                        <p>{{step.number}}</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="iconnn bi bi-check2" viewBox="0 0 16 16">
-                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
-                        </svg>
+                    <div class="containerProgress paso{{step.number}}">
+                        <div class="progress paso{{step.number}}" id="paso{{step.number}}">
+                            <p>{{step.number}}</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="iconnn bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+                            </svg>
+                        </div>
                     </div>
                     <a href="#Paso{{step.number}}" class="contenedorPasos pasos{{step.number}}" id="btn{{step.number}}">
                         <h3>{{ step.name }}</h3>

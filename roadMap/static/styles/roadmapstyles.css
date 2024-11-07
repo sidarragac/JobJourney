@@ -6,14 +6,21 @@ body{
     font-family: "Montserrat", sans-serif !important;
 }
 
+.contenedorTitulo{
+    background-color: #102C57;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .tituloRoadmap{
     width: 80%;
     text-align: center;
-    margin: auto;
-    padding: 100px 0px 15px 0px;
+    margin: 100px auto;
+    padding: 0px;
     font-size: 50px;
     font-weight: 700;
+    color: white;
 }
 
 .caminoRoadmap{
@@ -156,16 +163,13 @@ body{
 }
 
 .main{
-    width: 80%;
     margin: 200px auto 50px auto;
-    height: auto;
     display: flex;
+    width: 90%;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    width: 100%;
     justify-content: center;
-    transform: scale(0.9);
 }
 
 .main ul{
@@ -177,11 +181,30 @@ body{
 }
 
 .main ul li{
+    width: 20%;
     list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.containerProgress{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.containerProgress::after{
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 8px;
+    background-color: #778da9;
+    top: 30px;
+    right: 55%;
+    transition: background-color 0.5s ease;
 }
 
 .progress{
@@ -203,11 +226,12 @@ body{
 .progress::after{
     content: "";
     position: absolute;
-    width: 265px;
+    width: 600%;
     height: 8px;
     background-color: #778da9;
     right: 45px;
     transition: background-color 0.5s ease;
+    display: none;
 }
 
 .progress p{
@@ -247,22 +271,9 @@ body{
     display: flex;
 }
 
-@media(max-width: 1400px){
-    .main{
-        transform: scale(0.75);
-    }
-}
-
-@media(max-width: 1200px){
-    .main{
-        transform: scale(0.65);
-    }
-}
-
 @media(max-width: 992px){
     .main{
-        margin: auto;
-        scale: 1.2;
+        margin: 50px auto;
     }
     .main ul{
         flex-direction: column;
@@ -270,12 +281,19 @@ body{
     .main ul li{
         flex-direction: row;
         justify-content: flex-end;
+        width: 100%;
         height: 200px;
     }
     .botonClose2{
         display: block;
     }
     .botonClose1{
+        display: none;
+    }
+    .containerProgress{
+        width: auto;
+    }
+    .containerProgress::after{
         display: none;
     }
     .progress::after{
@@ -285,6 +303,7 @@ body{
         left: 43%;
         transform: rotate(-50%);
         z-index: -1;
+        display: block;
     }
     .paso2{
         z-index: 5;
@@ -337,12 +356,6 @@ body{
 }
 
 @media (max-width: 768px){
-    .main{
-        margin: auto;
-    }
-    .main ul{
-        flex-direction: column;
-    }
     .main ul li{
         flex-direction: row;
         justify-content: space-around;
@@ -393,7 +406,7 @@ body{
     }
     .tituloRoadmap{
         font-size: 40px;
-        padding: 80px 0px 0px 0px;
+        margin: 50px auto;
     }
 }
 
