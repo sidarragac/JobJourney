@@ -14,16 +14,15 @@
     {% block content %}
     <div class="contenedorPrimeraInfo">
         <div class="contenedorTitulo">
-            <h1>Welcome to JobJourney</h1>
+            <h1>Welcome to <span translate="no"> JobJourney</span></h1>
             <h3>The journey to your dream job</h3>
-            <a href="{% url 'interestForm'%}" class="botonCrearRoadmap">Create a roadmap</a>
+            <a href="{% url 'interestForm'%}" class="botonCrearRoadmap">Create a <span translate="no"> roadmap</span></a>
         </div>
         <div class="contenedorImagen">
             <img src="{% static 'images/roadmap.png' %}" alt="roadmap">
         </div>
     </div>
     {% endblock content %}
-
     {% block scripts %}
     {% endblock scripts %}
 </body>
