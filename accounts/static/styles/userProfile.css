@@ -128,7 +128,7 @@
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
 .listProfileInfo{
@@ -228,6 +228,7 @@ color: #3B5998;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.17);
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     position: relative;
+    height: 200px;
 }
 
 .contenedorRoadmaps:active{
@@ -254,6 +255,7 @@ color: #3B5998;
 
 .infoRoadmap2{
     width: 35%;
+    flex-wrap: wrap;
 }
 
 .tituloCard{
@@ -279,21 +281,15 @@ color: #3B5998;
     justify-content: flex-start;
 }
 
-@media (max-width: 1400px){
-    .contenedorRoadmaps{
-        min-height: 270px;
-    }
-}
-
 @media (max-width: 1200px){
     .contenedorRoadmaps{
-        min-height: 300px;
+        min-height: 220px;
     }
 }
 
 @media (max-width: 992px){
     .contenedorRoadmaps{
-        min-height: 340px;
+        min-height: 240px;
     }
 }
 
@@ -318,6 +314,7 @@ color: #3B5998;
     .contenedorRoadmaps{
         width: 45%;
         margin: 2% 10px;
+
     }
 }
 
@@ -344,7 +341,7 @@ color: #3B5998;
     }
     .contenedorRoadmaps{
         width: 90%;
-        min-height: 270px;
+        min-height: 200px;
     }
     .cajaContenedorRoadmaps{
         justify-content: space-around;
