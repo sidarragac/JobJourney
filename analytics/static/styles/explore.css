@@ -207,13 +207,13 @@
 }
 @media (max-width: 1400px){
     .contenedorRoadmaps{
-        min-height: 370px;
+        min-height: 270px;
     }
 }
 
 @media (max-width: 1200px){
     .contenedorRoadmaps{
-        min-height: 350px;
+        min-height: 300px;
     }
 }
 

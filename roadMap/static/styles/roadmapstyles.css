@@ -11,12 +11,13 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .tituloRoadmap{
     width: 80%;
     text-align: center;
-    margin: 100px auto;
+    margin: 70px auto;
     padding: 0px;
     font-size: 50px;
     font-weight: 700;
@@ -222,6 +223,32 @@ body{
     cursor: pointer;
     transition: 0.5s;
     align-items: center;
+}
+
+.buttonsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E0E1DD;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.buttonDelete{
+    background-color: rgb(231, 82, 82);
+}
+
+.buttonDelete:hover{
+    background-color: rgb(231, 82, 82);
+}
+
+.buttonPersonalize{
+    width: 30%;
+
+}
+
+.buttonPersonalize a{
+    text-decoration: none;
+    color: black;
 }
 
 .progress::after{
@@ -515,7 +542,6 @@ form div{
     font-size: 20px;
     user-select: none;
     transition: 100ms;
-    margin : 10px 0;
     width: auto;
   }
 
@@ -595,8 +621,8 @@ form div{
     font-size: 20px;
     user-select: none;
     transition: 100ms;
-    margin : 10px 0;
     width: auto;
+    border-radius: 0 10px 10px 0;
 }
 
 .icon {
