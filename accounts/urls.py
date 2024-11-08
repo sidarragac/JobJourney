@@ -8,6 +8,7 @@ urlpatterns = [
     path('interestSelection/', views.interestSelection, name='interestSelection'),
     path('interestSelection/edit', views.editInterests, name='editInterests'),
     path('profile/', views.profile, name='profile'),
+    path('profile/<int:userId>', views.profile, name='profile'),
     path('profile/edit/', views.editProfile, name='editProfile'),
     path('oauth/', views.googleLogin, name='oauth'),
     path('oauth/complete/', views.completeRegistration, name='completeRegistration'),

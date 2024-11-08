@@ -82,64 +82,66 @@
                     </li>
                 </ul>
             </div>
-            <div class="settingsButton" id="settingsButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
-                    <path
-                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
-                </svg>
-            </div>
-            <dialog id="modal">
-                <div class="modalContainer">
-                    <button class="closeButton" id="closeButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                        </svg>
-                    </button>
-                    <form action="{% url 'editProfile' %}" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="settingsPhoto">
-                            <h4>Profile Photo</h4>
-                            <img src="{% static user.image %}" class="userPick" id="profilePic">
-                            <div class="button-1 buttonPersonalize">
-                                <label for="inputFile" class="button">Change photo</label>
-                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile" name="inputFile">
+            {% if actualUserId == profileUserId %}
+                <div class="settingsButton" id="settingsButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                        <path
+                            d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                    </svg>
+                </div>
+                <dialog id="modal">
+                    <div class="modalContainer">
+                        <button class="closeButton" id="closeButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                            </svg>
+                        </button>
+                        <form action="{% url 'editProfile' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="settingsPhoto">
+                                <h4>Profile Photo</h4>
+                                <img src="{% static user.image %}" class="userPick" id="profilePic">
+                                <div class="button-1 buttonPersonalize">
+                                    <label for="inputFile" class="button">Change photo</label>
+                                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile" name="inputFile">
+                                </div>
                             </div>
-                        </div>
+                            <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
+                            <div class="settingsSocial">
+                                <h4>Social Media Links</h4>
+                                <div class="socialMedia">
+                                    <label>Link Instagram</label>
+                                    <input type="text" id="Instagram" name="Instagram"
+                                        value="{{instagram|default_if_none:''}}">
+                                </div>
+                                <div class="socialMedia">
+                                    <label>Link LinkedIn</label>
+                                    <input type="text" id="LinkedIn" name="LinkedIn"
+                                        value="{{linkedin|default_if_none:''}}">
+                                </div>
+                                <div class="socialMedia">
+                                    <label>Link Facebook</label>
+                                    <input type="text" id="Facebook" name="Facebook"
+                                        value="{{facebook|default_if_none:''}}">
+                                </div>
+                                <div class="button-1 buttonPersonalize">
+                                    <input type="submit" class="button" value="Apply Changes">
+                                </div>
+                            </div>
+                        </form>
                         <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
-                        <div class="settingsSocial">
-                            <h4>Social Media Links</h4>
-                            <div class="socialMedia">
-                                <label>Link Instagram</label>
-                                <input type="text" id="Instagram" name="Instagram"
-                                    value="{{instagram|default_if_none:''}}">
-                            </div>
-                            <div class="socialMedia">
-                                <label>Link LinkedIn</label>
-                                <input type="text" id="LinkedIn" name="LinkedIn"
-                                    value="{{linkedin|default_if_none:''}}">
-                            </div>
-                            <div class="socialMedia">
-                                <label>Link Facebook</label>
-                                <input type="text" id="Facebook" name="Facebook"
-                                    value="{{facebook|default_if_none:''}}">
-                            </div>
+                        <div class="settingsInterests">
+                            <h4>Interests</h4>
                             <div class="button-1 buttonPersonalize">
-                                <input type="submit" class="button" value="Apply Changes">
+                                <a href="{% url 'editInterests' %}" class="button">Change your Interests</a>
                             </div>
-                        </div>
-                    </form>
-                    <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
-                    <div class="settingsInterests">
-                        <h4>Interests</h4>
-                        <div class="button-1 buttonPersonalize">
-                            <a href="{% url 'editInterests' %}" class="button">Change your Interests</a>
                         </div>
                     </div>
-                </div>
-            </dialog>
+                </dialog>
+            {% endif %}
         </div>
         <div class="container contenedorRoadmapsGrande">
             {% if not isCompany %}

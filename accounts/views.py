@@ -130,9 +130,14 @@ def editInterests(request):
     return render(request, 'editInterestSelection.html', {'interests': interests, 'userInterests': userInterests})
 
 @login_required
-def profile(request):
-    user = User.objects.get(username=request.user)
+def profile(request, userId=None):
+    if not userId:
+        userId = request.user.id
+        
+    user = User.objects.get(id=userId)
     context = __infoUser__(user)
+    context['actualUserId'] = userId
+    context['profileUserId'] = request.user.id
     return render(request, 'userProfile.html', context=context)
 
 @login_required
