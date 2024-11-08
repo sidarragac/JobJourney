@@ -150,7 +150,7 @@ def editProfile(request):
         # Actualizar la imagen de perfil
         uploaded_image = request.FILES.get('inputFile')
         if uploaded_image:
-            if user.image.url != 'images/default-avatar.jpg':
+            if user.image != 'images/default-avatar.jpg':
                 user.image.delete()
             user.image = uploaded_image  # Asigna la imagen nueva
 
