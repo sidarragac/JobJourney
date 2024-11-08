@@ -39,9 +39,6 @@ def __infoUser__(user):
             'facebook': facebook.link if facebook else None,
             'linkedin': linkedin.link if linkedin else None,
         }
-    image = str(user.image)
-    loggedWithGoogle = True if "https" in image else False
-    context['google'] = loggedWithGoogle
     return context
 
 def __getAuthorizationToken__(code):
@@ -58,7 +55,7 @@ def __getAuthorizationToken__(code):
     response = requests.post(tokenURL, data=data)
     token = response.json()
     return token['access_token']
-
+    
 def loginView(request):
     if request.method == 'POST':
         user = authenticate(request, username=request.POST.get('username'), password=request.POST.get('password'))
@@ -100,27 +97,47 @@ def registerView(request):
         form = RegisterForm()
     return render(request, 'register.html', {'form': form, 'isCompany': False})
 
-def interestSelectionView(request):
-    if request.method == 'POST':
-        interests = []
-        for i in range(3):
-            interest = request.POST.get(f'interest{i+1}')
-            if interest:
-                interests.append(interest)
-        user = request.user
-        amount = UserInterest.objects.filter(user=user).count()
-        for interest in interests:
-            if not UserInterest.objects.filter(user=user, interest=Interest.objects.get(id=interest)).exists():
-                if amount >= 3:
-                    UserInterest.objects.filter(user=user).first().delete()
-                UserInterest.objects.create(user=user, interest=Interest.objects.get(id=interest))
-        return redirect('profile')
-    return render(request, 'interestSelection.html', {'interests': Interest.objects.all()})
+@login_required
+def interestSelection(request):
+    if request.method == 'GET':
+        return render(request, 'interestSelection.html', {'interests': Interest.objects.all()})
+    
+    interests = []
+    user = request.user
+    for i in range(3):
+        interest = request.POST.get(f'interest{i+1}')
+        if interest:
+            interests.append(interest)
+
+    for interest in interests:
+        if UserInterest.objects.filter(user=user, interest=interest).exists():
+            continue
+        UserInterest.objects.create(user=user, interest=Interest.objects.get(id=interest))
+    
+    if UserInterest.objects.filter(user=user).count() != len(interests):
+        UserInterest.objects.filter(user=user).exclude(interest__in=interests).delete()
+
+    return redirect('profile')
 
 @login_required
-def profile(request):
-    user = User.objects.get(username=request.user)
+def editInterests(request):
+    userInterests = list(UserInterest.objects.filter(user=request.user).values_list('interest', flat=True))
+    interests = Interest.objects.all()
+
+    while len(userInterests) < 3:
+        userInterests.append(None)
+
+    return render(request, 'editInterestSelection.html', {'interests': interests, 'userInterests': userInterests})
+
+@login_required
+def profile(request, userId=None):
+    if not userId:
+        userId = request.user.id
+        
+    user = User.objects.get(id=userId)
     context = __infoUser__(user)
+    context['actualUserId'] = userId
+    context['profileUserId'] = request.user.id
     return render(request, 'userProfile.html', context=context)
 
 @login_required
@@ -130,7 +147,6 @@ def editProfile(request):
     if request.method == 'POST':
         # Actualizar la imagen de perfil
         uploaded_image = request.FILES.get('inputFile')
-        print(uploaded_image)
         if uploaded_image:
             if user.image.url != 'images/default-avatar.jpg':
                 user.image.delete()
@@ -174,7 +190,6 @@ def googleLogin(request):
     return redirect(url)
 
 def callback(request):
-
     try:
         code = request.GET.get('code')
         token = __getAuthorizationToken__(code)
