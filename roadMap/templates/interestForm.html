@@ -16,7 +16,7 @@
     {% block content %}
     <div class="main" id="content-container">
         <div class="input-camp title-container">
-            <h1>Generate Roadmap</h1>
+            <h1>Generate <span translate="no"> Roadmap</span></h1>
         </div>
         <form id="interestForm" action="{% url 'roadmapGenerator' %}" method="POST">
             {% csrf_token %}
