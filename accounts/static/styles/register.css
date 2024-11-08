@@ -64,6 +64,11 @@ header {
     color: #40414a;
 }
 
+.buttonPersonalize{
+    width: 30%;
+    margin: auto;
+}
+
 .input-box .input-field label {
     position: absolute;
     top: 10px;
@@ -91,8 +96,7 @@ header {
 .login {
     text-align: center;
     font-size: small;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 15px 0px;
 }
 
 span a {
@@ -122,6 +126,7 @@ span a:hover {
     align-items: center;
     padding-bottom: 5px;
     text-decoration: none;
+    margin: 10px;
 }
 
 .gsi-material-button {

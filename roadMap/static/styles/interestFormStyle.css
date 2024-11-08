@@ -45,6 +45,7 @@ form {
   flex-direction: column;
   align-items: center;
   width: 80%;
+  margin: 20px auto;
 }
 
 
@@ -70,6 +71,9 @@ form {
   margin: 20px 0px;
 }
 
+.buttonPersonalize{
+  width: 40%;
+}
 
 #loading-screen {
   position: fixed;

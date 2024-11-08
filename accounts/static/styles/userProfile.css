@@ -37,6 +37,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 80%;
+    margin: 10px auto;
 }
 
 .settingsPhoto img{
@@ -121,6 +123,15 @@
     top: 10px;
     right: 10px;
     display: block;
+}
+
+.buttonPersonalize{
+    width: 40%;
+    margin: 10px auto;
+}
+.buttonPersonalize a{
+    text-decoration: none;
+    color: black;
 }
 
 .profileInfo{

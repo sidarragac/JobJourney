@@ -103,9 +103,10 @@
                         <div class="settingsPhoto">
                             <h4>Profile Photo</h4>
                             <img src="{% static user.image %}" class="userPick" id="profilePic">
-                            <label for="inputFile" class="button-1 buttonPhoto">Change photo</label>
-                            <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile"
-                                name="inputFile">
+                            <div class="button-1 buttonPersonalize">
+                                <label for="inputFile" class="button">Change photo</label>
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile" name="inputFile">
+                            </div>
                         </div>
                         <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
                         <div class="settingsSocial">
@@ -125,16 +126,17 @@
                                 <input type="text" id="Facebook" name="Facebook"
                                     value="{{facebook|default_if_none:''}}">
                             </div>
-                            <div class="inputField">
-                                <input type="submit" class="button-1" value="Apply changes" style="padding: 10px;">
+                            <div class="button-1 buttonPersonalize">
+                                <input type="submit" class="button" value="Apply Changes">
                             </div>
                         </div>
                     </form>
                     <hr style="border: 1px solid #949494; width: 80%; margin: 15px auto;">
                     <div class="settingsInterests">
                         <h4>Interests</h4>
-                        <a href="{% url 'interestSelection' %}" class="button-1 buttonInterestSelection">Change your
-                            Interests</a>
+                        <div class="button-1 buttonPersonalize">
+                            <a href="{% url 'interestSelection' %}" class="button">Change your Interests</a>
+                        </div>
                     </div>
                 </div>
             </dialog>
