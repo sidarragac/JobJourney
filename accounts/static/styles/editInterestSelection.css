@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+header {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 45%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: auto;
+    margin: 100px auto;
+}
+
+.titleContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1B263B;
+    border-radius: 20px 20px 0px 0px;
+    text-align: center;
+}
+
+.titleContainer h1{
+    color: #fff;
+    margin: 50px 0px;
+    font-weight: 600;
+    width: 90%;
+}
+
+.description{
+    width: 100%;
+    margin: 0px auto 50px auto;
+    text-align: center;
+}
+
+.description h6 {
+    color: #40414a;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.form-select {
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+
+.input-box{
+    position: relative;
+    margin: 50px auto;
+    width: 80%;
+    height: 70%;
+}
+
+.interestLabel{
+    font-weight: 500;
+}
+
+.input-field{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 10px 0 10px;
+}
+
+.input{
+    height: 45px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+.input-box .input-field label{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    transition: .5s;
+}
+.input-field input:focus ~ label{
+    top: -10px;
+    font-size: 13px;
+  }
+.input-field input:valid ~ label{
+    top: -10px;
+    font-size: 13px;
+    color: #5d5076;
+}
+
+.input-field .input:focus, .input-field .input:valid{
+    border-bottom: 1px solid #743ae1;
+}
+
+.buttonPersonalize{
+    width: 50%;
+    margin: auto;
+}
+
+ .submit:hover{
+    background: rgba(37, 95, 156, 0.937);
+    color: #fff;
+ }
+
+@media (max-width: 1200px){
+    .content{
+        width: 60%;
+    }
+}
+
+@media (max-width: 992px){
+    .content{
+        width: 70%;
+    }
+}
+
+@media (max-width: 568px){
+    .content{
+        width: 90%;
+    }
+}

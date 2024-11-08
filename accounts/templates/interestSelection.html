@@ -22,12 +22,12 @@
                 <form action="{% url 'interestSelection' %}" method="POST">
                     {% csrf_token %}
                     <div class="description">
-                        <h6>Select up to 3 interests that will be used to recommend community’s roadmaps. You can always change them or set the up later in your profile.</h6>
+                        <h6>Select up to 3 interests that will be used to recommend community's roadmaps. You can always change them or set the up later in your profile.</h6>
                     </div>
                     <!-- First interest -->
                      <div>
                         <label for="interest1" class="interestLabel">Interest 1</label>
-                        <select name="interest1" class="form-select">
+                        <select name="interest1" class="form-select interestOption" onchange="updateOptions()">
                             <option value=""></option>
                             {% for interest in interests %}
                                 <option value="{{ interest.id }}">{{ interest.name }}</option>
@@ -37,7 +37,7 @@
                     <!-- Second interest -->
                     <div>
                         <label for="interest2" class="interestLabel">Interest 2</label>
-                        <select name="interest2" class="form-select">
+                        <select name="interest2" class="form-select interestOption" onchange="updateOptions()">
                             <option value=""></option>
                             {% for interest in interests %}
                                 <option value="{{ interest.id }}">{{ interest.name }}</option>
@@ -47,7 +47,7 @@
                     <!-- Third interest -->
                     <div>
                         <label for="interest3" class="interestLabel">Interest 3</label>
-                        <select name="interest3" class="form-select">
+                        <select name="interest3" class="form-select interestOption" onchange="updateOptions()">
                             <option value=""></option>
                             {% for interest in interests %}
                                 <option value="{{ interest.id }}">{{ interest.name }}</option>
@@ -55,12 +55,13 @@
                         </select>
                     </div>
                     <div class="button-1 buttonPersonalize">
-                        <input type="submit" class="button" value="Apply Changes">
+                        <input type="submit" class="button" value="Apply">
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script src="{% static 'scripts/interestSelection.js' %}"></script>
     {% endblock content %}
 </body>
 </html>
