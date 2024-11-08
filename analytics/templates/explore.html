@@ -16,7 +16,7 @@
 {% block content %}
     <div class="contenedorBanner">
         <div class="banner">
-            <h2>Explore section</h2>
+            <h2>Explore</h2>
             <h4>Have a look at other people's journeys</h4>
             <div class="contenedorForm">
                 <form action="{% url 'explore' %}" method="POST" class="form1">
@@ -28,13 +28,13 @@
                             <option value="{{ id }}">{{ interest }}</option>
                         {% endfor %}
                     </select>
-                    <div class="button">
-                        <input type="submit" class="button-1" value="Search">                        
+                    <div class="button-1 buttonPersonalize">
+                        <input type="submit" class="button" value="Search">
                     </div>
                 </form>
                 <form action="{% url 'explore' %}" method="GET" class="form2">
-                    <div class="button">
-                        <button class="button-1" type="submit">Reset</button>
+                    <div class="button-1 buttonPersonalize">
+                        <input type="submit" class="button" value="Reset">
                     </div>
                 </form>
             </div>

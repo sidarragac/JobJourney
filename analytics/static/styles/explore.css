@@ -4,7 +4,7 @@
 }
 
 .contenedorBanner{
-    background-color: #1B263B;
+    background-color: #102C57;
     height: 300px;
     width: 100%;
     text-align: center;
@@ -148,6 +148,7 @@
 
 .infoRoadmap2{
     width: 35%;
+    flex-wrap: wrap;
 }
 
 .tituloCard{
@@ -206,13 +207,13 @@
 }
 @media (max-width: 1400px){
     .contenedorRoadmaps{
-        min-height: 270px;
+        min-height: 370px;
     }
 }
 
 @media (max-width: 1200px){
     .contenedorRoadmaps{
-        min-height: 300px;
+        min-height: 350px;
     }
 }
 
@@ -256,7 +257,9 @@
     .contenedorForm form{
         flex-direction: column;
     }
-
+    .resultados{
+        flex-direction: column;
+    }
     .input{
         width: 80%;
         text-align: center;
@@ -297,6 +300,13 @@
     }
     .cajaContenedorRoadmaps{
         justify-content: space-around;
+    }
+}
+
+@media (max-width: 382px){
+    .contenedorRoadmaps{
+        width: 90%;
+        min-height: 250px;
     }
 }
 
