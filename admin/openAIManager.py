@@ -19,7 +19,7 @@ name: -what I want to become-.,
 steps: array of steps in the following format:
 -number: step number,
 -name: step name,
--remarkablePoints: array of remarkable points,
+-remarkablePoints: array of exactly 3 remarkable points,
 -recommendedMaterials: array of recommended materials with the title of each without url, and
 -jobSuggestion: job suggestion as an object with: title and description.
 benefit: How this roadmap benefit me.
