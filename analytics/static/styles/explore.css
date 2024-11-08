@@ -15,6 +15,17 @@
     margin-bottom: 40px;
 }
 
+
+.Owner{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.Owner:hover{
+    font-weight: 800;
+}
+
 .banner{
     color: white;
     width: 80%;

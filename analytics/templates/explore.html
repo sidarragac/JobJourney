@@ -83,7 +83,7 @@
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
-                                    <p>Owner: <a href="{% url 'profile' roadmap.user.pk %}">{{ roadmap.user }}</a></p>
+                                    <p>Owner: <a href="{% url 'profile' roadmap.user.pk %}" class="Owner">{{ roadmap.user }}</a></p>
                                     <p>Interest: {{ roadmap.interest }}</p>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
@@ -161,7 +161,7 @@
                             <br>
                             <div class="d-flex flex-row w-100 justify-content-between">
                                 <div class="infoRoadmap1">
-                                    <p>Owner: <a href="{% url 'profile' roadmap.user.pk %}">{{ roadmap.user }}</a></p>
+                                    <p>Owner: <a href="{% url 'profile' roadmap.user.pk %}" class="Owner">{{ roadmap.user }}</a></p>
                                     <p>Interest: {{ roadmap.interest }}</p>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-end mb-3 infoRoadmap2">
