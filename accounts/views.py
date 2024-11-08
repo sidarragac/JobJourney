@@ -22,6 +22,7 @@ def __infoUser__(user):
             'instagram': instagram.link if instagram else None,
             'facebook': facebook.link if facebook else None,
             'linkedin': linkedin.link if linkedin else None,
+            'image' : user.image,
         }
     else:
         person = Person.objects.get(user=user)
@@ -38,6 +39,7 @@ def __infoUser__(user):
             'instagram': instagram.link if instagram else None,
             'facebook': facebook.link if facebook else None,
             'linkedin': linkedin.link if linkedin else None,
+            'image' : user.image,
         }
     return context
 

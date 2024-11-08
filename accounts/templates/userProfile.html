@@ -24,7 +24,7 @@
                 <ul class="listProfileInfo">
                     <li>
                         <div class="userProfile d-flex flex-column">
-                            <img src="{% static user.image %}" class="userPick">
+                            <img src="/static/{{image}}" class="userPick">
                             <div class="socialMedias">
                                 <ul class="socialMediasList">
                                     <li class="iconContent">
@@ -103,7 +103,7 @@
                             {% csrf_token %}
                             <div class="settingsPhoto">
                                 <h4>Profile Photo</h4>
-                                <img src="{% static user.image %}" class="userPick" id="profilePic">
+                                <img src="/static/{{image}}" class="userPick" id="profilePic">
                                 <div class="button-1 buttonPersonalize">
                                     <label for="inputFile" class="button">Change photo</label>
                                     <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputFile" name="inputFile">
