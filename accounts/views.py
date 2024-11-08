@@ -108,20 +108,20 @@ def interestSelection(request):
         interest = request.POST.get(f'interest{i+1}')
         if interest:
             interests.append(interest)
-            
+
     for interest in interests:
         if UserInterest.objects.filter(user=user, interest=interest).exists():
             continue
-        UserInterest.objects.create(user=user, interest=interest)
+        UserInterest.objects.create(user=user, interest=Interest.objects.get(id=interest))
     
-    if UserInterest.objects.filter(user=user).count() > 3:
-        UserInterest.objects.exclude(interest_in=interests).delete()
+    if UserInterest.objects.filter(user=user).count() != len(interests):
+        UserInterest.objects.filter(user=user).exclude(interest__in=interests).delete()
 
     return redirect('profile')
 
 @login_required
 def editInterests(request):
-    userInterests = UserInterest.objects.filter(user=request.user)
+    userInterests = list(UserInterest.objects.filter(user=request.user).values_list('interest', flat=True))
     interests = Interest.objects.all()
 
     while len(userInterests) < 3:
