@@ -25,6 +25,32 @@ body {
     align-items: center;
 }
 
+.button{
+  border: none;
+  width: 100%;
+  min-height: 45px;
+  background-color: transparent;
+  background: #E0E1DD;
+  transition: .4s;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: normal; 
+}
+
+.button-1{
+  border: none;
+  outline: none;
+  min-height: 45px;
+}
+
+.button:hover{
+  background: #415A77;
+  color: #fff;
+}
+
 .extraInfo{
     display: none;
 }
@@ -112,27 +138,8 @@ body {
   font-weight: 500;
 }
 
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .register-login{
   font-weight: 800;
-}
-
-.button-1{
-  border: none;
-  outline: none;
-  height: 45px;
-  background: #E0E1DD;
-  border-radius: 10px;
-  transition: .4s;
-}
-.button-1:hover{
-  background: #415A77;
-  color: #fff;
 }
 
 dialog::backdrop {
